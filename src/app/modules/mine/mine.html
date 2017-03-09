@@ -1,0 +1,24 @@
+<ion-view hide-nav-bar="true" view-title="我的">
+    <ion-header-bar class="header-banner">
+        <img ng-src="{{portrary}}" ng-click="toUserInfo()">
+        <div class="header-loginbtn" ng-hide="minetab.userInfo.phone" ng-click="minetab.toItems('order')">
+            登录/注册
+        </div>
+        <p class="login-word forbid-phone" ng-show="minetab.userInfo.phone">{{minetab.userInfo.phone.toString()}}</p>
+    </ion-header-bar>
+    <ion-content ng-class="{true:'ios-margin-top',false:'android-margin-top'}[deviceId=='0']">
+        <list-item icon="app/img/me_icon_order-form@3x.png" title="我的订单" ng-click="minetab.toItems('order')"></list-item>
+        <list-item icon="app/img/coupon-icon.png" title="我的优惠券" ng-click="minetab.toItems('coupon')"></list-item>
+        <list-item icon="app/img/me_icon_rmb@3x.png" title="我的荣盛币" ng-click="minetab.toItems('rsb')"></list-item>
+        <list-item ng-show="minetab.userInfo&&minetab.userInfo.userId" icon="app/img/me_icon_assets@3x.png" title="我的资产" ng-click="minetab.toItems('asset')"></list-item>
+        <list-item icon="app/img/me_icon_con@3x.png" title="我的联系人" ng-click="minetab.toItems('contact')"></list-item>
+        <list-item icon="app/img/me_icon_shezhi@3x.png" title="设置" ng-click="minetab.setting()"></list-item>
+        <list-item icon="app/img/me_icon_collect@3x.png" title="我的收藏" ng-click="minetab.toItems('store')"></list-item>
+        <list-item icon="app/img/me_icon_wenda@2x.png" title="在线客服" ng-click="minetab.toItems('service')"></list-item>
+        <list-item icon="app/img/me_icon_bangzhu@2x.png" title="帮助中心" ng-click="minetab.toItems('help')"></list-item>
+        <div class="quit-button" ng-show="minetab.userInfo.userId" ng-click="minetab.quit()">
+            <p>退出登录</p>
+        </div>
+        <br/>
+    </ion-content>
+</ion-view>

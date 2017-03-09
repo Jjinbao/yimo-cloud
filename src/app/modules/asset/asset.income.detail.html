@@ -1,0 +1,28 @@
+<ion-view view-title="资产收益">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left btn-back" style="color: white;" ng-click="_goback(-1)">
+        </button>
+    </ion-nav-buttons>
+    <ion-content has-bouncing="false" style="background-color: #f1f1f1">
+        <div class="asset-income-header">
+            <div class="last-month">上月收益</div>
+            <div class="last-money">{{assetIncome.latestIncome[5]}}</div>
+        </div>
+        <div class="asset-income-col">
+            <div class="row">
+                <div class="col col-50 income-col-grid">
+                    上月收益
+                    <p>{{assetIncome.latestIncome[5]}}</p>
+                </div>
+                <div class="col col-50 income-col-grid" style="border-left: 1px solid #dedede">
+                    累计收益
+                    <p>{{assetIncome.latestIncome[7]}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="asset-income-7">
+            近6月收益
+            <canvas id="bar" class="chart chart-line" data="graph.data" labels="graph.labels" series='graph.series' height="200" style="color: red;"></canvas>
+        </div>
+    </ion-content>
+</ion-view>

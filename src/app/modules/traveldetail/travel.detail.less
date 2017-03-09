@@ -1,0 +1,198 @@
+@charset "utf-8";
+@import "../../common/veriables";
+.travel-introduce{
+  border-top: 1px solid gainsboro;
+  .travel-introduce-detail{
+    padding-bottom: 10px;
+  }
+  .bottom-border-orange{
+    border-bottom: 2px solid orange;
+  }
+}
+
+.travel-detail-back{
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  z-index: 10;
+  img{
+    width: 25px;
+  }
+}
+
+.travel-detail-picnum{
+  position: absolute;
+  .px2rem(bottom,170);
+  left: 20px;
+
+  z-index: 13;
+  color: white;
+}
+
+.travel-image-index{
+  position: absolute;
+  top:240px;
+  left: 20px;
+  z-index: 10;
+  color: white;
+}
+.travel-detail-share{
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  z-index: 11;
+  img{
+    width: 25px;
+  }
+}
+.travel-detail-collect{
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  z-index: 11;
+  img{
+    width: 25px;
+  }
+}
+.detail-top-length{
+  .px2rem(top,60);
+}
+
+.travel-introduce-content{
+  padding:0 10px;
+  .travel-introduce-item{
+    p{
+      img{
+        width: 100%;
+      }
+    }
+  }
+}
+
+.travel-detail-footer{
+  padding: 0;
+  .phone-ask{
+    width: 55%;
+    height: 43px;
+    background-color: white;
+    text-align: center;
+    img{
+      width: 20px;
+      vertical-align: middle;
+    }
+    a{
+      display: inline-block;
+      line-height: 43px;
+      margin-left: 3px;
+      text-decoration: none;
+      color: black;
+    }
+  }
+
+  .buy-it{
+    width: 45%;
+    background-color: orange;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+  }
+}
+
+.travel-icon-content{
+  .travel-detail-title{
+    padding-left: 5px;
+    width:100%;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
+  
+  .travel-detail-subtitile{
+    margin-top: 5px;
+    color: darkgrey;
+    font-size: 12px;
+    padding-left: 5px;
+  }
+  .travel-detail-icons{
+    margin-top: 5px;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    height: 25px;
+    padding-left: 5px;
+    position: relative;
+    .travel-detail-rsb{
+      float: left;
+      margin-right: 2px;
+      img{
+        margin-top: 2px;
+        height: 20px;
+        width: 90px;
+      }
+      .travel-bill-release{
+        position: absolute;
+        font-size: 10px;
+        top: 2px;
+        left: 14px;
+        color: white;
+      }
+    }
+
+    .travel-cancle-btn{
+      float: left;
+      top:0;
+      width: 55px;
+      height: 30px;
+      font-size: 10px;
+      .allow-cancle{
+        margin-right: 2px;
+        height: 20px;
+        margin-top: 2px;
+        border: 1px solid green;
+        color: green;
+        text-align: center;
+        border-radius: 2px;
+      }
+      .cannot-cancle{
+        margin-right: 2px;
+        height: 20px;
+        margin-top: 2px;
+        border: 1px solid orange;
+        color: orange;
+        text-align: center;
+        border-radius: 2px;
+      }
+      .detail-employee-vip{
+        margin-right: 2px;
+        height: 20px;
+        margin-top: 2px;
+        border: 1px solid deepskyblue;
+        color: deepskyblue;
+        text-align: center;
+        border-radius: 2px;
+      }
+      .limit-employee-vip{
+        margin-right: 2px;
+        width: 78px;
+        border:1px solid #ff3333;
+        border-radius: 2px;
+        height: 20px;
+        text-align: center;
+        color: #ff3333;
+        margin-top:2px;
+      }
+    }
+    .trave-detail-price{
+      position: absolute;
+      top: 3px;
+      right: 10px;
+      color: orange;
+    }
+  }
+
+}
+
+.travel-stay-slider{
+  .ion-record{
+    opacity: 0;
+  }
+}

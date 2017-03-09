@@ -1,0 +1,142 @@
+<ion-view view-title="我的荣盛币">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="rsbGoback()">
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon" style="color: white;font-size: 14px;" ng-click="explain()">使用说明
+        </button>
+    </ion-nav-buttons>
+    <ion-header-bar class="bar-subheader good-header-style">
+        <div class="rsb-deadline-item" ng-class="{true:'rsb-subheader-active'}[nowStatus==='noDeadLine']" ng-click="checkStatus('noDeadLine')">
+            无期限
+        </div>
+        <div class="rsb-deadline-item" ng-class="{true:'rsb-subheader-active'}[nowStatus==='hasDeadLine']" ng-click="checkStatus('hasDeadLine')">
+            有期限
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div ng-show="nowStatus==='noDeadLine'">
+            <div class="rsb-total-num">
+                <div class="rsb-yue">
+                    余额
+                </div>
+                <div class="rsb-money-totle">
+                    {{rsbObj.sumABalance}}<span>荣盛币</span>
+                </div>
+                <div class="rsb-gift-btn" ng-click="togiftRsb('A',rsbObj.sumABalance)">
+                    <img src="app/img/zengyu.png" class="gift-image">
+                </div>
+            </div>
+        </div>
+        <div ng-show="nowStatus==='hasDeadLine'">
+            <div class="goods-empty-order" ng-show="!rsbObj.accountBDetails||rsbObj.accountBDetails.length===0">
+                <img src="app/img/me_icon_kongbai@2x.png">
+                <p>您还没有该类荣盛币呦！</p>
+            </div>
+            <div ng-show="rsbObj.accountBDetails&&rsbObj.accountBDetails.length!=0">
+                <div class="rsb-total-num" ng-repeat="brsb in rsbObj.accountBDetails">
+                    <div class="rsb-yue">
+                        余额
+                    </div>
+                    <div class="rsb-money-totle">
+                        {{brsb.balance}}<span>荣盛币</span>
+                    </div>
+                    <div class="rsb-deadline">
+                        有效期至：{{brsb.endDate}} <sapn>到期归零</sapn>
+                    </div>
+                    <div class="rsb-gift-btn" ng-click="togiftRsb('B',brsb)">
+                        <img src="app/img/zengyu.png" class="gift-image">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="rsb-recharge" ng-click="toBuyRsb()" ng-show="isInApp===1&&nowStatus==='noDeadLine'">
+            购买
+            <span class="icon ion-ios-arrow-right rsb-to-buy"></span>
+        </div>
+        <div ng-show="nowStatus==='noDeadLine'">
+            <div class="rsb-myrecord-title">
+                我的记录
+            </div>
+            <div ng-hide="rsbRecord" style="text-align: center;margin-top: 60px;">
+                <ion-spinner></ion-spinner>
+            </div>
+            <div ng-show="rsbRecord&&rsbRecord.length!=0">
+                <div ng-repeat="payitem in rsbRecord">
+                    <div class="rsb-myrecord-item" ng-show="payitem.type==='XF'">
+                        <div class="rsb-pay-title">
+                            您于{{payitem.merchName}}消费{{payitem.money}}荣盛币
+                        </div>
+                        <div class="rsb-pay-time">
+                            {{payitem.date | dateFormate}}
+                        </div>
+                        <div class="rsb-pay-number">
+                            -{{payitem.money}}
+                        </div>
+                    </div>
+                    <!--<div class="rsb-myrecord-item" ng-show="payitem.type==='CZ'">
+                        <div class="rsb-pay-title">
+                            您购买{{payitem.money}}荣盛币
+                        </div>
+                        <div class="rsb-pay-time">
+                            {{payitem.date | dateFormate}}
+                        </div>
+                        <div class="rsb-pay-number">
+                            +{{payitem.money}}
+                        </div>
+                    </div>-->
+                    <div class="rsb-myrecord-item" ng-show="payitem.type==='TK'">
+                        <div class="rsb-pay-title">
+                            {{payitem.orderId}}的退款已到账
+                        </div>
+                        <div class="rsb-pay-time">
+                            {{payitem.date | dateFormate}}
+                        </div>
+                        <div class="rsb-pay-number">
+                            +{{payitem.money}}
+                        </div>
+                    </div>
+                    <div class="rsb-myrecord-item" ng-show="payitem.type==='ZY'">
+                        <div class="rsb-pay-title">
+                            {{payitem.orderId}}{{payitem.money}}荣盛币
+                        </div>
+                        <div class="rsb-pay-time">
+                            {{payitem.date | dateFormate}}
+                        </div>
+                        <div class="rsb-pay-number">
+                            +{{payitem.money}}
+                        </div>
+                    </div>
+                    <div class="rsb-myrecord-item" ng-show="payitem.type==='BZ'">
+                        <div class="rsb-pay-title">
+                            {{payitem.orderId}}{{payitem.money}}荣盛币
+                        </div>
+                        <div class="rsb-pay-time">
+                            {{payitem.date | dateFormate}}
+                        </div>
+                        <div class="rsb-pay-number">
+                            -{{payitem.money}}
+                        </div>
+                    </div>
+                    <div class="rsb-myrecord-item" ng-show="payitem.type==='FX'">
+                        <div class="rsb-pay-title" ng-if="payitem.merchName=='荣盛康旅'||payitem.merchName=='四众互联'">
+                            购买{{payitem.money}}荣盛币
+                        </div>
+                        <div class="rsb-pay-title" ng-if="payitem.merchName!='荣盛康旅'&&payitem.merchName!='四众互联'">
+                            {{payitem.merchName}}赠与给您{{payitem.money}}荣盛币
+                        </div>
+                        <div class="rsb-pay-time">
+                            {{payitem.date | dateFormate}}
+                        </div>
+                        <div class="rsb-pay-number">
+                            +{{payitem.money}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

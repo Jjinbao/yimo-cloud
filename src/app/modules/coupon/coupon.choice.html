@@ -1,0 +1,29 @@
+<ion-view class="coupon-view" view-title="可用优惠券" >
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="backToApp()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content style="">
+        <div ng-hide="useCoupons" style="text-align: center;margin-top: 20px;">
+            <ion-spinner></ion-spinner>
+        </div>
+        <div class="coupon-list">
+            <div class="coupon-box row vertical" ng-repeat="cp in useCoupons"  new-color="#dedede" old-color="#fff">
+                    <div class="coupon-left col-20 text-center" ng-click="toCouponDetail(cp)">￥{{cp.amount|number:0}}</div>
+                    <div class="coupon-right col-75" ng-click="toCouponDetail(cp)">
+                        <div class="coupon-title">{{cp.name}}</div>
+                        <div class="coupon-time">有效期：{{cp.validStart}}至{{cp.validEnd}}</div>
+                    </div>
+                <div ng-click="itemChoice(cp)">
+                    <div class="coupon-choice">
+                        <img src="app/img/checkbox-not-select.png">
+                    </div>
+                    <div class="coupon-choice" ng-show="showChoice.id==cp.id">
+                        <img src="app/img/checkbox-select.png">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    </ion-view>

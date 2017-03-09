@@ -1,0 +1,174 @@
+.px2rem(@name, @px){
+  @{name}: @px / @baseRem * 1rem;
+}
+@px2rem: 75rem;
+@baseRem: 75;
+@imgSrc: '../app/img/';
+@mainColor: orange;
+@disabledColor: #c6c0c4;
+@dangerColor: red;
+@okColor: #98ddc0;
+
+//布局
+.generate-col(@n, @i: 1) when  (@i =< @n) {
+  .z-col-@{i}{
+    float: left;
+    box-sizing: border-box;
+    display: inline-block;
+    width: @i/12 * 100%
+  }
+  .generate-col(@n, (@i + 1));
+}
+.generate-col(12);
+//默认边距
+@pageMargin: 20;
+//抵消默认页面边距
+.offset-page-margin{
+  .px2rem(margin-left, -@pageMargin);
+  .px2rem(margin-right, -@pageMargin);
+}
+.fix{
+  &:after{
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+.z-row{
+  position: relative;
+  .fix;
+}
+//border
+@borderColor: #ccc;
+.border-top(@color, @size){
+  position: relative;
+  &:before{
+    content: '';
+    position: absolute;
+    top: -@size*0.58;
+    left: 0;
+    width: 100%;
+    height: @size;
+    background-color: @color;
+    -webkit-transform: scaleY(0.33);
+    -moz-transform: scaleY(0.33);
+    -ms-transform: scaleY(0.33);
+    -o-transform: scaleY(0.33);
+    transform: scaleY(0.33);
+  }
+}
+
+.border-bottom(@color, @size){
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    bottom: -@size*0.58;
+    left: 0;
+    width: 100%;
+    height: @size;
+    background-color: @color;
+    -webkit-transform: scaleY(0.33);
+    -moz-transform: scaleY(0.33);
+    -ms-transform: scaleY(0.33);
+    -o-transform: scaleY(0.33);
+    transform: scaleY(0.33);
+  }
+}
+
+.border-right(@color, @size){
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -@size*0.58;
+    height: 100%;
+    width: @size;
+    background-color: @color;
+    -webkit-transform: scaleX(0.33);
+    -moz-transform: scaleX(0.33);
+    -ms-transform: scaleX(0.33);
+    -o-transform: scaleX(0.33);
+    transform: scaleX(0.33);
+  }
+}
+
+.border-right{
+  .border-right(@borderColor, 1px);
+}
+.border-bottom{
+  .border-bottom(@borderColor, 1px);
+}
+.border-top{
+  .border-top(@borderColor, 1px);
+}
+//垂直居中
+.vertical-center{
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+//水平居中
+.center{
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+//文字排版类效果
+.text-left{
+  text-align: left;
+}
+.text-right{
+  text-align: right;
+}
+.text-center{
+  text-align: center;
+}
+
+//form布局类
+.input-ctrl{
+  position: relative;
+  .fix;
+  .px2rem(margin-bottom, 55);
+  color: #333;
+  .px2rem(font-size, 30);
+
+  .ctrl-label{
+    float: left;
+    position: relative;
+    .px2rem(margin-right, 32);
+
+    span{
+      display: block;
+      width: 100%;
+      .vertical-center;
+    }
+  }
+
+  .ctrl-input{
+    float: left;
+  }
+
+  .ctrl-tip{
+    position: absolute;
+    width: 100%;
+    top: calc(100% + 10px);
+  }
+}

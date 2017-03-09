@@ -1,0 +1,55 @@
+<ion-view view-title="修改个人资料">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon" style="color: white;font-size: 14px;" ng-click="saveChangeInfo()">保存
+        </button>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="false">
+        <div class="seting-user-info">
+            <div class="setting-user-header">
+                <img ng-src="{{userInfo.portrait}}" ng-click="showSheet()">
+                <input type="text" placeholder="请输入昵称" ng-model="userInfo.name">
+            </div>
+        </div>
+        <div class="setting-user-names">
+            <div class="set-items">
+                姓名
+                <input type="text" placeholder="请输入用户名" ng-model="userInfo.realName">
+            </div>
+            <div class="set-items">
+                性别
+                <div class="set-choice-sex">
+                    <label ng-click="choiceGender(1)">
+                        <img class="man-choice" src="app/img/lALOfnOPUSoq_42_42.png">
+                        <img ng-show="userInfo.gender==1" class="man-choice" src="app/img/lALOfnOPeyoq_42_42.png">
+                        <sapn ng-class="{true:'gender-color'}[userInfo.gender==1]" class="man-word">男</sapn>
+                    </label>
+                    <label ng-click="choiceGender(0)">
+                        <img class="women-choice" src="app/img/lALOfnOPUSoq_42_42.png">
+                        <img ng-show="userInfo.gender==0" class="women-choice" src="app/img/lALOfnOPeyoq_42_42.png">
+                        <sapn ng-class="{true:'gender-color'}[userInfo.gender==0]" class="women-word">女</sapn>
+                    </label>
+                </div>
+            </div>
+            <div class="set-items">
+                生日
+                <input type="date" required ng-required="" ng-model="userInfo.birthday" ng-change="change()" style="text-align: right;-webkit-appearance: none;width: 150px;background-color: white;">
+            </div>
+            <div class="set-items">
+                手机
+                <input type="tel" placeholder="请输入手机号" ng-model="userInfo.phone" style="text-align: right">
+            </div>
+            <div class="set-items">
+                地址
+                <input type="text" placeholder="请输入地址" ng-model="userInfo.address">
+            </div>
+            <div class="set-items">
+                电子邮箱
+                <input type="text" placeholder="选填" ng-model="userInfo.email">
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

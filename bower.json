@@ -1,0 +1,20 @@
+{
+  "name": "swalk-wechart-service",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-animate": "^1.5.7",
+    "angular-resource": "^1.5.7",
+    "angular-sanitize": "^1.5.7",
+    "angular-ui-router": "^0.3.1",
+    "ionic": "^1.3.1",
+    "angular-carousel": "^1.0.1",
+    "angularjs-slider": "^5.8.0",
+    "Waves": "waves#0.7.5"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.4.9"
+  },
+  "moduleName": "swalk-wechart-service",
+  "overrides": {}
+}

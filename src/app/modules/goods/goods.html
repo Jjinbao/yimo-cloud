@@ -1,0 +1,69 @@
+<ion-view view-title="我的订单">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left btn-back" style="color: white;" ng-click="goods.goodsBack()">
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon" style="color: white;font-size: 14px;margin-top: 5px;" ng-click="goods.changeOrders()">
+            {{goods.nowlist}}
+        </button>
+    </ion-nav-buttons>
+    <ion-header-bar class="bar-subheader good-header-style">
+        <div class="goods-list-item" ng-class="{true:'goods-orange-border'}[goods.orderType==='QB']" ng-click="goods.orderList('QB')">
+            全部
+        </div>
+        <div class="goods-list-item" ng-class="{true:'goods-orange-border'}[goods.orderType==='DZF']" ng-click="goods.orderList('DZF')">
+            待支付
+        </div>
+        <div class="goods-list-item" ng-class="{true:'goods-orange-border'}[goods.orderType==='YZF']" ng-click="goods.orderList('YZF')">
+            已支付
+        </div>
+        <div class="goods-list-item" ng-class="{true:'goods-orange-border'}[goods.orderType==='WC']" ng-click="goods.orderList('WC')">
+            完成
+        </div>
+    </ion-header-bar>
+    <ion-content class="has-subheader">
+        <div ng-switch="goods.orderType">
+            <div ng-switch-when="QB">
+                <div class="goods-empty-order" ng-show="orderlist.length===0">
+                    <img src="app/img/me_icon_kongbai@2x.png">
+                    <p>您还没有相关订单，去首页逛逛有哪些好玩的</p>
+                    <div class="goods-to-home" ng-click="goods.toHome()">首页</div>
+                </div>
+                <div ng-show="orderlist.length!=0">
+                    <good-item ng-repeat="order in orderlist"></good-item>
+                </div>
+            </div>
+            <div ng-switch-when="DZF">
+                <div class="goods-empty-order" ng-show="waitPayOrders.length===0">
+                    <img src="app/img/me_icon_kongbai@2x.png">
+                    <p>您还没有相关订单，去首页逛逛有哪些好玩的</p>
+                    <div class="goods-to-home" ng-click="goods.toHome()">首页</div>
+                </div>
+                <div ng-show="waitPayOrders.length!=0">
+                    <good-item ng-repeat="order in waitPayOrders track by $index"></good-item>
+                </div>
+            </div>
+            <div ng-switch-when="YZF">
+                <div class="goods-empty-order" ng-show="hadPayOrders.length===0">
+                    <img src="app/img/me_icon_kongbai@2x.png">
+                    <p>您还没有相关订单，去首页逛逛有哪些好玩的</p>
+                    <div class="goods-to-home" ng-click="goods.toHome()">首页</div>
+                </div>
+                <div ng-show="hadPayOrders.length!=0">
+                    <good-item ng-repeat="order in hadPayOrders track by $index"></good-item>
+                </div>
+            </div>
+            <div ng-switch-when="WC">
+                <div class="goods-empty-order" ng-show="hadFinishOrders.length===0">
+                    <img src="app/img/me_icon_kongbai@2x.png">
+                    <p>您还没有相关订单，去首页逛逛有哪些好玩的</p>
+                    <div class="goods-to-home" ng-click="goods.toHome()">首页</div>
+                </div>
+                <div ng-show="hadFinishOrders.length!=0">
+                    <good-item ng-repeat="order in hadFinishOrders track by $index"></good-item>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

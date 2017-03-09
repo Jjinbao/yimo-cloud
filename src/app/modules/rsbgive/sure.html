@@ -1,0 +1,62 @@
+<ion-view class="coupon-view" view-title="赠与" >
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goback()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="sure-give-back">
+            <div class="sure-give-rsb">
+                <img src="./app/img/iconrsb.png">
+            </div>
+            <div class="sure-rsb-number">
+                {{giveInfo.money}}&nbsp;<span>荣盛币</span>
+            </div>
+            <div class="rsb-receive">
+                收款方：{{giveInfo.phone | phoneHash}}
+            </div>
+            <div class="sure-button" ng-click="inputPassword()">
+                确认赠与
+            </div>
+        </div>
+    </ion-content>
+    <div>
+        <div ng-show="windowValue.mask" class="background-module" style="z-index: 9">
+
+        </div>
+        <!--<div ng-show="windowValue.ensure" class="pay-model-ensure">
+            <div class="pay-window-ensure">
+                <div class="pay-window-header">
+                    确认支付
+                </div>
+                <div class="pay-window-body">
+                    确认支付该订单？
+                </div>
+                <div class="pay-window-footer">
+                    <div class="window-pay-cancle" ng-click="canclePay()">取消</div>
+                    <div class="window-pay-sure" ng-click="startPay()">确认</div>
+                </div>
+            </div>
+        </div>-->
+        <div ng-show="windowValue.password" class="pay-rsb-popup">
+            <div class="pay-rsb-password">
+                <div class="pay-header">
+                    请输入支付密码
+                </div>
+                <div class="pay-body">
+                    <p>荣盛币赠与</p>
+                    <p class="pay-rsb-value">￥{{giveInfo.money}}</p>
+                </div>
+                <div class="pay-password">
+                    <input type="password" maxlength="6" ng-model="userPassword" placeholder="请输入6位支付密码">
+                </div>
+                <div class="pay-password-tip">
+
+                </div>
+                <div class="pay-button">
+                    <div class="pay-btn-cancle" ng-click="canclePassword()">取消支付</div>
+                    <div class="pay-btn-sure" ng-click="startIdentityPay()">确认支付</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-view>

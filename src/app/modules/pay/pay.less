@@ -1,0 +1,283 @@
+@charset "utf-8";
+
+.pay-detail{
+  height: 40px;
+  width: 100%;
+  background-color: white;
+  p{
+    line-height: 40px;
+    margin-left: 10px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow:hidden;
+  }
+  .pay-money-color{
+    color: orange;
+  }
+}
+
+.pay-icons{
+  position: relative;
+  .pay-rsb-discount{
+    display: inline-block;
+    padding-left: 10px;
+    img{
+      width: 115px;
+    }
+    .pay-release{
+      position: absolute;
+      top:0px;
+      left: 20px;
+      font-size: 12px;
+      color: white;
+    }
+  }
+
+  .pay-cancle{
+    display: inline-block;
+    padding-left: 10px;
+    .pay-cancle-button{
+      position: absolute;
+      top: -1px;
+      width: 65px;
+      text-align: center;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+    .pay-can-cancle{
+      border: 1px solid green;
+      color: green;
+    }
+
+    .pay-not-cancle{
+      border: 1px solid orange;
+      color: orange;
+    }
+
+  }
+
+
+}
+
+.pay-item-methd{
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid gainsboro;
+  position: relative;
+  img{
+    width: 40px;
+  }
+  .pay-rongsheng{
+    position: absolute;
+    top: 10px;
+    left: 55px;
+    span{
+      font-size: 12px;
+      color: grey;
+    }
+  }
+  .pay-can-use{
+    position: absolute;
+    top: 30px;
+    left: 55px;
+    width: 80%;
+    font-size: 13px;
+    color: grey;
+    span{
+      color: orange;
+      font-size: 12px;
+    }
+  }
+  .pay-check-box{
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    top:10px;
+    right:10px;
+    input{
+      position: absolute;
+      right: 0;
+      top:18px;
+    }
+  }
+}
+
+.pay-overview{
+  padding: 0;
+  border-top: none;
+  .pay-weixin-money{
+    width: 35%;
+    font-size: 11px;
+    text-align: left;
+    padding: 10px;
+    line-height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    span{
+      color: orange;
+    }
+  }
+  .pay-rongsheng-money{
+    width: 35%;
+    font-size: 11px;
+    padding: 10px;
+    line-height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    div{
+      border-left: 1px solid gainsboro;
+      padding-left: 2px;
+      span{
+        color: orange;
+      }
+    }
+
+  }
+
+  .pay-ensure{
+    width: 30%;
+    text-align: center;
+    line-height: 44px;
+    background-color: orange;
+    color: white;
+    margin-top: 0.5px;
+  }
+
+}
+
+.pay-model-ensure{
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  .pay-window-ensure{
+    width: 250px;;
+    height: 130px;
+    position: absolute;
+    background-color: white;
+    left: 50%;
+    top: 200px;
+    border-radius: 3px;
+    transform: translateX(-50%);
+    .pay-window-header{
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      font-size: 16px;
+      border-bottom: 0.5px solid darkgray;
+    }
+    .pay-window-body{
+      padding-top: 10px;
+      font-size: 12px;
+      text-align: center;
+    }
+    .pay-window-footer{
+      margin-top: 20px;
+      .window-pay-cancle{
+        height: 30px;
+        line-height: 30px;
+        margin-left: 15px;
+        width: 100px;
+        text-align: center;
+        border: 0.5px solid darkgray;
+        border-radius: 3px;
+        display: inline-block;
+      }
+      .window-pay-sure{
+        height: 30px;
+        line-height: 30px;
+        margin-left: 15px;
+        width: 100px;
+        text-align: center;
+        border: 0.5px solid darkgray;
+        border-radius: 3px;
+        width: 100px;
+        color: white;
+        background-color: orange;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.pay-rsb-popup{
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  .pay-rsb-password{
+    width: 250px;;
+    height:200px;
+    position: absolute;
+    background-color: white;
+    left: 50%;
+    top: 150px;
+    border-radius: 3px;
+    transform: translateX(-50%);
+    .pay-header{
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      font-size: 16px;
+      border-bottom: 0.5px solid darkgray;
+    }
+    .pay-body{
+      padding-top: 5px;
+      text-align: center;
+      p{
+        margin-bottom: 5px;
+      }
+      .pay-rsb-value{
+        color: orange;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+    .pay-password{
+      margin: 0 auto;
+      text-align: center;
+      input{
+        border: 1px solid darkgray;
+        border-radius: 0;
+        margin-left: 17px;
+        width: 215px;
+        text-align: center;
+        border-radius: 2px;
+      }
+    }
+    .pay-password-tip{
+      height: 30px;
+      color: red;
+      line-height: 30px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .pay-button{
+      padding-top: 0px;
+      .pay-btn-cancle{
+        height: 30px;
+        line-height: 30px;
+        margin-left: 15px;
+        width: 100px;
+        text-align: center;
+        border: 0.5px solid darkgray;
+        border-radius: 3px;
+        display: inline-block;
+      }
+      .pay-btn-sure{
+        height: 30px;
+        line-height: 30px;
+        margin-left: 15px;
+        width: 100px;
+        text-align: center;
+        border: 0.5px solid darkgray;
+        border-radius: 3px;
+        width: 100px;
+        color: white;
+        background-color: orange;
+        display: inline-block;
+      }
+    }
+  }
+}

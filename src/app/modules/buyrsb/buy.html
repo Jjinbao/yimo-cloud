@@ -1,0 +1,34 @@
+<ion-view view-title="购买荣盛币">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left btn-back" style="color: white;" ng-click="_goback(-1)">
+        </button>
+    </ion-nav-buttons>
+    <ion-content has-bouncing="false" class="buyrsb-body">
+        <div class="buyrsb-sum">
+            购买金额：
+            <div class="buyrsb-input-back">
+                <input type="tel" maxlength="5" placeholder="请输入购买金额" style="display: inline-block;" ng-model="usersum.sum">
+            </div>
+        </div>
+        <div class="buyrsb-explain">
+             实际到账荣盛币：{{usersum.vartual|number:2}}&nbsp;(购买￥1=1.1荣盛币)
+        </div>
+        <div class="buyrsb-paytype">
+            支付方式
+        </div>
+        <div class="pay-item-methd" style="border-top: 1px solid gainsboro">
+            <img src="app/img/common_pay_icon_weixin@3x.png">
+            <p class="pay-rongsheng">微信支付</p>
+            <p class="pay-can-use">使用微信支付，安全便捷</p>
+            <label for="weipay" class="pay-check-box">
+                <input id="weipay" style="background: orange;" checked  type="checkbox" disabled>
+            </label>
+        </div>
+        <div class="buyrsb-introduce" ng-click="buyExplain()">
+            《荣盛币购买说明》
+        </div>
+        <div class="buyrsb-next-tip" ng-class="{true:'buyrsb-btn-disable'}[canBtnUsed===false]" ng-click="buyRsb()">
+            下一步
+        </div>
+    </ion-content>
+</ion-view>

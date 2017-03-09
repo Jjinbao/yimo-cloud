@@ -1,0 +1,13 @@
+<ion-view>
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left btn-back" style="color: white;" ng-click="goback()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="city-list">
+            <div class="city-item-style" ng-repeat="city in cityList" ng-click="choiceCity(city)">
+                <span ng-class="{true:'select-city',false:''}[city.id==selectCity.id]">{{city.name}}</span>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

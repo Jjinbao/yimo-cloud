@@ -1,0 +1,46 @@
+<ion-view title="搜索" hide-nav-bar="false">
+    <ion-content has-header="true">
+        <div class="stay-main-back">
+
+            <div class="item-border">
+                <div class="image-icon">
+                    <img src="app/img/stay_icon_location@3x.png">
+                </div>
+                <div class="item-name" ng-click="toChoiceTarget()">
+                    <div class="item-title">{{selectCity.name}}</div>
+                    <img class="stay-arrow-right" src="app/img/common_icon_right@2x.png">
+                </div>
+            </div>
+            <div class="item-border">
+                <div class="image-icon">
+                    <img src="app/img/stay_icon_calendar@3x.png">
+                </div>
+                <div class="item-name" style="height: 60px;" ng-click="stayChoiceDate()">
+                    <div class="item-title-in">
+                        {{appStay.stayIn}}
+                        <div class="stay-in-out">入住</div>
+                    </div>
+                    <div class="item-title-leave">
+                        {{appStay.stayOut}}
+                        <div class="stay-in-out">离店</div>
+                    </div>
+                    <img class="stay-arrow-right" src="app/img/common_icon_right@2x.png">
+                </div>
+            </div>
+
+
+            <div class="item-border">
+                <div class="image-icon">
+                    <img src="app/img/stay_icon_Hotels@3x.png">
+                </div>
+                <div class="item-name" ng-click="toChoiceService()">
+                    <div class="item-title" style="color: darkgrey">{{priceShow}}/{{houseShow}}/{{deviceShow}}/{{serviceShow}}</div>
+                    <img class="stay-arrow-right" src="app/img/common_icon_right@2x.png">
+                </div>
+            </div>
+
+            <div class="stay-search-btn" ng-click="search()">搜索</div>
+        </div>
+
+    </ion-content>
+</ion-view>

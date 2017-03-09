@@ -1,0 +1,35 @@
+<ion-view view-title="设置">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
+        </button>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="false">
+        <div class="setting-main-tab">
+            <!--<div class="setting-items" ng-click="clearCache()">
+                清空缓存
+                <span style="font-size: 14px;">20Mb</span>
+            </div>-->
+            <div class="setting-items" ng-click="resetPayPassword()">
+                重置支付密码
+                <span class="icon ion-ios-arrow-right"></span>
+            </div>
+            <div class="setting-items" ng-click="resetLoginPassword()">
+                重置登录密码
+                <span class="icon ion-ios-arrow-right"></span>
+            </div>
+            <div class="setting-items" ng-click="evaluate()">
+                评价
+                <span class="icon ion-ios-arrow-right"></span>
+            </div>
+            <div class="setting-items" ng-click="userProtocol()">
+                用户协议
+                <span class="icon ion-ios-arrow-right"></span>
+            </div>
+            <!--<div class="setting-items" ng-click="about()">-->
+                <!--关于-->
+                <!--<span class="icon ion-ios-arrow-right"></span>-->
+            <!--</div>-->
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,38 @@
+<ion-view view-title="员工专享" hide-tabs="true" can-swipe-back="false">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div ng-switch="stayList.total">
+            <div ng-switch-when="0">
+                <div class="goods-empty-order">
+                    <img src="app/img/me_icon_kongbai@2x.png">
+                    <p>这里空空如也，去试试其他城市有什么好玩的</p>
+                </div>
+            </div>
+            <div ng-switch-default>
+                <div ng-show="stayList&&stayList.list.length>0">
+                    <thumbnail-item ng-repeat="stay in stayList.list"
+                                    image="{{stay.pic}}"
+                                    title="{{stay.houseName}}-{{stay.name}}"
+                                    discount="{{stay.rsDiscount}}"
+                                    canusersb="0"
+                                    subtitle="{{stay.addr}}"
+                                    cancle="{{stay.isBack}}"
+                                    price="{{stay.price}}"
+                                    employee="{{stay.state}}"
+                                    maxbuy="{{stay.max}}"
+                                    ng-click="toStayDetail(stay.id)">
+                    </thumbnail-item>
+                </div>
+            </div>
+        </div>
+        <div ng-hide="stayList.total>=0" class="app-boffer-spinner">
+            <ion-spinner></ion-spinner>
+        </div>
+
+        <ion-infinite-scroll ng-if="stayList.list.length<stayList.total" on-infinite="loadMoreData()" distance="1%" immediate-check="false">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

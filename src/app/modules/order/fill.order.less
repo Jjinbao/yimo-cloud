@@ -1,0 +1,117 @@
+@charset "utf-8";
+@import "../../common/veriables";
+//变量定义
+@order-item-height:80;
+
+.order-travel-time{
+  .px2rem(height,@order-item-height);
+  width: 100%;
+  background-color: white;
+  .travel-time{
+    .px2rem(line-height,@order-item-height);
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .choiced-time{
+    float: right;
+    margin-right: 10px;
+    .px2rem(line-height,@order-item-height);
+  }
+  span{
+    display: inline-block;
+    .px2rem(line-height,@order-item-height);
+    float: right;
+    margin-right: 10px;
+  }
+}
+
+.order-product-detail{
+  .px2rem(height,@order-item-height);
+  width: 100%;
+  background-color: white;
+  margin: 10px 0;
+  p{
+    .px2rem(line-height,@order-item-height);
+    margin-left: 10px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow:hidden;
+  }
+}
+
+.order-travel-people{
+  .px2rem(height,@order-item-height);
+  width: 100%;
+  background-color: white;
+  margin: 10px 0;
+  position: relative;
+  p{
+    .px2rem(line-height,@order-item-height);
+    margin: auto 10px;
+    display: inline-block;
+  }
+  img{
+    position:absolute ;
+    top: 12px;
+    right: 10px;
+    .px2rem(line-height,@order-item-height);
+    vertical-align: middle;
+    width: 20px;
+  }
+}
+
+.order-should-pay{
+  text-align: left;
+  line-height: 43px;
+  padding-left: 30px;
+  width: 55%;
+  background-color: white;
+}
+
+.order-people-item{
+  position: relative;
+  background-color: white;
+  .px2rem(height,@order-item-height);
+  padding-left: 20px;
+  border-bottom: 1px solid gainsboro;
+  .travel-people-name{
+    position:absolute;
+    left:10px;
+    .px2rem(line-height,@order-item-height);
+  }
+  .travel-price{
+    color: orange;
+    .px2rem(line-height,@order-item-height);
+    position: absolute;
+    right: 10px;
+  }
+}
+
+.contact-info{
+  background-color: white;
+  .order-contact-item{
+    .px2rem(height,@order-item-height);
+    position: relative;
+    border-bottom: 1px solid gainsboro;
+    .order-contact-name{
+      position: absolute;
+      left: 10px;
+      .px2rem(line-height,@order-item-height);
+    }
+    .order-name-input{
+      position: absolute;
+      height: 30px;
+      left: 55px;
+      .px2rem(top,11);
+      color: grey;
+      background-color: transparent;
+    }
+    img{
+      position: absolute;
+      .px2rem(top,18);
+      right: 10px;
+      width: 22px;
+    }
+  }
+}

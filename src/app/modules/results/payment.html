@@ -1,0 +1,32 @@
+<ion-view view-title="支付结果">
+    <!--<ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left btn-back" ng-click="_goback(4)">
+        </button>
+    </ion-nav-buttons>-->
+    <ion-content>
+        <div class="result-title">{{resultWord}}</div>
+        <div class="result-date" ng-show="resultType==='0'">{{nowTime}} 支付成功</div>
+        <div class="result-date" ng-show="resultType==='1'">{{nowTime}} 支付取消</div>
+        <div class="result-date" ng-show="resultType==='2'">{{nowTime}} 支付失败</div>
+        <div class="result-date" ng-show="resultType==='9'">
+            <span style="color: orange">本次订单不可使用微信现金支付</span>
+            <div style="text-align: left;padding-top: 10px;font-size: 13px;">
+                您可以去下载盛行天下APP,购买荣盛币后重新支付该订单，您也可以取消本次订单，重新下单进行支付购买。(取消订单后您支付的荣盛币会自动退回到您的账户)。
+            </div>
+        </div>
+        <div class="result-button">
+            <div ng-switch="inFrom">
+                <div ng-switch-when="scan-pay" class="result-check-bill" ng-click="seeBills()">
+                    返回
+                </div>
+                <div ng-switch-when="rsb-buy" class="result-check-bill" ng-click="seeBills()">
+                    查看余额
+                </div>
+                <div ng-switch-default class="result-check-bill" ng-click="seeBills()">
+                    查看订单
+                </div>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>

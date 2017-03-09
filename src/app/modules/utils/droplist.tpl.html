@@ -1,0 +1,5 @@
+<div>
+    <div ng-repeat="item in info" class="direct-drop-list">
+        <p ng-class="{true:'word-color'}[initdata===item]" ng-click="clickResult(item)">{{item.name}}</p>
+    </div>
+</div>

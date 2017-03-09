@@ -1,0 +1,52 @@
+<ion-view view-title="登录" hide-tabs="true">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="goBackMine()">
+        </button>
+    </ion-nav-buttons>
+    <ion-header-bar class="bar-subheader login-sub-header">
+        <div class="login-by-password">
+            <div class="login-password-style" ng-click="login.changeLoginType('MM')" ng-class="{true:'login-item-border'}[login.loginType==='MM']">密码登录</div>
+        </div>
+        <div class="login-by-phonecode">
+            <div class="login-code-style" ng-click="login.changeLoginType('YZM')" ng-class="{true:'login-item-border'}[login.loginType==='YZM']">手机验证码登录</div>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div ng-show="login.loginType==='MM'">
+            <div class="login-info login-item-other">
+                <div class="login-phone">手机</div>
+                <div class="login-phone-number">
+                    <input type="tel" maxlength="11" placeholder="请输入手机号" ng-model="login.phoneNumber">
+                </div>
+            </div>
+            <div class="login-info">
+                <div class="login-phone">密码</div>
+                <div class="login-phone-number">
+                    <input type="password" maxlength="20" placeholder="请输入6-20位登录密码" ng-model="login.loginPassword">
+                </div>
+            </div>
+        </div>
+        <div ng-show="login.loginType==='YZM'">
+            <div class="login-info login-item-other">
+                <div class="login-phone">手机</div>
+                <div class="login-phone-number">
+                    <input  type="tel" maxlength="11" placeholder="请填写手机号" ng-model="login.phoneNumber">
+                </div>
+            </div>
+            <div class="login-info">
+                <div class="login-phone">验证码</div>
+                <div class="login-phone-number">
+                    <input type="tel" maxlength="6" placeholder="请填写6位验证码" ng-model="login.loginCode">
+                </div>
+                <div class="login-get-code" ng-click="login.sendCode()" ng-class="{true:'login-code-disabled'}[login.canSend===false]">{{login.buttonName}}
+                </div>
+            </div>
+        </div>
+        <div class="login-button" ng-click="login.loginStatus()" ng-disabled="false">
+            <p>登录</p>
+        </div>
+        <div class="login-forgot-password">
+            <p ng-click="login.forgot()">忘记密码?</p>
+        </div>
+    </ion-content>
+</ion-view>

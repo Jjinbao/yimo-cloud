@@ -1,0 +1,32 @@
+<div class="thumb-margin">
+    <div ng-show="isCarusel">
+        <img ng-src="{{image}}"/>
+    </div>
+    <p class="thumb-main-title">{{title}}</p>
+    <p class="thumb-sub-title">{{subtitle}}</p>
+
+    <div class="icons">
+        <div class="rsb-bill-discount" ng-show="discount<10">
+            <img src="app/img/common_icon_rsb@3x.png">
+            <p class="bill-release">荣盛币支付{{discount}}折</p>
+        </div>
+
+        <div class="thumb-cancle-btn">
+            <div class="cancle-button can-cancle" ng-show="isCancel">
+               免费取消
+            </div>
+            <div class="cancle-button can-not-cancle" ng-show="!isCancel">
+                不可取消
+            </div>
+        </div>
+        <div class="thumb-cancle-btn" style="margin-left: 0px;" ng-show="employee==1">
+            <div class="cancle-button employ-vip">员工专享</div>
+        </div>
+        <div class="thumb-cancle-btn" style="margin-left: 0px;" ng-show="maxbuy>0">
+            <div class="cancle-button employ-buy-limit">单天限购{{maxbuy}}套</div>
+        </div>
+        <div class="stay-price">
+            <p>￥{{price}}</p>
+        </div>
+    </div>
+</div>

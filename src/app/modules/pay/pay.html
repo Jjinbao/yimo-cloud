@@ -1,0 +1,100 @@
+<ion-view view-title="支付">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left btn-back" style="color: white;" ng-click="goback()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content style="overflow: auto">
+        <div ng-hide="payData&&payData.orderName" style="text-align: center;margin-top: 10px;">
+            <ion-spinner icon="ios"></ion-spinner>
+        </div>
+        <div ng-show="payData&&payData.orderName">
+            <div style="background-color: white;padding:10px 0 10px 0">
+                <div class="pay-detail">
+                    <p>订单名称:&nbsp;{{payData.orderName}}</p>
+                </div>
+                <div class="pay-detail">
+                    <p><span>订单金额：</span><span class="pay-money-color">￥{{payData.orderSum}}</span>&nbsp;&nbsp;<span ng-show="payData.paySum<payData.orderSum">已支付：<span class="pay-money-color">￥{{payData.orderSum-payData.paySum|number:2}}</span></span></p>
+                </div>
+                <div class="pay-icons">
+                    <div class="pay-rsb-discount" ng-show="payData.isRSCoinPay===0">
+                        <img src="app/img/common_icon_rsb@3x.png">
+                        <p class="pay-release">荣盛币支付{{payData.rsDiscount}}折</p>
+                    </div>
+                    <div class="pay-cancle">
+                        <div class="pay-cancle-button pay-can-cancle" ng-show="payData.isBack==='0'">
+                            免费取消
+                        </div>
+                        <div class="pay-cancle-button pay-not-cancle" ng-show="payData.isBack==='1'">
+                            不可取消
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin: 10px 0 10px;">
+                <div class="pay-item-methd" ng-show="payData.isRSCoinPay===0">
+                    <img src="app/img/common_pay_icon_rongshengbi@3x.png">
+                    <p class="pay-rongsheng">荣盛币<span>（当前余额:￥{{payData.rsPrice}}）</span></p>
+                    <p class="pay-can-use">本次可用额度：<span>￥{{payData.canPayable}} ({{payData.canPayable}}可抵用{{payData.rsRealPay}})</span></p>
+                    <label for="payrs" class="pay-check-box" ng-click="rsCoinPay($event)">
+                        <input id="payrs" style="background: orange;" type="checkbox">
+                    </label>
+                </div>
+                <div class="pay-item-methd">
+                    <img src="app/img/common_pay_icon_weixin@3x.png">
+                    <p class="pay-rongsheng">微信支付</p>
+                    <p class="pay-can-use">使用微信支付，安全便捷</p>
+                    <label for="weipay" class="pay-check-box" ng-click="moneyCashPay($event)">
+                        <input id="weipay" style="background: orange;"  type="checkbox">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="pay-overview" ng-show="payData&&payData.orderName">
+        <div class="pay-weixin-money">需付:<span>￥{{moneyPay|number:2}}</span></div>
+        <div class="pay-rongsheng-money">
+            <div>荣盛币:<span>￥{{rsPay|number:2}}</span></div>
+        </div>
+        <div class="pay-ensure" ng-click="toBuy()">确定支付</div>
+    </ion-footer-bar>
+    <div>
+        <div ng-show="windowValue.mask" class="background-module" style="z-index: 9">
+
+        </div>
+        <div ng-show="windowValue.ensure" class="pay-model-ensure">
+            <div class="pay-window-ensure">
+                <div class="pay-window-header">
+                    确认支付
+                </div>
+                <div class="pay-window-body">
+                    确认支付该订单？
+                </div>
+                <div class="pay-window-footer">
+                    <div class="window-pay-cancle" ng-click="canclePay()">取消</div>
+                    <div class="window-pay-sure" ng-click="startPay()">确认</div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="windowValue.password" class="pay-rsb-popup">
+            <div class="pay-rsb-password">
+                <div class="pay-header">
+                    请输入支付密码
+                </div>
+                <div class="pay-body">
+                    <p>荣盛币支付</p>
+                    <p class="pay-rsb-value">￥{{rsPay|number:2}}</p>
+                </div>
+                <div class="pay-password">
+                    <input type="password" maxlength="6" ng-model="userPassword" placeholder="请输入6位支付密码">
+                </div>
+                <div class="pay-password-tip">
+
+                </div>
+                <div class="pay-button">
+                    <div class="pay-btn-cancle" ng-click="canclePassword()">取消支付</div>
+                    <div class="pay-btn-sure" ng-click="startIdentityPay()">确认支付</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-view>

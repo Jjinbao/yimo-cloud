@@ -1,0 +1,39 @@
+<ion-view view-title="我的资产">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left btn-back" style="color: white;" ng-click="_goback(-1)">
+        </button>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="false" style="background-color: #f1f1f1">
+        <div class="asset-list">
+            <div class="asset-list-item" ng-click="assetDetail()">
+                <span class="img"><img src="app/img/me_icon_order-form@3x.png"></span>
+                <span class="text">资产明细</span>
+                <span class="icon ion-ios-arrow-right"></span>
+            </div>
+
+            <div class="asset-list-item" ng-click="assetIncome()">
+                <span class="img"><img src="app/img/me_icon_assets@3x.png"></span>
+                <span class="text">资产收益</span>
+                <span class="icon ion-ios-arrow-right"></span>
+            </div>
+
+            <div class="asset-list-item" ng-click="assetHousekeeper()">
+                <span class="img"><img src="app/img/me_icon_service@3x.png"></span>
+                <span class="text">管家服务</span>
+                <span class="icon ion-ios-arrow-right"></span>
+            </div>
+
+            <div class="asset-list-item" ng-click="maintenanceRecord()">
+                <span class="img"><img src="app/img/me_icon_detect@3x.png"></span>
+                <span class="text">维修记录</span>
+                <span class="icon ion-ios-arrow-right"></span>
+            </div>
+
+            <div class="asset-list-item" ng-click="assetNews()">
+                <span class="img"><img src="app/img/me_icon_news@3x.png"></span>
+                <span class="text">新闻公告</span>
+                <span class="icon ion-ios-arrow-right"></span>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

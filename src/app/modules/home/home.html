@@ -1,0 +1,31 @@
+<ion-view hide-nav-bar="true" view-title="首页">
+    <div class="home-scan-pay" ng-class="{true:'home-scan-ios'}[deviceId=='0']" ng-click="scanPay()">
+        <img src="app/img/ic_icon_erwei.png">
+    </div>
+    <ion-content style="top:-1px!important;">
+        <ion-slide-box on-slide-changed="homeObj.slideHasChanged($index)" auto-play="true" does-continue="true" slide-interval=4000 show-pager="true" pager-click="homeObj.pageClick(index)" active-slide="homeObj.model.activeIndex" delegate-handle="delegateHandler">
+            <ion-slide ng-repeat="curimg in curItem">
+                <div class="box blue">
+                    <img ng-src="{{curimg.pic}}" width="100%">
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+
+        <div class="url-img" ng-show="isEmployee" ng-click="showEmployeeList()">
+            <img src="app/img/lALOhsJwx80Bls0C7g_750_406.png">
+        </div>
+        <div class="url-img" ng-repeat="item in recHoliday" ng-click="homeObj.toScenic(item)">
+            <img ng-src="{{item.pic}}">
+        </div>
+        <thumbnail-item ng-repeat="hotil in recHotil"
+                        image="{{hotil.pic}}"
+                        title="{{hotil.houseName}}-{{hotil.name}}"
+                        discount="{{hotil.rsDiscount}}"
+                        canusersb="0"
+                        subtitle="{{hotil.addr}}"
+                        cancle="{{hotil.isBack}}"
+                        price="{{hotil.price}}"
+                ng-click="toStayDetail(hotil.id)">
+        </thumbnail-item>
+    </ion-content>
+</ion-view>

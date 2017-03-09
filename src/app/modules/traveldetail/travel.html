@@ -1,0 +1,101 @@
+
+<ion-view hide-nav-bar="true" hide-tabs="true">
+    <ion-content style="top:-1px !important;">
+        <div ng-hide="travel.detailData&&travel.detailData.name" style="text-align: center;margin-top: 60px;">
+            <ion-spinner></ion-spinner>
+        </div>
+        <div ng-show="travel.detailData&&travel.detailData.name">
+            <div style="position: relative">
+                <ion-slide-box class="travel-stay-slider" on-slide-changed="travel.slideChanged($index)" auto-play="true" does-continue="true" slide-interval=4000 show-pager="true" delegate-handle="slideboximgs">
+                    <ion-slide ng-repeat="pic in travel.detailData.details" ng-click="toImageDetail()">
+                        <div class="box blue">
+                            <img ng-src="{{pic}}" width="100%">
+                        </div>
+                    </ion-slide>
+                </ion-slide-box>
+                <div class="travel-icon-content">
+                    <div class="travel-detail-title">{{travel.detailData.name}}</div>
+                    <div class="travel-detail-subtitile">有效期:{{travel.detailData.timeIntervalStart}}至{{travel.detailData.timeIntervalEnd}}</div>
+                    <div class="travel-detail-icons">
+                        <div class="travel-detail-rsb" ng-show="travel.detailData.rsDiscount<10">
+                            <img src="app/img/common_icon_rsb@3x.png" >
+                            <p class="travel-bill-release">荣盛币支付{{travel.detailData.rsDiscount}}折</p>
+                        </div>
+                        <div class="travel-cancle-btn">
+                            <div class="allow-cancle" ng-show="travel.detailData.isBack===0">
+                                免费取消
+                            </div>
+                            <div class="cannot-cancle" ng-show="travel.detailData.isBack===1">
+                                不可取消
+                            </div>
+                        </div>
+                        <div class="trave-detail-price">
+                            ￥{{travel.detailData.priceMin}}
+                        </div>
+                    </div>
+                </div>
+                <div class="travel-detail-back" ng-class="{true:'detail-top-length'}[deviceId=='0']" ng-click="travelDetailBack()">
+                    <label>
+                        <img src="app/img/stay_icon_fanhui@3x.png">
+                    </label>
+                </div>
+                <!--<div class="travel-detail-share" ng-class="{true:'detail-top-length'}[deviceId=='0']" ng-show="travel.canShare===1" ng-click="travel.toShare()">-->
+                    <!--<img src="app/img/lALOfFHbsC4u_46_46.png">-->
+                <!--</div>-->
+                <div class="travel-detail-collect" ng-class="{true:'detail-top-length'}[deviceId=='0']" ng-click="travel.doCollect()">
+                    <img ng-if="travel.detailData.collectStatus!=1" src="app/img/stay_icon_collect@3x.png">
+                    <img ng-if="travel.detailData.collectStatus==1" src="app/img/stay_icon_collect_c@3x.png">
+                </div>
+                <div class="travel-detail-picnum">
+                    <p>{{travel.picIndex}}/{{travel.detailData.details.length}}</p>
+                </div>
+            </div>
+
+            <div class="travel-introduce">
+                <div class="row">
+                    <div class="col col-33 text-center" ng-click="travel.itemChoice('CPXQ')">
+                        <div class="travel-introduce-detail"
+                             ng-class="{true:'bottom-border-orange'}[travel.selectItem==='CPXQ']">
+                            产品详情
+                        </div>
+                    </div>
+                    <div class="col col-33 text-center" ng-click="travel.itemChoice('XCAP')">
+                        <div class="travel-introduce-detail"
+                             ng-class="{true:'bottom-border-orange'}[travel.selectItem==='XCAP']">
+                            行程安排
+                        </div>
+                    </div>
+                    <div class="col col-33 text-center" ng-click="travel.itemChoice('ZYSX')">
+                        <div class="travel-introduce-detail"
+                             ng-class="{true:'bottom-border-orange'}[travel.selectItem==='ZYSX']">
+                            注意事项
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="travel-introduce-content">
+                <div ng-show="travel.selectItem==='CPXQ'" class="travel-introduce-item">
+                    <div ng-bind-html="travel.detailData.proServiceDesc"></div>
+                </div>
+                <div ng-show="travel.selectItem==='XCAP'" class="travel-introduce-item">
+                    <div ng-bind-html="travel.detailData.proFlow"></div>
+                </div>
+                <div ng-show="travel.selectItem==='ZYSX'" class="travel-introduce-item">
+                    <div ng-bind-html="travel.detailData.proNotice"></div>
+
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+    <ion-footer-bar class="travel-detail-footer" ng-show="travel.detailData&&travel.detailData.name">
+        <div class="phone-ask">
+            <img src="app/img/holiday_icon_iphone@2x.png">
+
+            <a href="tel://{{travel.detailData.servicePhone}}">电话咨询</a>
+        </div>
+        <div class="buy-it" ng-click="travel.doBuy()">
+            下单
+        </div>
+    </ion-footer-bar>
+</ion-view>

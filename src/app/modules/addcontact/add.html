@@ -1,0 +1,93 @@
+<ion-view view-title="增加联系人">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon" style="color: white;font-size: 14px;" ng-click="saveContact()">保存
+        </button>
+    </ion-nav-buttons>
+    <ion-content has-bouncing="false">
+        <!--<div class="add-item-father">
+            <p class="add-item-name">姓名</p>
+            <input class="add-name-style" ng-style="bookStyle" ng-model="userdata.name" placeholder="请输入用户名">
+            <img ng-show="isInApp===1" src="app/img/stay_icon_Contacts.png" ng-click="getUserPhone()">
+        </div>
+        <div class="add-item-father">
+            <p>性别</p>
+            <label ng-click="choiceGender(1)">
+                <img class="man-choice" src="app/img/lALOfnOPUSoq_42_42.png">
+                <img ng-show="userInfo.gender==1" class="man-choice" src="app/img/lALOfnOPeyoq_42_42.png">
+                <sapn ng-class="{true:'gender-color'}[userInfo.gender==1]" class="man-word">男</sapn>
+            </label>
+            <label ng-click="choiceGender(0)">
+                <img class="women-choice" src="app/img/lALOfnOPUSoq_42_42.png">
+                <img ng-show="userInfo.gender==0" class="women-choice" src="app/img/lALOfnOPeyoq_42_42.png">
+                <sapn ng-class="{true:'gender-color'}[userInfo.gender==0]" class="women-word">女</sapn>
+            </label>
+            <!--<form novalidate>-->
+                <!--<p class="add-item-name">性别</p>-->
+                <!--<label class="add-label-boy">-->
+                    <!--<input type="radio" style="background-color: orange" ng-model="userdata.gender" value="男" checked>&nbsp;男-->
+                <!--</label>-->
+                <!--<label class="add-label-girl">-->
+                    <!--<input type="radio" ng-model="userdata.gender" value="女" style="background-color: orange">&nbsp;女-->
+                <!--</label>-->
+            <!--</form>-->
+        <!--</div>
+        <div class="add-item-father">
+            <p class="add-item-name">生日</p>
+            <input id="birthday" type="date" class="add-input-style add-date-style" ng-model="userdata.birthday">
+        </div>
+        <div class="add-item-father">
+            <p class="add-item-name">手机</p>
+            <input type="tel" class="add-input-style" maxlength="11" ng-model="userdata.phone" style="top: 5px;" placeholder="请输入手机号">
+        </div>
+        <div class="add-item-father">
+            <p class="add-item-name">身份证号</p>
+            <input class="add-input-style" maxlength="18" ng-model="userdata.idcard" placeholder="请输入身份证号">
+        </div>
+        <div class="add-item-father">
+            <p class="add-item-name">电子邮箱</p>
+            <input class="add-input-style" ng-model="userdata.email" placeholder="选填">
+        </div>-->
+        <div class="setting-user-names">
+            <div class="set-items">
+                姓名
+                <input type="text" placeholder="请输入用户名" style="margin-right: 30px;" ng-model="userdata.name">
+                <img class="add-open-book" ng-show="isInApp===1" src="app/img/stay_icon_Contacts.png" ng-click="getUserPhone()">
+            </div>
+            <div class="set-items">
+                性别
+                <div class="set-choice-sex">
+                    <label ng-click="choiceGender(1)">
+                        <img class="man-choice" src="app/img/lALOfnOPUSoq_42_42.png">
+                        <img ng-show="userdata.gender==1" class="man-choice" src="app/img/lALOfnOPeyoq_42_42.png">
+                        <sapn ng-class="{true:'gender-color'}[userdata.gender=='男']" class="man-word">男</sapn>
+                    </label>
+                    <label ng-click="choiceGender(0)">
+                        <img class="women-choice" src="app/img/lALOfnOPUSoq_42_42.png">
+                        <img ng-show="userdata.gender==0" class="women-choice" src="app/img/lALOfnOPeyoq_42_42.png">
+                        <sapn ng-class="{true:'gender-color'}[userdata.gender=='女']" class="women-word">女</sapn>
+                    </label>
+                </div>
+            </div>
+            <div class="set-items">
+                生日
+                <input type="date" id="birthday" required ng-required="" ng-model="userdata.webbirthday" ng-change="change()" style="text-align: right;-webkit-appearance: none;width: 150px;padding-right: 0;background-color: white;">
+            </div>
+            <div class="set-items">
+                手机
+                <input type="tel" class="user-phone" placeholder="请输入手机号" ng-model="userdata.phone" style="text-align: right">
+            </div>
+            <div class="set-items">
+                身份证号
+                <input type="text" placeholder="请输入身份证号" ng-model="userdata.idcard" style="text-align: right">
+            </div>
+            <div class="set-items">
+                电子邮箱
+                <input type="text" placeholder="选填" ng-model="userdata.email">
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

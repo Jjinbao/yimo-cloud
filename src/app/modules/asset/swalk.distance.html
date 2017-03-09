@@ -1,0 +1,18 @@
+<div class="swalk-distance">
+    <div class="swalk-distance-header">
+        <div class="swalk-distance-btn swalk-distance-prebtn" ng-click="pMonth()"><span class="icon ion-arrow-left-b"></span></div>
+        <div class="swalk-distance-date">{{year}} 年 {{month}} 月</div>
+        <div class="swalk-distance-btn swalk-distance-nextbtn" ng-click="nMonth()"><span class="icon ion-arrow-right-b"></span></div>
+    </div>
+
+    <div class="swalk-distance-body clearfix">
+        <div ng-repeat="day in days" class="disable">{{day}}</div>
+        <div ng-repeat="day in dayList"
+             class="day"
+             ng-class="{'disable':day.disabled,'stayIn':day.stayIn,'stayOut':day.stayOut}"
+             ng-click="clickDate(day,dayList)">
+            {{day.d}}
+            <span class="swalk-record-icon" ng-if="day.text" ng-bind-html="day.text"></span>
+        </div>
+    </div>
+</div>

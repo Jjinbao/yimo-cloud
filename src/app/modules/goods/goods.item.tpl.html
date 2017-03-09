@@ -1,0 +1,22 @@
+<div class="good-tpl-item">
+    <div class="tpl-order-number">
+        <div class="goods-number">订单号:{{order.orderNo}}</div>
+        <div class="order-status">{{orderStatus}}</div>
+    </div>
+    <div class="tpl-order-info">
+        <div class="goods-title">{{order.name}}</div>
+        <div ng-show="nowShowOrder==0" class="goods-time">入住:{{order.date.checkIn}}&nbsp;&nbsp;&nbsp;退房:{{order.date.checkOut}}</div>
+        <div ng-show="nowShowOrder==1" class="goods-time">有效期:{{order.startDate}}至{{order.endDate}}</div>
+    </div>
+    <div class="tpl-order-money">
+        <div class="goods-total-money">订单总额:<span>￥{{order.price}}</span></div>
+        <div class="goods-had-pay">已支付:<span>￥{{order.realPaid}}</span></div>
+    </div>
+    <div class="tpl-order-button" ng-show="order.orderStatus===1||order.orderStatus===4">
+        <div class="tpl-pay-btn btn-tocancel" ng-show="order.isBack===0" ng-click="cancle()">取消订单</div>
+        <div class="tpl-pay-btn btn-topay" ng-click="pay()">去支付</div>
+    </div>
+    <div class="tpl-order-button" ng-show="order.orderStatus===2&&order.isBack===0">
+        <div class="tpl-pay-btn btn-tocancel" style="right: 10px;" ng-click="cancle()">取消订单</div>
+    </div>
+</div>

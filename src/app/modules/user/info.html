@@ -1,0 +1,40 @@
+<ion-view view-title="个人资料">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
+        </button>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="false">
+        <div class="user-info">
+            <div class="userinfo-header" ng-click="changeUserInfo()">
+                头像
+                <img ng-src="{{userInfo.portrait}}" ng-show="userInfo.portrait">
+                <div class="icon ion-ios-arrow-right portrait-right-arraw"></div>
+            </div>
+            <div class="userinfo-other-itme">
+                用户名
+                <span>{{userInfo.realName}}</span>
+            </div>
+            <div class="userinfo-other-itme">
+                昵称
+                <span>{{userInfo.name}}</span>
+            </div>
+            <div class="userinfo-other-itme">
+                性别
+                <span>{{userInfo.gender==0?'女':'男'}}</span>
+            </div>
+            <div class="userinfo-other-itme">
+                生日
+                <span>{{userInfo.birthday}}</span>
+            </div>
+
+        </div>
+        <div class="user-info-sigle">
+            <div class="userinfo-email-itme">
+                邮箱地址
+                <span>{{userInfo.email}}</span>
+            </div>
+        </div>
+
+    </ion-content>
+
+</ion-view>
