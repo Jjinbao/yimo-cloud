@@ -32,7 +32,13 @@ function browserSyncInit(baseDir, browser) {
    *
    * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.0.5/README.md
    */
-  // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', proxyHost: 'jsonplaceholder.typicode.com'});
+  server.middleware = proxyMiddleware('/ym', {
+    target: 'http://123.57.184.42:8080/',
+    changeOrigin: true,
+    pathRewrite: {
+      '^/ym': ''
+    }
+  });
 
   browserSync.instance = browserSync.init({
     startPath: '/',

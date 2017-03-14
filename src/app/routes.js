@@ -395,5 +395,5 @@ angular.module('swalk.route', [])
                 templateUrl:'app/modules/asset/repairInfo.html',
                 controller:'maintenanceRecordInfo'
             })
-        $urlRouterProvider.otherwise("/tab/home");
+        $urlRouterProvider.otherwise("/tab/mine");
     });
