@@ -186,6 +186,11 @@ angular.module('swalk.route', [])
                 templateUrl:'app/modules/reg/reg.set.name.html',
                 controller:'regSetName'
             })
+            .state('newPassword',{
+                url:'/password/reset',
+                templateUrl:'app/modules/reg/set.password.tpl.html',
+                controller:'resetNewPassword'
+            })
             //用户信息
             .state('userinfo',{
                 url:'/user/info',
@@ -198,22 +203,6 @@ angular.module('swalk.route', [])
                 url:'/user/setting',
                 templateUrl:'app/modules/user/setinfo.html',
                 controller:'userInfoSave',
-                cache:false
-            })
-            //找回密码，修改密码
-            .state('repassword',{
-                params:{'used':''},
-                url:'/reset/possword',
-                templateUrl:'app/modules/repassword/reback.html',
-                controller:'resetPassword',
-                controllerAs:'repass',
-                cache:false
-            })
-            //记得密码，修改登录密码
-            .state('remeLoginPass',{
-                url:'/remem/possword',
-                templateUrl:'app/modules/repassword/remember.html',
-                controller:'rememberLoginPassword',
                 cache:false
             })
             //修改支付密码方式

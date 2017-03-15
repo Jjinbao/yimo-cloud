@@ -18,4 +18,13 @@ angular.module('ymy.register',[])
             $ionicHistory.goBack();
             $ionicViewSwitcher.nextDirection('back');
         }
+
+        $scope.finishReg=function(){
+            console.log('---------');
+            $state.go('tabs.mine',{});
+            $ionicViewSwitcher.nextDirection('back');
+        }
+    }])
+    .controller('resetNewPassword',['$scope',function($scope){
+        console.log(567);
     }])

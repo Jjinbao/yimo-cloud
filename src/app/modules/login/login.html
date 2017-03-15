@@ -15,12 +15,12 @@
             </div>
         </div>
         <div class="login-operate">
-            <div class="login-button" ng-disabled="!userInfo.name||!userInfo.password" ng-class="{true:'login-back-color',false:'can-use-btn'}[!userInfo.name||!userInfo.password]" ng-click="toLogin()">登录</div>
+            <div class="login-button can-use-btn" ng-click="toLogin()">登录</div>
         </div>
 
         <div class="login-reg-forgot">
             <div class="to-register" ng-click="toRegister()">没有账号，去注册</div>
-            <div class="to-forgot">忘记密码</div>
+            <div class="to-forgot" ng-click="toRegister()">忘记密码</div>
         </div>
     </ion-content>
 </ion-view>
