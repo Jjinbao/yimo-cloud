@@ -4,10 +4,9 @@ angular.module('tab.mine',[])
     .controller('mineCtrl', ['$scope','$state','$http','$ionicViewSwitcher','$ionicHistory','$ionicScrollDelegate','userService', function($scope,$state,$http,$ionicViewSwitcher,$ionicHistory,$ionicScrollDelegate,userService) {
 
 
-        var phone='13888888888';
-        var password='12345678';
-        var sign=md5('ymy'+md5(password)+phone);
-        console.log(sign);
+        $scope.$on('$ionicView.beforeEnter',function(){
+            $scope.userInfo=userService.userMess;
+        })
         /*$http({
             url:'/ym/account/register.api',
             method:'POST',
@@ -30,6 +29,14 @@ angular.module('tab.mine',[])
         }).success(function(data){
             console.log(data);
         })*/
+
+        $scope.mineInfo=function(){
+            if(userService.userMess&&userService.userMess.accountId){
+
+            }else{
+                $scope.mineLogin();
+            }
+        }
 
         $scope.mineLogin=function(){
             $state.go('login',{});

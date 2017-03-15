@@ -24,8 +24,12 @@ angular.module('swalk.login', [])
                         sign:md5('ymy'+md5($scope.userInfo.password)+$scope.userInfo.name)
                     }
                 }).success(function(data){
+                    console.log(data);
                     if(data.result==1){
-                        $scope.alertTab('登录成功');
+                        userService.userMess=data;
+                        $scope.back();
+                    }else{
+                        $scope.alertTab('用户名或密码错误');
                     }
                 })
             }

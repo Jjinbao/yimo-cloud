@@ -3,16 +3,54 @@
 .mine-header{
   .px2rem(height,298);
   background-color: @main-color;
+  position: relative;
+  .px2rem(padding-left,40);
+  .px2rem(padding-right,40);
+  .header-portrait{
+    .px2rem(width,140);
+    .px2rem(height,140);
+    background-image: url('img/user_head.jpg');
+    background-size: 100%;
+    .px2rem(border-radius,70);
+    position: absolute;
+    .px2rem(top,79);
+  }
+  .user-name{
+    color: #fefde9;
+    font-size: 15px;
+    .px2rem(line-height,298);
+    .px2rem(margin-left,180);
+    height: 100%;
+    span{
+      .px2rem(width,100);
+      text-align: right;
+      float: right;
+      color: #ffeff7;
+      font-size: 20px;
+    }
+  }
 }
 
 .mine-items{
   background-color: white;
   .px2rem(margin-top,20);
   .mine-one-item{
+    position: relative;
     .px2rem(height,88);
     .px2rem(line-height,88);
     .px2rem(margin-left,94);
     border-bottom:1px solid #E9E9E9;
+    a{
+      display: block;
+      position: absolute;
+      .px2rem(width,40);
+      .px2rem(height,40);
+      background-image: url('img/me_icon_shezhi@3x.png');
+      background-size: 100%;
+      .px2rem(top,22);
+      .px2rem(left,-35);
+      transform: translate(-50%);
+    }
     span{
       float: right;
       color: #c3c3c3;
