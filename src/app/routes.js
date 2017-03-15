@@ -174,6 +174,18 @@ angular.module('swalk.route', [])
                 controllerAs:'login',
                 cache:'false'
             })
+            //注册+修改密码
+            .state('register',{
+                url:'/register',
+                templateUrl:'app/modules/reg/register.tpl.html',
+                controller:'userRegister'
+            })
+            //设置用户名和密码
+            .state('regname',{
+                url:'/register/set',
+                templateUrl:'app/modules/reg/reg.set.name.html',
+                controller:'regSetName'
+            })
             //用户信息
             .state('userinfo',{
                 url:'/user/info',

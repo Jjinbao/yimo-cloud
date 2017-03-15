@@ -30,4 +30,9 @@ angular.module('tab.mine',[])
         }).success(function(data){
             console.log(data);
         })*/
+
+        $scope.mineLogin=function(){
+            $state.go('login',{});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
     }])

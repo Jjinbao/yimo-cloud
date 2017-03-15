@@ -155,6 +155,6 @@ gulp.task('html-app', ['inject-app', 'partials'], function () {
         .pipe($.size({title: path.join(conf.paths.dist, '/'), showFiles: true}));
 });
 
-gulp.task('build', ['html','configjs', 'fonts', 'other', 'printHtml']);
+//gulp.task('build', ['html','configjs', 'fonts', 'other', 'printHtml']);
 
 gulp.task('build-app', ['html-app','configjs', 'fonts', 'other', 'printHtml']);

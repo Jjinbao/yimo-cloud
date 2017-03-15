@@ -1,54 +1,6 @@
-<ion-view title="度假">
-    <ion-header-bar class="bar-subheader bar-light">
-        <div class="row">
-            <div class="col col-33 text-center" ng-click="holidaytab.typeFilter('place')">
-                {{holidaytab.initPlace.name}} &nbsp;<span class="icon" ng-class="{false:'ion-ios-arrow-down',true:'ion-ios-arrow-up'}[holidaytab.itemList==='place']">
+<ion-view view-title="教学" style="color: white">
+    <ion-content overflow-scroll="false">
 
-            </span>
-            </div>
-            <div class="col col-33 text-center list-pad-border" ng-click="holidaytab.typeFilter('days')">{{holidaytab.initDays.name}}&nbsp;<span class="icon" ng-class="{false:'ion-ios-arrow-down',true:'ion-ios-arrow-up'}[holidaytab.itemList==='days']"></span></div>
-            <div class="col col-33 text-center" ng-click="holidaytab.typeFilter('type')">{{holidaytab.initTypes.name}}&nbsp;<span class="icon" ng-class="{false:'ion-ios-arrow-down',true:'ion-ios-arrow-up'}[holidaytab.itemList==='type']"></span></div>
-        </div>
-    </ion-header-bar>
-    <ion-content class="has-subheader" overflow-scroll="false">
-        <div ng-show="holidaytab.dataList.length==0">
-            <div class="goods-empty-order">
-                <img src="app/img/me_icon_kongbai@2x.png">
-                <p>这里空空如也，去试试其他城市有什么好玩的</p>
-            </div>
-        </div>
-        <div ng-show="holidaytab.dataList&&holidaytab.dataList.length>0">
-            <thumbnail-item ng-repeat="place in holidaytab.dataList"
-                            image="{{place.picList}}"
-                            title="{{place.name}}"
-                            discount="{{place.rsDiscount}}"
-                            canusersb="{{place.isRSCoinPay}}"
-                            subtitle="有效期：{{place.timeIntervalStart}}至{{place.timeIntervalEnd}}"
-                            cancle="{{place.isBack}}"
-                            price="{{place.priceMin}}"
-                            ng-click="holidaytab.toHolidayDetail(place.id)">
-                <p>{{item.title}}</p>
-            </thumbnail-item>
-        </div>
-        <ion-infinite-scroll ng-if="totalDataNumber>holidaytab.dataList.length" on-infinite="holidaytab.appendHoliday()" distance="1%" immediate-check="false">
-        </ion-infinite-scroll>
     </ion-content>
-    <div ng-show="holidaytab.itemList==='place'||holidaytab.itemList==='days'||holidaytab.itemList==='type'" ng-click="holidaytab.choiceData()" class="background-module">
 
-    </div>
-    <div ng-show="holidaytab.itemList==='place'" ng-click="holidaytab.choiceData()" class="drop-list-items" style="max-height: 300px;overflow-y: auto">
-        <div ng-repeat="item in holidaytab.filterCondition.place" class="direct-drop-list">
-            <p ng-class="{true:'word-color'}[holidaytab.initPlace.name===item.name]" ng-click="holidaytab.clickPlaceResult(item)">{{item.name}}</p>
-        </div>
-    </div>
-    <div ng-show="holidaytab.itemList==='days'" ng-click="holidaytab.choiceData()" class="drop-list-items"  style="max-height: 300px;overflow-y: auto">
-        <div ng-repeat="day in holidaytab.filterCondition.days" class="direct-drop-list">
-            <p ng-class="{true:'word-color'}[holidaytab.initDays.name===day.name]" ng-click="holidaytab.clickDaysResult(day)">{{day.name}}</p>
-        </div>
-    </div>
-    <div ng-show="holidaytab.itemList==='type'" ng-click="holidaytab.choiceData()" class="drop-list-items"  style="max-height: 300px;overflow-y: auto">
-        <div ng-repeat="type in holidaytab.filterCondition.types" class="direct-drop-list">
-            <p ng-class="{true:'word-color'}[holidaytab.initTypes.name===type.name]" ng-click="holidaytab.clickThemeResult(type)">{{type.name}}</p>
-        </div>
-    </div>
 </ion-view>

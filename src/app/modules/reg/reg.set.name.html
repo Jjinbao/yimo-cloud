@@ -1,0 +1,25 @@
+<ion-view view-title="注册" hide-tabs="true">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="back()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content style="background-color: white">
+        <div class="register-panel">
+            <div class="register-phone">
+                <div class="reg-input" style="width: 100%">
+                    <input type="text" style="width:100%" ng-model="userInfo.name" placeholder="用户名(设置后不能修改,请认真填写)">
+                </div>
+
+            </div>
+            <div class="reg-code">
+                <input type="password" ng-model="userInfo.password" placeholder="设置密码(6-12位)"/>
+            </div>
+            <div class="reg-code">
+                <input type="password" ng-model="userInfo.password" placeholder="确认密码"/>
+            </div>
+        </div>
+        <div class="login-operate">
+            <div class="login-button" ng-disabled="!userInfo.name||!userInfo.password" ng-class="{true:'login-back-color',false:'can-use-btn'}[!userInfo.name||!userInfo.password]" ng-click="toLogin()">下一步</div>
+        </div>
+    </ion-content>
+</ion-view>

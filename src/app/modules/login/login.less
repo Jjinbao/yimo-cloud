@@ -1,119 +1,84 @@
-.login-sub-header{
-  padding: 0;
-}
-.login-by-password{
-  width: 50%;
-  .login-password-style{
-    width: 70%;
-    height: 44px;
-    line-height: 44px;
-    text-align: center;
-    margin: 0 auto;
-  }
-}
-
-.input-phone-inline{
-  display: inline-block;
-}
-
-.login-info{
-  height: 45px;
-  line-height: 45px;
+@import "../../common/veriables";
+@login-border:#ebebeb;
+.login-panel{
   background-color: white;
-  padding-left: 20px;
-  position: relative;
-  .login-phone{
-    display: inline-block;
-  }
-  .login-phone-number{
-    display: inline-block;
+  .px2rem(margin-top,54);
+  .px2rem(padding-left,50);
+  .px2rem(padding-right,40);
+  .login-name{
+    position: relative;
+    .px2rem(height,96);
+    border-bottom: 1px solid @login-border;
     input{
-      padding-left: 10px;
+      height: 100%;
+      width: 80%;
+      padding-top:0;
+      padding-bottom:0;
+    }
+    .clean-name{
+      .px2rem(width,40);
+      .px2rem(height,40);
+      background-image: url("img/me_icon_danxuan@3x.png");
+      background-size: 100%;
+      position: absolute;
+      .px2rem(top,26);
+      right: 0;
     }
   }
-  .login-get-code{
-    height: 45px;
-    background-color: #33cd5f;
-    display: inline-block;
-    width: 100px;
+  .login-password{
+    position: relative;
+    .px2rem(height,96);
+    border-bottom: 1px solid @login-border;
+    input{
+      height: 100%;
+      width: 80%;
+      padding-top:0;
+      padding-bottom:0;
+    }
+    .clean-name{
+      .px2rem(width,40);
+      .px2rem(height,40);
+      background-image: url("img/me_icon_danxuan@3x.png");
+      background-size: 100%;
+      position: absolute;
+      .px2rem(top,26);
+      right: 0;
+    }
+  }
+}
+.login-operate{
+  width: 100%;
+  .px2rem(margin-top,67);
+  .px2rem(padding-left,47);
+  .px2rem(padding-right,47);
+  .login-button{
+    width: 100%;
+    .px2rem(height,78);
+    .px2rem(line-height,78);
+    .px2rem(border-radius,10);
     text-align: center;
     color: white;
+  }
+  .login-back-color{
+    background-color: darkgrey;
+  }
+  .can-use-btn{
+    background-color: @main-color;
+  }
+}
+
+.login-reg-forgot{
+  .px2rem(margin-top,28);
+  .px2rem(margin-left,47);
+  .px2rem(margin-right,47);
+  position: relative;
+  color: #6d6d6d;
+  .to-register{
+  }
+
+  .to-forgot{
     position: absolute;
     right: 0;
+    top: 0;
   }
-}
-
-.login-code-disabled{
-  background-color: darkgrey !important;
-}
-.login-item-other{
-  border-bottom: 1px solid gainsboro;
-  margin-top: 10px;
-}
-
-.login-border{
-  border-bottom: 1px solid gainsboro;
-}
-
-.login-by-phonecode{
-  width: 50%;
-  .login-code-style{
-    width: 70%;
-    height: 44px;
-    margin: 0 auto;
-    line-height: 44px;
-    text-align: center;
-  }
-}
-.login-item-border{
-  border-bottom: 2px solid orange;
-}
-
-.phone-number-back{
-  margin: 20px auto;
-  width: 95%;
-  .phone-number{
-    width: 60%;
-    float: left;
-  }
-  .phone-number-button{
-    float: right;
-    margin-top: -1px;
-  }
-}
-
-.yanzheng-number{
-  width: 100%;
-  clear: both;
-  .yanzheng-div{
-    padding-top: 20px;
-    margin: 0 auto;
-    width: 95%;
-  }
-}
-
-.input-border-radius{
-  border-radius: 3px;
-}
-
-.login-button{
-  width: 95%;
-  margin: 30px auto 20px;
-  height: 40px;
-  background-color: orange;
-  border-radius: 3px;
-  p{
-    font-size: 17px;
-    line-height: 40px;
-    text-align: center;
-    color: white;
-  }
-}
-
-.login-forgot-password{
-  display: inline-block;
-  position: absolute;
-  right: 10px;
-  margin-top: 10px;
-  color: darkgrey;
 }

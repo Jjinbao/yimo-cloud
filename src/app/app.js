@@ -114,7 +114,7 @@ Array.prototype.remove=function(obj){
 
 angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.services', 'tab.home', 'tab.stay', 'tab.holiday', 'tab.mine',
     'swalk.utils', 'swalk.stay.detail', 'swalk.travel.detail', 'swalk.items', 'swalk.login', 'swalk.dropList',
-    'swalk.fillorder', 'swalk.choice.contact', 'swalk.add.contact','swalk.pay','swalk.changetype',
+    'swalk.fillorder', 'swalk.choice.contact', 'swalk.add.contact','swalk.pay','swalk.changetype','ymy.register',
     'swalk.identity','swalk.password','swalk.reset','swalk.confirm','swalk.goods','swalk.myrsb','swalk.goods.item','swalk.payment',
     'swalk.rsbexplain','swalk.buyrsb','swalk.linkman','swalk.resetpass','swalk.stay.detail','swalk.map','swalk.rsbgift','swalk.suregift','swalk.rsbgift',
     'swalk.suregift','swalk.coupon','swalk.staylist','swalk.city','swalk.serviceADevice','rzModule','swalk.stayorder','swalk.stayremark',

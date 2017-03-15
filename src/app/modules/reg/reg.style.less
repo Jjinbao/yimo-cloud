@@ -1,0 +1,61 @@
+@import "../../common/veriables";
+
+.register-panel{
+  background-color: white;
+  .px2rem(margin-top,54);
+  .px2rem(padding-left,50);
+  .px2rem(padding-right,40);
+  .register-phone{
+    position: relative;
+    .px2rem(height,96);
+    .px2rem(line-height,96);
+    border-bottom: 1px solid @login-border;
+    .china-86{
+      display: inline-block;
+      .px2rem(height,90);
+      .px2rem(line-height,90);
+      color: #cecece;
+    }
+    .reg-input{
+      display: inline-block;
+      .px2rem(height,90);
+      input{
+        .px2rem(margin-left,6);
+        .px2rem(height,90);
+        height: 100%;
+        width: 80%;
+        padding-top:0;
+        padding-bottom:0;
+      }
+    }
+
+  }
+  .reg-code{
+    position: relative;
+    .px2rem(height,96);
+    border-bottom: 1px solid @login-border;
+    input{
+      height: 100%;
+      width: 80%;
+      padding-top:0;
+      padding-bottom:0;
+    }
+    .get-code{
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: #626262;
+      .px2rem(height,96);
+      .px2rem(line-height,96);
+    }
+    .clean-name{
+      .px2rem(width,40);
+      .px2rem(height,40);
+      background-image: url("img/me_icon_danxuan@3x.png");
+      background-size: 100%;
+      position: absolute;
+      .px2rem(top,26);
+      right: 0;
+    }
+  }
+}
