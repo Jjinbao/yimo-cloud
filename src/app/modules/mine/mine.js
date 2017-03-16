@@ -2,10 +2,9 @@
 
 angular.module('tab.mine',[])
     .controller('mineCtrl', ['$scope','$state','$http','$ionicViewSwitcher','$ionicModal','$ionicHistory','$ionicScrollDelegate','$ionicActionSheet','userService', function($scope,$state,$http,$ionicViewSwitcher,$ionicModal,$ionicHistory,$ionicScrollDelegate,$ionicActionSheet,userService) {
-
-
         $scope.$on('$ionicView.beforeEnter',function(){
             $scope.userInfo=userService.userMess;
+            $ionicHistory.clearHistory();
         })
         /*$http({
             url:'/ym/account/register.api',
@@ -46,7 +45,7 @@ angular.module('tab.mine',[])
 
         //去注册
         $scope.toRegister=function(){
-            $state.go('register',{});
+            $state.go('register',{operation:1});
             $ionicViewSwitcher.nextDirection('forward');
         }
 
@@ -74,7 +73,7 @@ angular.module('tab.mine',[])
             })
         }
 
-        $ionicModal.fromTemplateUrl('./app/modules/mine/model.test.html', {
+        /*$ionicModal.fromTemplateUrl('./app/modules/mine/model.test.html', {
             scope: $scope,
             animation: 'slide-in-up'
         }).then(function(modal) {
@@ -90,5 +89,5 @@ angular.module('tab.mine',[])
         };
         $scope.$on('$destroy', function() {
             $scope.modal.remove();
-        });
+        });*/
     }])

@@ -176,17 +176,21 @@ angular.module('swalk.route', [])
             })
             //注册+修改密码
             .state('register',{
+                params:{operation:null},
                 url:'/register',
                 templateUrl:'app/modules/reg/register.tpl.html',
-                controller:'userRegister'
+                controller:'userRegister',
+                cache:false
             })
             //设置用户名和密码
             .state('regname',{
+                params:{phone:''},
                 url:'/register/set',
                 templateUrl:'app/modules/reg/reg.set.name.html',
                 controller:'regSetName'
             })
             .state('newPassword',{
+                params:{phone:''},
                 url:'/password/reset',
                 templateUrl:'app/modules/reg/set.password.tpl.html',
                 controller:'resetNewPassword'
