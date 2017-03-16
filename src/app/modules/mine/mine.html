@@ -1,4 +1,4 @@
-<ion-view title="我">
+<ion-view title="我" hide-tabs="true">
     <ion-content has-bouncing="false">
         <div class="mine-header">
             <div class="header-portrait" ng-click="mineInfo()">
@@ -7,23 +7,22 @@
                 <u-name ng-show="!userInfo.accountId">登录/注册</u-name>
                 <u-phone ng-hide="!userInfo.accountId">{{userInfo.phone}}</u-phone>
                 <span class="icon ion-ios-arrow-right">
-
                 </span>
             </div>
         </div>
         <div class="mine-items">
             <div class="mine-one-item" ng-click="mineLogin()">
-                <a></a>
+                <a class="history-record"></a>
                 历史记录
                 <span class="icon ion-ios-arrow-right"></span>
             </div>
             <div class="mine-one-item">
-                <a></a>
+                <a class="help-repeat"></a>
                 帮助与反馈
                 <span class="icon ion-ios-arrow-right"></span>
             </div>
             <div class="mine-one-item" style="border: none">
-                <a></a>
+                <a class="mine-set"></a>
                 设置
                 <span class="icon ion-ios-arrow-right"></span>
             </div>

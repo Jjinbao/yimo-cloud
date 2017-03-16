@@ -1,61 +1,84 @@
 @import "../../common/veriables";
 
 .mine-header{
-  .px2rem(height,298);
-  background-color: @main-color;
+  height:114px;
+  width: 100%;
+  //background-color: green;
+  background: url("img/beijing@2x.png") no-repeat left center;
+  background-size: 100% 114px;
   position: relative;
-  .px2rem(padding-left,40);
-  .px2rem(padding-right,40);
+  padding-right: 15px;
   .header-portrait{
-    .px2rem(width,140);
-    .px2rem(height,140);
-    background-image: url('img/user_head.jpg');
+    width: 70px;
+    height: 70px;
+    background-image: url('img/touxiang@2x.png');
     background-size: 100%;
-    .px2rem(border-radius,70);
+    border-radius: 35px;
     position: absolute;
-    .px2rem(top,79);
+    top:22px;
+    left: 15px;
   }
   .user-name{
     color: #fefde9;
-    font-size: 15px;
-    .px2rem(line-height,298);
-    .px2rem(margin-left,180);
-    height: 100%;
+    font-size: 18px;
+    height: 114px;
+    line-height: 114px;
+    margin-left: 100px;
     span{
-      .px2rem(width,100);
+      width: 50px;
       text-align: right;
       float: right;
       color: #ffeff7;
-      font-size: 20px;
+      font-size: 22px;
     }
   }
 }
 
 .mine-items{
   background-color: white;
-  .px2rem(margin-top,20);
+  margin-top: 10px;
   .mine-one-item{
     position: relative;
-    .px2rem(height,88);
-    .px2rem(line-height,88);
-    .px2rem(margin-left,94);
-    border-bottom:1px solid #E9E9E9;
-    a{
+    height: 45px;
+    line-height: 45px;
+    margin-left: 50px;
+    border-bottom:1px solid #E5E5E5;
+    font-size: 16px;
+    .history-record{
       display: block;
       position: absolute;
-      .px2rem(width,40);
-      .px2rem(height,40);
-      background-image: url('img/me_icon_shezhi@3x.png');
-      background-size: 100%;
-      .px2rem(top,22);
-      .px2rem(left,-35);
-      transform: translate(-50%);
+      width: 22px;
+      height: 21.5px;
+      background: url('img/lishijilu@2x.png') no-repeat left center;
+      background-size: 22px 21.5px;
+      margin-top: 12px;
+      left: -30px;
+    }
+    .help-repeat{
+      display: block;
+      position: absolute;
+      width: 22px;
+      height: 21.5px;
+      background: url('img/bangzhu@2x.png') no-repeat left center;
+      background-size: 22px 21.5px;
+      margin-top: 12px;
+      left: -30px;
+    }
+    .mine-set{
+      display: block;
+      position: absolute;
+      width: 22px;
+      height: 21.5px;
+      background: url('img/shezhi@2x.png') no-repeat left center;
+      background-size: 22px 21.5px;
+      margin-top: 12px;
+      left: -30px;
     }
     span{
       float: right;
       color: #c3c3c3;
-      .px2rem(margin-right,24);
-      font-size: 20px;
+      margin-right: 15px;
+      font-size: 25px;
     }
   }
 }
