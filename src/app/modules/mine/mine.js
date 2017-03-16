@@ -63,12 +63,12 @@ angular.module('tab.mine',[])
                     }else{
                         $scope.toRegister();
                     }
-                    var data={type:index};
+                    /*var data={type:index};
                     connectWebViewJavascriptBridge(function (bridge) {
                         //回app
                         bridge.callHandler('modifyAvatar', data, function (response) {
                         })
-                    });
+                    });*/
                     return true;
                 }
             })
