@@ -5,36 +5,30 @@
     </ion-nav-buttons>
     <ion-content overflow-scroll="false">
         <div class="user-info">
-            <div class="userinfo-header" ng-click="changeUserInfo()">
+            <div class="userinfo-header" ng-click="setPortrait()">
                 头像
                 <img ng-src="{{userInfo.portrait}}" ng-show="userInfo.portrait">
                 <div class="icon ion-ios-arrow-right portrait-right-arraw"></div>
             </div>
-            <div class="userinfo-other-itme">
-                用户名
-                <span>{{userInfo.realName}}</span>
+            <div class="userinfo-other-itme" ng-click="toModifyName()">
+                姓名
+                <span class="name-info" style="right:45px;">脑动打开</span>
+                <span class="icon ion-ios-arrow-right name-right-arrow"></span>
             </div>
-            <div class="userinfo-other-itme">
-                昵称
-                <span>{{userInfo.name}}</span>
+            <div class="userinfo-other-itme" style="border-bottom: none">
+                账号
+                <span class="name-info">9527</span>
             </div>
-            <div class="userinfo-other-itme">
-                性别
-                <span>{{userInfo.gender==0?'女':'男'}}</span>
-            </div>
-            <div class="userinfo-other-itme">
-                生日
-                <span>{{userInfo.birthday}}</span>
-            </div>
-
         </div>
         <div class="user-info-sigle">
             <div class="userinfo-email-itme">
-                邮箱地址
-                <span>{{userInfo.email}}</span>
+                手机号
+                <span>13661398888</span>
+            </div>
+            <div class="userinfo-email-itme" style="border-bottom: none" ng-click="toModifyPassowrd()">
+                修改密码
+                <span class="icon ion-ios-arrow-right password-right-arrow"></span>
             </div>
         </div>
-
     </ion-content>
-
 </ion-view>

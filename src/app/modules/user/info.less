@@ -3,7 +3,9 @@
 .user-info{
   position: relative;
   background-color: white;
-  padding-left: 10px;
+  margin-top:15px;
+  padding-left: 20px;
+  padding-right:20px;
   color: #666666;
   .userinfo-header{
     .px2rem(height,132);
@@ -22,11 +24,35 @@
       font-size: 22px;
       position: absolute;
       color: #d5d5d5;
-      .px2rem(right,28);
-      .px2rem(top,0);
+      right:20px;
+      top:0;
     }
   }
   .userinfo-other-itme{
+    height: 45px;
+    line-height: 44px;
+    border-bottom: 1px solid #dedede;
+    .name-info{
+      position: absolute;
+      .px2rem(right,40);
+      color: #333333;
+    }
+    .name-right-arrow{
+      float: right;
+      font-size: 22px;
+      color: #d5d5d5;
+    }
+  }
+}
+
+.user-info-sigle{
+  position: relative;
+  background-color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 10px;
+  color: #666666;
+  .userinfo-email-itme{
     .px2rem(height,90);
     .px2rem(line-height,90);
     border-bottom: 1px solid #dedede;
@@ -35,22 +61,10 @@
       .px2rem(right,40);
       color: #333333;
     }
-  }
-}
-
-.user-info-sigle{
-  position: relative;
-  background-color: white;
-  padding-left: 10px;
-  .px2rem(margin-top,20);
-  color: #666666;
-  .userinfo-email-itme{
-    .px2rem(height,90);
-    .px2rem(line-height,90);
-    span{
-      position: absolute;
-      .px2rem(right,40);
-      color: #333333;
+    .password-right-arrow{
+      float: right;
+      font-size: 22px;
+      color: #d5d5d5;
     }
   }
 }
@@ -143,4 +157,27 @@
 
 .gender-color{
   color: orange;
+}
+
+.modify-user-name{
+  width: 100%;
+  height: 50px;
+  line-height: 49px;
+  background-color: white;
+  padding-left: 25px;
+  padding-right: 25px;
+  input{
+    padding: 2px 0 0;
+    height:50px;
+    font-size: 15px;
+  }
+  .clean-name{
+    width:21px;
+    height:21px;
+    background-image: url("img/me_icon_danxuan@3x.png");
+    background-size: 21px 21px;
+    position: absolute;
+    right: 25px;
+    top: 14.5px;
+  }
 }

@@ -1,15 +1,16 @@
 'use strict'
 
 angular.module('swalk.userinfo', [])
-    .controller('userInfo', ['$scope','userService','$state','$ionicViewSwitcher', function ($scope,userService,$state,$ionicViewSwitcher) {
+    .controller('userInfo', ['$scope','userService','$state','$ionicViewSwitcher','$ionicActionSheet',function ($scope,userService,$state,$ionicViewSwitcher,$ionicActionSheet) {
         $scope.$on('$ionicView.afterEnter',function(){
-            userService.getUserInfo({userId:userService.userMess.userId}).then(function(data){
+            //获取用户信息
+            /*userService.getUserInfo({userId:userService.userMess.userId}).then(function(data){
                 if(data.list.errcode===10000){
                     $scope.userInfo=data.list.data;
                 }else{
                     $scope.alertTab(data.list.message);
                 }
-            })
+            })*/
         })
 
         $scope.changeUserInfo=function(){
@@ -52,6 +53,39 @@ angular.module('swalk.userinfo', [])
                     $scope.alertTab(data.list.message);
                 }
             })
+        }
+
+        //调用原生api设置用户头像
+        $scope.setPortrait=function(){
+            var hideSheet=$ionicActionSheet.show({
+                buttons:[
+                    {text:'从相册选择'},
+                    {text:'从相机拍照'}
+                ],
+                titleText:'选择相机或者相册',
+                cancelText:'取消',
+                buttonClicked:function(index){
+                    var data={type:index};
+                    connectWebViewJavascriptBridge(function (bridge) {
+                        //回app
+                        bridge.callHandler('modifyAvatar', data, function (response) {
+                        })
+                    });
+                    return true;
+                }
+            })
+        }
+
+        //去修改用户姓名
+        $scope.toModifyName=function(){
+            $state.go('setUsername',{});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
+
+        //去修改密码
+        $scope.toModifyPassowrd=function(){
+            $state.go('modifyPassowrd',{});
+            $ionicViewSwitcher.nextDirection('forward');
         }
     }])
     .controller('userInfoSave',['$scope','$state','userService','$filter','$ionicActionSheet',function($scope,$state,userService,$filter,$ionicActionSheet){
@@ -119,4 +153,22 @@ angular.module('swalk.userinfo', [])
                 $scope.$digest();
             })
         });
+    }])
+    .controller('setUserName',['$scope','$state','$ionicViewSwitcher',function($scope,$state,$ionicViewSwitcher){
+        $scope.userName='富康小龙';
+        $scope.sureSubmit=function(){
+            console.log(!$scope.userName);
+            if(!$scope.userName){
+                $scope.alertTab('请输入正确的用户名');
+            }
+        };
+
+        $scope.cleanName=function(){
+            $scope.userName='';
+        }
+    }])
+    .controller('setUserPassword',['$scope','$state','$ionicViewSwitcher',function($scope,$state,$ionicViewSwitcher){
+        $scope.sureSubmit=function(){
+            $scope.alertTab('修改成功');
+        }
     }])

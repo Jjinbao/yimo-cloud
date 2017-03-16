@@ -202,6 +202,18 @@ angular.module('swalk.route', [])
                 controller:'userInfo',
                 cache:false
             })
+            .state('setUsername',{
+                url:'/modify/name',
+                templateUrl:'app/modules/user/set.name.html',
+                controller:'setUserName',
+                cache:false
+            })
+            .state('modifyPassowrd',{
+                url:'/modify/password',
+                templateUrl:'app/modules/user/set.password.html',
+                controller:'setUserPassword',
+                cache:false
+            })
             .state('setuserinfo',{
                 params:{obj:''},
                 url:'/user/setting',

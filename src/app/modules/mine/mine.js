@@ -31,7 +31,7 @@ angular.module('tab.mine',[])
 
         $scope.mineInfo=function(){
             if(userService.userMess&&userService.userMess.accountId){
-
+                $scope.showUserInfo();
             }else{
                 $scope.showSheet();
             }
@@ -40,6 +40,12 @@ angular.module('tab.mine',[])
         //去登录
         $scope.mineLogin=function(){
             $state.go('login',{});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
+
+        //获取用户信息
+        $scope.showUserInfo=function(){
+            $state.go('userinfo',{});
             $ionicViewSwitcher.nextDirection('forward');
         }
 
