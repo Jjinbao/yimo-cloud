@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('tab.mine',[])
-    .controller('mineCtrl', ['$scope','$state','$http','$ionicViewSwitcher','$ionicHistory','$ionicScrollDelegate','userService', function($scope,$state,$http,$ionicViewSwitcher,$ionicHistory,$ionicScrollDelegate,userService) {
+    .controller('mineCtrl', ['$scope','$state','$http','$ionicViewSwitcher','$ionicModal','$ionicHistory','$ionicScrollDelegate','$ionicActionSheet','userService', function($scope,$state,$http,$ionicViewSwitcher,$ionicModal,$ionicHistory,$ionicScrollDelegate,$ionicActionSheet,userService) {
 
 
         $scope.$on('$ionicView.beforeEnter',function(){
@@ -34,12 +34,61 @@ angular.module('tab.mine',[])
             if(userService.userMess&&userService.userMess.accountId){
 
             }else{
-                $scope.mineLogin();
+                $scope.showSheet();
             }
         }
 
+        //去登录
         $scope.mineLogin=function(){
             $state.go('login',{});
             $ionicViewSwitcher.nextDirection('forward');
         }
+
+        //去注册
+        $scope.toRegister=function(){
+            $state.go('register',{});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
+
+        $scope.showSheet=function(){
+            var hideSheet=$ionicActionSheet.show({
+                buttons:[
+                    {text:'登录'},
+                    {text:'注册'}
+                ],
+                buttonClicked:function(index){
+                    console.log(index);
+                    if(index==0){
+                        $scope.mineLogin();
+                    }else{
+                        $scope.toRegister();
+                    }
+                    var data={type:index};
+                    connectWebViewJavascriptBridge(function (bridge) {
+                        //回app
+                        bridge.callHandler('modifyAvatar', data, function (response) {
+                        })
+                    });
+                    return true;
+                }
+            })
+        }
+
+        $ionicModal.fromTemplateUrl('./app/modules/mine/model.test.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal
+        })
+        $scope.openModal = function() {
+            $scope.modal.show();
+            $scope.showSheet();
+        }
+        $scope.closeModal = function() {
+            console.log('7777777777777777');
+            $scope.modal.hide();
+        };
+        $scope.$on('$destroy', function() {
+            $scope.modal.remove();
+        });
     }])
