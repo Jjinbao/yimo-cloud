@@ -113,8 +113,7 @@ Array.prototype.remove=function(obj){
 }
 
 angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.services', 'tab.home', 'tab.stay', 'tab.holiday', 'tab.mine',
-     'swalk.login', 'ymy.register',
-    'swalk.rsbexplain','swalk.linkman','swalk.resetpass','swalk.stay.detail','swalk.map','swalk.rsbgift','swalk.suregift','swalk.rsbgift',
+     'swalk.login', 'ymy.register','ymy.help.feed','ymy.history',
     'swalk.suregift','swalk.coupon','swalk.staylist','swalk.city','swalk.serviceADevice','rzModule','swalk.stayorder','swalk.stayremark',
     'swalk.store','swalk.userinfo','swalk.setting','swalk.changeloginword','swalk.images','swalk.about'])
     .config(['$ionicConfigProvider', function ($ionicConfigProvider) {

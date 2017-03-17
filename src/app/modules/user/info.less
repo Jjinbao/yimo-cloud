@@ -1,41 +1,44 @@
 @charset "utf-8";
 @import "../../common/veriables";
+@info-font-color:#999999;
+@info-border-color:#e8e8e8;
 .user-info{
   position: relative;
   background-color: white;
-  margin-top:15px;
-  padding-left: 20px;
-  padding-right:20px;
+  margin-top:10px;
+  padding-left: 15px;
+  padding-right:10px;
   color: #666666;
   .userinfo-header{
-    .px2rem(height,132);
-    .px2rem(line-height,132);
-    border-bottom: 1px solid #dedede;
-    img{
+    height: 75px;
+    line-height: 74px;
+    border-bottom: 1px solid @info-border-color;
+    position: relative;
+    .user-info-portrait{
       position: absolute;
-      .px2rem(top,22);
-      .px2rem(right,60);
-      .px2rem(width,88);
-      .px2rem(height,88);
-      border: 1px solid orange;
-      .px2rem(border-radius,44);
+      width: 51px;
+      height: 51px;
+      background: url('img/touxiang@2x.png') no-repeat left center;
+      background-size: 51px 51px;
+      top:13px;
+      right: 28px;
     }
     .portrait-right-arraw{
       font-size: 22px;
       position: absolute;
       color: #d5d5d5;
-      right:20px;
+      right:0px;
       top:0;
     }
   }
   .userinfo-other-itme{
     height: 45px;
     line-height: 44px;
-    border-bottom: 1px solid #dedede;
+    border-bottom: 1px solid @info-border-color;
     .name-info{
       position: absolute;
       .px2rem(right,40);
-      color: #333333;
+      color: @info-font-color;
     }
     .name-right-arrow{
       float: right;
@@ -48,18 +51,18 @@
 .user-info-sigle{
   position: relative;
   background-color: white;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 15px;
+  padding-right: 10px;
   margin-top: 10px;
   color: #666666;
   .userinfo-email-itme{
-    .px2rem(height,90);
-    .px2rem(line-height,90);
-    border-bottom: 1px solid #dedede;
+    height: 45px;
+    line-height:44px;
+    border-bottom: 1px solid @info-border-color;
     span{
       position: absolute;
-      .px2rem(right,40);
-      color: #333333;
+      right: 20px;
+      color: @info-font-color;
     }
     .password-right-arrow{
       float: right;

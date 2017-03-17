@@ -111,6 +111,17 @@ angular.module('swalk.route', [])
                 controller:'setting',
                 cache:'false'
             })
+            .state('helpAnFeed',{
+                url:'/help/feedback',
+                templateUrl:'app/modules/help/help.feed.html',
+                controller:'helpAnFeed'
+            })
+            //历史记录
+            .state('history',{
+                url:'/history',
+                templateUrl:'app/modules/history/history.tpl.html',
+                controller:'historyRecord'
+            })
             //关于我们
             .state('about',{
                 url:'/about/app',

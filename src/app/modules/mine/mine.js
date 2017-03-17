@@ -96,4 +96,22 @@ angular.module('tab.mine',[])
         $scope.$on('$destroy', function() {
             $scope.modal.remove();
         });*/
+
+        //反馈记录
+        $scope.helpFeedback=function(){
+            $state.go('helpAnFeed',{});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
+
+        //历史记录
+        $scope.historyRecord=function(){
+            $state.go('history',{});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
+
+        //设置
+        $scope.toSet=function(){
+            $state.go('set',{});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
     }])

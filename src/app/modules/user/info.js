@@ -63,7 +63,6 @@ angular.module('swalk.userinfo', [])
                     {text: '从相机拍照'}
                 ],
                 titleText: '选择相机或者相册',
-                cancelText: '取消',
                 buttonClicked: function (index) {
                     var data = {type: index};
                     connectWebViewJavascriptBridge(function (bridge) {
