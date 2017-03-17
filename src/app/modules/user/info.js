@@ -213,7 +213,7 @@ angular.module('swalk.userinfo', [])
         }
         $scope.doubleClick=false;
         $scope.sureSubmit = function () {
-            if(!$scope.doubleClick){
+            if($scope.doubleClick){
                 return;
             }
             if(!$scope.password.oldPassword){
@@ -227,6 +227,7 @@ angular.module('swalk.userinfo', [])
             }
 
             $scope.doubleClick=true;
+            console.log('===========');
             $http({
                 url:'ym/account/updatePassword.api',
                 method:'POST',
@@ -238,6 +239,9 @@ angular.module('swalk.userinfo', [])
                 }
             }).success(function(data){
                 console.log(data);
+                if(data.result==1){
+                    $scope._goback(-1);
+                }
             })
         }
 
