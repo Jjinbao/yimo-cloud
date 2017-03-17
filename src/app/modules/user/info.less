@@ -51,24 +51,53 @@
 .user-info-sigle{
   position: relative;
   background-color: white;
-  padding-left: 15px;
-  padding-right: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
   margin-top: 10px;
   color: #666666;
   .userinfo-email-itme{
     height: 45px;
-    line-height:44px;
+    line-height:45px;
     border-bottom: 1px solid @info-border-color;
+    font-size: 15px;
+    position: relative;
     span{
       position: absolute;
-      right: 20px;
+      right: 0;
       color: @info-font-color;
     }
     .password-right-arrow{
       float: right;
       font-size: 22px;
       color: #d5d5d5;
+      position: absolute;
     }
+    .modify-password-input{
+      position: absolute;
+      left: 70px;
+      //vertical-align: top;
+      height: 16px;
+      font-size: 15px;
+      //padding-top: 8px;
+      padding: 0;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    span.user-info-email-itme-left {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 16px;
+      line-height: 16px;
+      font-size: 15px;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    input::-webkit-input-placeholder{
+      color: #d1d1d1;
+    }
+
   }
 }
 

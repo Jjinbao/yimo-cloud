@@ -12,25 +12,49 @@
     border-bottom: 1px solid @login-border;
     font-size: 16px;
     .china-86{
-      display: inline-block;
-      height: 50px;
-      line-height: 50px;
+      position: absolute;
+      height: 18px;
+      line-height: 18px;
+      color: #d1d1d1;
+      top:50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    input{
+      height: 18px;
+      line-height: 18px;
+      font-size: 15px;
+      padding:0;
+      color: #333333;
+      position: absolute;
+      top: 50%;
+      left: 70px;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      border-radius: 0;
+      border: none;
+
+    }
+    input::-webkit-input-placeholder{
       color: #d1d1d1;
     }
-    .reg-input{
-      display: inline-block;
-      height: 49px;
-      line-height: 49px;
-      input{
-        margin-left: 3px;
-        height: 100%;
-        width: 80%;
-        padding-top:0px;
-        font-size: 16px;
-        padding-bottom:0;
-        color: #333333;
-      }
-    }
+    //.reg-input{
+    //  display: inline-block;
+    //  height: 49px;
+    //  line-height: 49px;
+    //  input{
+    //    margin-left: 3px;
+    //    height: 100%;
+    //    width: 80%;
+    //    padding-top:0px;
+    //    font-size: 16px;
+    //    padding-bottom:0;
+    //    color: #333333;
+    //  }
+    //}
 
   }
   .reg-code{
@@ -45,6 +69,9 @@
       padding-top:0;
       padding-bottom:0;
       color: #333333;
+    }
+    input::-webkit-input-placeholder{
+      color: #d1d1d1;
     }
     .get-code{
       position: absolute;

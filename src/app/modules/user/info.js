@@ -205,8 +205,40 @@ angular.module('swalk.userinfo', [])
             $scope.user.name = '';
         }
     }])
-    .controller('setUserPassword', ['$scope', '$state', '$ionicViewSwitcher', function ($scope, $state, $ionicViewSwitcher) {
-        $scope.sureSubmit = function () {
-            $scope.alertTab('修改成功');
+    .controller('setUserPassword', ['$scope', '$state','$http', '$ionicViewSwitcher','userService', function ($scope, $state,$http, $ionicViewSwitcher,userService) {
+
+        $scope.password={
+            oldPassword:'',
+            newPassword:''
         }
+        $scope.doubleClick=false;
+        $scope.sureSubmit = function () {
+            if(!$scope.doubleClick){
+                return;
+            }
+            if(!$scope.password.oldPassword){
+                $scope.alertTab('请输入旧密码');
+                return;
+            }
+
+            if(!$scope.password.newPassword){
+                $scope.alertTab('请输入新密码');
+                return;
+            }
+
+            $scope.doubleClick=true;
+            $http({
+                url:'ym/account/updatePassword.api',
+                method:'POST',
+                params:{
+                    phone:userService.userMess.phone,
+                    oldPassword:md5($scope.password.oldPassword),
+                    newPassword:md5($scope.password.newPassword),
+                    sign:md5('ymy'+md5($scope.password.newPassword)+md5($scope.password.oldPassword)+userService.userMess.phone)
+                }
+            }).success(function(data){
+                console.log(data);
+            })
+        }
+
     }])
