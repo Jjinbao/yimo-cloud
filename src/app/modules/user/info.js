@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('swalk.userinfo', [])
-    .controller('userInfo', ['$scope', 'userService', '$state', '$ionicViewSwitcher', '$ionicActionSheet', function ($scope, userService, $state, $ionicViewSwitcher, $ionicActionSheet) {
+    .controller('userInfo', ['$scope', 'userService', '$state','$http','$ionicViewSwitcher', '$ionicActionSheet', function ($scope, userService, $state,$http,$ionicViewSwitcher, $ionicActionSheet) {
         $scope.$on('$ionicView.afterEnter', function () {
             //获取用户信息
             /*userService.getUserInfo({userId:userService.userMess.userId}).then(function(data){
@@ -11,6 +11,21 @@ angular.module('swalk.userinfo', [])
              $scope.alertTab(data.list.message);
              }
              })*/
+        })
+
+        //获取用户信息
+        $scope.userMsg={};
+        $http({
+            url:'ym/account/getInfo.api',
+            method:'POST',
+            params:{
+                accountId:userService.userMess.accountId,
+                sign:md5('ymy'+userService.userMess.accountId)
+            }
+        }).success(function(data){
+            if(data.result==1){
+                $scope.userMsg=data;
+            }
         })
 
         $scope.changeUserInfo = function () {
@@ -86,6 +101,11 @@ angular.module('swalk.userinfo', [])
             $state.go('modifyPassowrd', {});
             $ionicViewSwitcher.nextDirection('forward');
         }
+        //退出登录
+        $scope.toLoginOut=function(){
+            userService.userMess={};
+            $scope._goback();
+        }
     }])
     .controller('userInfoSave', ['$scope', '$state', 'userService', '$filter', '$ionicActionSheet', function ($scope, $state, userService, $filter, $ionicActionSheet) {
         $scope.userInfo = {};
@@ -153,15 +173,32 @@ angular.module('swalk.userinfo', [])
             })
         });
     }])
-    .controller('setUserName', ['$scope', '$state', '$ionicViewSwitcher', function ($scope, $state, $ionicViewSwitcher) {
+    .controller('setUserName', ['$scope', '$state','$http','userService','$ionicViewSwitcher', function ($scope, $state,$http,userService, $ionicViewSwitcher) {
         $scope.user = {
-            name: '富康小龙'
+            name: userService.userMess.userName
         };
         $scope.sureSubmit = function () {
             console.log(!$scope.user.name);
             if (!$scope.user.name) {
                 $scope.alertTab('请输入正确的用户名');
+                return;
             }
+            $http({
+                url:'ym/account/updateInfo.api',
+                method:'POST',
+                params:{
+                    accountId:userService.userMess.accountId,
+                    userName:encodeURI($scope.user.name),
+                    sign:md5('ymy'+userService.userMess.accountId+$scope.user.name)
+                }
+            }).success(function(data){
+                if(data.result==1){
+                    userService.userMess.userName=$scope.user.name;
+                    $scope._goback();
+                }else{
+
+                }
+            })
         };
 
         $scope.cleanName = function () {

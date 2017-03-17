@@ -12,23 +12,27 @@
             </div>
             <div class="userinfo-other-itme" ng-click="toModifyName()">
                 姓名
-                <span class="name-info" style="right:45px;">脑动打开</span>
+                <span class="name-info" style="right:45px;">{{userMsg.userName}}</span>
                 <span class="icon ion-ios-arrow-right name-right-arrow"></span>
             </div>
             <div class="userinfo-other-itme" style="border-bottom: none">
                 账号
-                <span class="name-info">9527</span>
+                <span class="name-info">{{userMsg.randCode}}</span>
             </div>
         </div>
         <div class="user-info-sigle">
             <div class="userinfo-email-itme">
                 手机号
-                <span>13661398888</span>
+                <span>{{userMsg.phone}}</span>
             </div>
             <div class="userinfo-email-itme" style="border-bottom: none" ng-click="toModifyPassowrd()">
                 修改密码
                 <span class="icon ion-ios-arrow-right password-right-arrow"></span>
             </div>
         </div>
+        <div class="login-operate">
+            <div class="login-button can-use-btn" ng-click="toLoginOut()">退出登录</div>
+        </div>
+
     </ion-content>
 </ion-view>
