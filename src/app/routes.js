@@ -136,6 +136,21 @@ angular.module('swalk.route', [])
                 templateUrl:'app/modules/history/history.tpl.html',
                 controller:'historyRecord'
             })
+            .state('application',{
+                url:'/applicaiton/list',
+                templateUrl:'app/modules/history/application.tpl.html',
+                controller:'application'
+            })
+            .state('teaching',{
+                url:'/teaching/list',
+                templateUrl:'app/modules/history/teaching.tpl.html',
+                controller:'teaching'
+            })
+            .state('infoMsg',{
+                url:'/infomsg/list',
+                templateUrl:'app/modules/history/information.tpl.html',
+                controller:'information'
+            })
             //关于我们
             .state('about',{
                 url:'/about/app',

@@ -16,7 +16,7 @@ angular.module('swalk.userinfo', [])
         //获取用户信息
         $scope.userMsg={};
         $http({
-            url:'ym/account/getInfo.api',
+            url:urlStr+'ym/account/getInfo.api',
             method:'POST',
             params:{
                 accountId:userService.userMess.accountId,
@@ -184,7 +184,7 @@ angular.module('swalk.userinfo', [])
                 return;
             }
             $http({
-                url:'ym/account/updateInfo.api',
+                url:urlStr+'ym/account/updateInfo.api',
                 method:'POST',
                 params:{
                     accountId:userService.userMess.accountId,
@@ -229,7 +229,7 @@ angular.module('swalk.userinfo', [])
             $scope.doubleClick=true;
             console.log('===========');
             $http({
-                url:'ym/account/updatePassword.api',
+                url:urlStr+'ym/account/updatePassword.api',
                 method:'POST',
                 params:{
                     phone:userService.userMess.phone,

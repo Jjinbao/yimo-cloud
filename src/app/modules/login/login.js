@@ -16,7 +16,7 @@ angular.module('swalk.login', [])
             }
             $scope.toLogin=function(){
                 $http({
-                    url:'/ym/account/login.api',
+                    url:urlStr+'ym/account/login.api',
                     method:'POST',
                     params:{
                         phone:$scope.userInfo.name,

@@ -34,7 +34,7 @@ angular.module('ymy.register',[])
             $scope.canGetCode=false;
             console.log('ymy'+operation.toString()+$scope.regInfo.phone);
             $http({
-                url:'ym/phoneCode/sendCode.api',
+                url:urlStr+'ym/phoneCode/sendCode.api',
                 method:'POST',
                 params:{
                     phone:$scope.regInfo.phone,
@@ -85,7 +85,7 @@ angular.module('ymy.register',[])
             }
             $scope.doubleClick=false;
             $http({
-                url:'ym/phoneCode/checkCode.api',
+                url:urlStr+'ym/phoneCode/checkCode.api',
                 method:'POST',
                 params:{
                     phone:$scope.regInfo.phone,
@@ -180,7 +180,7 @@ angular.module('ymy.register',[])
             }
 
             $http({
-                url:'ym/account/register.api',
+                url:urlStr+'ym/account/register.api',
                 method:'POST',
                 params:{
                     phone:$scope.userInfo.phone,
@@ -237,7 +237,7 @@ angular.module('ymy.register',[])
             }
 
             $http({
-                url:'ym/account/findPassword.api',
+                url:urlStr+'ym/account/findPassword.api',
                 method:'POST',
                 params:{
                     phone:$scope.userInfo.phone,
