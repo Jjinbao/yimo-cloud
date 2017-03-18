@@ -116,6 +116,11 @@ angular.module('swalk.route', [])
                 templateUrl:'app/modules/help/help.feed.html',
                 controller:'helpAnFeed'
             })
+            .state('feedRecord',{
+                url:'/feed/record',
+                templateUrl:'app/modules/help/feed.record.html',
+                controller:'feedBackRecord'
+            })
             //历史记录
             .state('history',{
                 url:'/history',
