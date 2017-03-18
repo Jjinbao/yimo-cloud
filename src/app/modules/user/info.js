@@ -245,4 +245,17 @@ angular.module('swalk.userinfo', [])
             })
         }
 
+        $scope.cleanPassword=function(){
+            $scope.password.oldPassword='';
+        }
+
+        $scope.inputType='password';
+        $scope.openEye=function(){
+            if($scope.inputType=='password'){
+                $scope.inputType='text';
+            }else{
+                $scope.inputType='password';
+            }
+        }
+
     }])

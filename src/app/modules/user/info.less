@@ -21,7 +21,7 @@
       height: 50px;
       background: url('img/touxiang@2x.png') no-repeat left center;
       background-size: 50px 50px;
-      right: 28px;
+      right: 26px;
       top:50%;
       -webkit-transform: translateY(-50%);
       transform: translateY(-50%);
@@ -40,9 +40,10 @@
     border-bottom: 1px solid @info-border-color;
     font-size: 16px;
     color: #333333;
+    position: relative;
     .name-info{
       position: absolute;
-      .px2rem(right,30);
+      right: 0;
       font-size: 13px;
       color: @info-font-color;
     }
@@ -57,19 +58,22 @@
 .user-info-sigle{
   position: relative;
   background-color: white;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
   margin-top: 10px;
   color: #666666;
+
   .userinfo-email-itme{
     height: 45px;
     line-height:45px;
     border-bottom: 1px solid @info-border-color;
-    font-size: 15px;
+    font-size: 16px;
+    color: #333333;
     position: relative;
     span{
       position: absolute;
       right: 0;
+      font-size: 13px;
       color: @info-font-color;
     }
     .password-right-arrow{
@@ -90,6 +94,40 @@
       top: 50%;
       -webkit-transform: translateY(-50%);
       transform: translateY(-50%);
+    }
+    .clean-password{
+      position: absolute;
+      right: 34px;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      width: 17px;
+      height: 17px;
+      background: url('img/mima_shanchu@2x.png') no-repeat left center;
+      background-size: 17px 17px;
+    }
+
+    .close-eye{
+      position: absolute;
+      right: 2px;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      width: 20.5px;
+      height: 9.5px;
+      background: url('img/mima_guanbi@2x.png') no-repeat left center;
+      background-size: 20.5px 9.5px;
+    }
+    .open-eye{
+      position: absolute;
+      right: 2px;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      width: 20.5px;
+      height: 13px;
+      background: url('img/mima_dakai@2x.png') no-repeat left center;
+      background-size: 20.5px 13px;
     }
     span.user-info-email-itme-left {
       position: absolute;
@@ -197,24 +235,31 @@
 
 .modify-user-name{
   width: 100%;
-  height: 50px;
+  height: 45px;
   line-height: 49px;
   background-color: white;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
   input{
-    padding: 2px 0 0;
-    height:50px;
-    font-size: 15px;
+    padding: 0;
+    height: 18px;
+    font-size: 16px;
+    position: absolute;
+    left: 15px;
+    top:50%;
+    color: #333333;
+    -webkit-transform: translateY(-50%);
   }
   .clean-name{
-    width:21px;
-    height:21px;
-    background-image: url("img/me_icon_danxuan@3x.png");
-    background-size: 21px 21px;
+    width:17px;
+    height:17px;
+    background: url("img/mima_shanchu@2x.png") no-repeat left center;
+    background-size: 17px 17px;
     position: absolute;
-    right: 25px;
-    top: 14.5px;
+    right: 15px;
+    top: 14px;
   }
 }
 .quit-login{
