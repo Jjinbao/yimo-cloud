@@ -8,7 +8,14 @@ angular.module('ymy.help.feed',[])
             $ionicViewSwitcher.nextDirection('forward');
         }
 
+        $scope.toQuestion=function(val){
+            $state.go('questionList',{viewTitle:val});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
     }])
     .controller('feedBackRecord',['$scope',function($scope){
 
+    }])
+    .controller('questionList',['$scope','$state',function($scope,$state){
+        $scope.viewTitle=$state.params.viewTitle;
     }])

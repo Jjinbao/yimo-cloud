@@ -111,15 +111,24 @@ angular.module('swalk.route', [])
                 controller:'setting',
                 cache:'false'
             })
+            //帮助与反馈
             .state('helpAnFeed',{
                 url:'/help/feedback',
                 templateUrl:'app/modules/help/help.feed.html',
                 controller:'helpAnFeed'
             })
+            //反馈记录
             .state('feedRecord',{
                 url:'/feed/record',
                 templateUrl:'app/modules/help/feed.record.html',
                 controller:'feedBackRecord'
+            })
+            //常见为题
+            .state('questionList',{
+                params:{viewTitle:''},
+                url:'/question/list',
+                templateUrl:'app/modules/help/question.list.html',
+                controller:'questionList'
             })
             //历史记录
             .state('history',{
