@@ -7,21 +7,24 @@
   background-color: white;
   margin-top:10px;
   padding-left: 15px;
-  padding-right:10px;
+  padding-right:15px;
   color: #666666;
   .userinfo-header{
-    height: 75px;
-    line-height: 74px;
+    height: 65px;
+    line-height: 64px;
     border-bottom: 1px solid @info-border-color;
     position: relative;
+    font-size: 16px;
     .user-info-portrait{
       position: absolute;
-      width: 51px;
-      height: 51px;
+      width: 50px;
+      height: 50px;
       background: url('img/touxiang@2x.png') no-repeat left center;
-      background-size: 51px 51px;
-      top:13px;
+      background-size: 50px 50px;
       right: 28px;
+      top:50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
     }
     .portrait-right-arraw{
       font-size: 22px;
@@ -35,9 +38,12 @@
     height: 45px;
     line-height: 44px;
     border-bottom: 1px solid @info-border-color;
+    font-size: 16px;
+    color: #333333;
     .name-info{
       position: absolute;
-      .px2rem(right,40);
+      .px2rem(right,30);
+      font-size: 13px;
       color: @info-font-color;
     }
     .name-right-arrow{
@@ -94,9 +100,6 @@
       font-size: 15px;
       -webkit-transform: translateY(-50%);
       transform: translateY(-50%);
-    }
-    input::-webkit-input-placeholder{
-      color: #d1d1d1;
     }
 
   }
