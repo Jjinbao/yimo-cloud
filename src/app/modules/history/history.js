@@ -16,7 +16,13 @@ angular.module('ymy.history',[])
         console.log('展示应用列表');
     }])
     .controller('teaching',['$scope','$state','$ionicViewSwitcher',function($scope,$state,$ionicViewSwitcher){
-        console.log('教学列表');
+        $scope.panelType='sp'
+        $scope.teachChoice=function(val){
+            if($scope.panelType==val){
+                return;
+            }
+            $scope.panelType=val;
+        }
     }])
     .controller('information',['$scope','$state','$ionicViewSwitcher',function($scope,$state,$ionicViewSwitcher){
         console.log('应用列表');

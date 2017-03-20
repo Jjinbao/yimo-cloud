@@ -3,10 +3,36 @@
         <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
         </button>
     </ion-nav-buttons>
-    <ion-content>
-        <div class="history-top-magin"></div>
-        <div class="set-itmes">
-            教学
+    <ion-header-bar class="bar-subheader teaching-sub-header">
+        <div class="midea-teaching " ng-class="{true:'panel-active'}[panelType=='sp']" ng-click="teachChoice('sp')">
+            视频
+        </div>
+        <div class="midea-teaching" ng-class="{true:'panel-active'}[panelType=='tw']" ng-click="teachChoice('tw')">
+            图文
+        </div>
+    </ion-header-bar>
+    <ion-content class="has-subheader">
+        <div class="teaching-itmes" ng-if="panelType=='sp'">
+            <div class="one-item">
+                <img src="../app/img/timing.jpg">
+                <span>111111111111111111111111111111111111111111</span>
+            </div>
+            <div class="one-item">
+                <img src="../app/img/timing.jpg">
+                <span>11111111111111111111111</span>
+            </div>
+            <div class="one-item">
+                <img src="../app/img/timing.jpg">
+                <span>11111111111111111111</span>
+            </div>
+            <div class="one-item">
+                <img src="../app/img/timing.jpg">
+                <span>1111111111111111111111111111111111111111111111</span>
+            </div>
+            <div class="one-item">
+                <img src="../app/img/timing.jpg">
+                <span>1111111111111111111111111111111111111111111111</span>
+            </div>
         </div>
 
     </ion-content>
