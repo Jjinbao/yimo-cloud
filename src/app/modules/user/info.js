@@ -70,6 +70,11 @@ angular.module('swalk.userinfo', [])
             })
         }
 
+        $scope.showPortraitChoice=function(){
+            $scope.indexShowModelBackground();
+            $scope.indexShowPortrait();
+        }
+
         //调用原生api设置用户头像
         $scope.setPortrait = function () {
             var hideSheet = $ionicActionSheet.show({
@@ -145,6 +150,7 @@ angular.module('swalk.userinfo', [])
             }
             $scope.userInfo.gender = val
         }
+
 
         $scope.showSheet = function () {
             var hideSheet = $ionicActionSheet.show({

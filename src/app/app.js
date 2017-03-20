@@ -158,25 +158,55 @@ angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.service
             }
 
             $scope.showModelBackground=false;
+            //显示模式化窗口
+            $scope.indexShowModelBackground=function(){
+                $scope.showModelBackground=true;
+            }
 
             //显示，隐藏模式化窗口
-            $scope.toShowModelBack=function(){
-                $scope.showModelBackground=!$scope.showModelBackground;
-                $scope.showindexLoginPanel=$scope.showModelBackground;
+            $scope.toHideModelBack=function(val){
+                $scope.indexPortraitPanel=$scope.showindexLoginPanel=$scope.showModelBackground=false;
             }
 
             $scope.showindexLoginPanel=false;
+            //显示登录弹窗
             $scope.showLoginPanel=function(){
                 $scope.showindexLoginPanel=true;
             }
 
+            //隐藏登录弹窗
             $scope.hideLoginPanel=function(){
                 $scope.showindexLoginPanel=false;
             }
-
+            //隐藏所有弹窗
             $scope.hideAllPanel=function(){
                 $scope.showModelBackground=false;
                 $scope.showindexLoginPanel=false;
+                $scope.indexPortraitPanel=false;
+            }
+
+            //显示头像选择弹窗
+            $scope.indexPortraitPanel=false;
+            $scope.indexShowPortrait=function(){
+                $scope.indexPortraitPanel=true;
+            }
+
+            //隐藏头像选择弹窗
+            $scope.indexHidePortrait=function(){
+                $scope.indexPortraitPanel=false;
+            }
+
+            $scope.modifyPortrait=function(val){
+                console.log(val);
+                var data={
+                    type:val
+                }
+                connectWebViewJavascriptBridge(function (bridge) {
+                    //回app
+                    bridge.callHandler('modifyAvatar', data, function (response) {
+                    })
+                });
+                $scope.hideAllPanel();
             }
 
             $scope.indexToLogin=function(){

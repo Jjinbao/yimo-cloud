@@ -33,7 +33,7 @@ angular.module('tab.mine',[])
             if(userService.userMess&&userService.userMess.accountId){
                 $scope.showUserInfo();
             }else{
-                $scope.toShowModelBack();
+                $scope.indexShowModelBackground();
                 $scope.showLoginPanel();
                 //$scope.showSheet();
             }
