@@ -75,27 +75,6 @@ function getDays(strDateStart,strDateEnd){
     return iDays ;
 }
 
-//比较两个日期谁更靠后
-function compareLastDate(date1,date2){
-    var d1=new Date(date1);
-    var d2=new Date(date2);
-    var result=0;
-    if(d1.getTime()>d2.getTime()){
-        result=1;
-    }
-    return result;
-}
-
-//获取当前日期的后一天
-function getNextDay(d){
-    d = new Date(d);
-    d = +d + 1000*60*60*24;
-    d = new Date(d);
-    //return d;
-    //格式化
-    return d.getFullYear()+"-"+((d.getMonth()+1)>9?(d.getMonth()+1):('0'+(d.getMonth()+1)))+"-"+(d.getDate()>9?(d.getDate()):('0'+(d.getDate())));
-
-}
 //数组移除指定元素
 Array.prototype.remove=function(obj){
     for(var i =0;i <this.length;i++){
@@ -113,9 +92,7 @@ Array.prototype.remove=function(obj){
 }
 
 angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.services', 'tab.home', 'tab.stay', 'tab.holiday', 'tab.mine',
-     'swalk.login', 'ymy.register','ymy.help.feed','ymy.history',
-    'swalk.suregift','swalk.coupon','swalk.staylist','swalk.city','swalk.serviceADevice','rzModule','swalk.stayorder','swalk.stayremark',
-    'swalk.store','swalk.userinfo','swalk.setting','swalk.changeloginword','swalk.images','swalk.about'])
+     'swalk.login', 'ymy.register','ymy.help.feed','ymy.history', 'swalk.userinfo','swalk.setting','swalk.about'])
     .config(['$ionicConfigProvider', function ($ionicConfigProvider) {
         $ionicConfigProvider.platform.ios.tabs.style('standard');
         $ionicConfigProvider.platform.ios.tabs.position('bottom');
@@ -359,17 +336,6 @@ angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.service
                     $state.go('payresult', {status: response.code,type:response.type});
                 })
             });
-            //入住日期和离开日期
-            $rootScope.appStay={
-                stayIn:'',
-                stayOut:''
-            }
-            //度假出游日期的选择
-            $rootScope.travelParams={
-                date:'',
-                dateId:'',
-                price:''
-            }
             //获取当前日期
             var dd=new Date();
             $rootScope.appStay.stayIn=dd.getFullYear()+'-'+((dd.getMonth()+1)>9?(dd.getMonth()+1):('0'+(dd.getMonth()+1)))+'-'+(dd.getDate()>9?dd.getDate():'0'+dd.getDate());
