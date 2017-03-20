@@ -33,7 +33,9 @@ angular.module('tab.mine',[])
             if(userService.userMess&&userService.userMess.accountId){
                 $scope.showUserInfo();
             }else{
-                $scope.showSheet();
+                $scope.toShowModelBack();
+                $scope.showLoginPanel();
+                //$scope.showSheet();
             }
         }
 
@@ -59,8 +61,9 @@ angular.module('tab.mine',[])
             var hideSheet=$ionicActionSheet.show({
                 buttons:[
                     {text:'登录'},
-                    {text:'注册'}
+                    {text:'<span style="background-color: green;color: green">1注册</span>'}
                 ],
+                titleText:'<span style="background-color: green !important;">22222222</span>',
                 buttonClicked:function(index){
                     console.log(index);
                     if(index==0){

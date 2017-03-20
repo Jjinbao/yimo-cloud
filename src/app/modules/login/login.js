@@ -28,9 +28,18 @@ angular.module('swalk.login', [])
                     if(data.result==1){
                         userService.userMess=data;
                         $scope.back();
-                    }else{
-                        $scope.alertTab('用户名或密码错误');
+                    }else if(data.result==102){
+                        $scope.alertTab('手机号输入错误');
+                    }else if(data.result==103){
+                        $scope.alertTab('手机号未注册');
+                    }else if(data.result==104){
+                        $scope.alertTab('账号封停,1小时后重试');
+                    }else if(data.result==105){
+                        $scope.alertTab('密码错误');
+                    }else if(data.result==106){
+                        $scope.alertTab('系统错误，稍后重试');
                     }
+
                 })
             }
 

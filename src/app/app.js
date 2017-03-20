@@ -140,6 +140,8 @@ angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.service
                     }]
                 });
 
+
+
                 /*confirmPopup.then(function(res) {
                     if(res) {
                         console.log('关闭app');
@@ -154,6 +156,42 @@ angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.service
                     }
                 });*/
             }
+
+            $scope.showModelBackground=false;
+
+            //显示，隐藏模式化窗口
+            $scope.toShowModelBack=function(){
+                $scope.showModelBackground=!$scope.showModelBackground;
+                $scope.showindexLoginPanel=$scope.showModelBackground;
+            }
+
+            $scope.showindexLoginPanel=false;
+            $scope.showLoginPanel=function(){
+                $scope.showindexLoginPanel=true;
+            }
+
+            $scope.hideLoginPanel=function(){
+                $scope.showindexLoginPanel=false;
+            }
+
+            $scope.hideAllPanel=function(){
+                $scope.showModelBackground=false;
+                $scope.showindexLoginPanel=false;
+            }
+
+            $scope.indexToLogin=function(){
+                $scope.showindexLoginPanel=$scope.showModelBackground=false;
+                $state.go('login',{});
+                $ionicViewSwitcher.nextDirection('forward');
+            }
+
+            $scope.indexToReg=function(){
+                $scope.showindexLoginPanel=$scope.showModelBackground=false;
+                $state.go('register',{operation:1});
+                $ionicViewSwitcher.nextDirection('forward');
+            }
+
+
             $rootScope.$state = $state;
             $rootScope.appType = appType;
             var deviceIntervalId=$interval(function(){
@@ -336,15 +374,6 @@ angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.service
                     $state.go('payresult', {status: response.code,type:response.type});
                 })
             });
-            //获取当前日期
-            var dd=new Date();
-            $rootScope.appStay.stayIn=dd.getFullYear()+'-'+((dd.getMonth()+1)>9?(dd.getMonth()+1):('0'+(dd.getMonth()+1)))+'-'+(dd.getDate()>9?dd.getDate():'0'+dd.getDate());
-            var dd2=new Date(dd);
-            dd2.setDate(dd.getDate()+1);
-            $rootScope.appStay.stayOut=dd2.getFullYear()+'-'+((dd2.getMonth()+1)>9?(dd2.getMonth()+1):('0'+(dd2.getMonth()+1)))+'-'+(dd2.getDate()>9?dd2.getDate():'0'+dd2.getDate());
-
-            //记录从哪里进入修改支付密码界面
-            $rootScope.modifyPassword='';
 
 
         }])
