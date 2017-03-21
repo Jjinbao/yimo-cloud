@@ -2,6 +2,7 @@
     <ion-content has-bouncing="false">
         <div class="mine-header">
             <div class="header-portrait" ng-click="mineInfo()">
+                <img ng-src="{{userInfo.smallImg}}">
             </div>
             <div class="user-name" ng-click="mineInfo()">
                 <u-name ng-show="!userInfo.accountId">登录/注册</u-name>

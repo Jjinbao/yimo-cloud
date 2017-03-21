@@ -11,8 +11,8 @@ angular.module('swalk.userinfo', [])
              $scope.alertTab(data.list.message);
              }
              })*/
+            console.log('----------------------');
         })
-
         //获取用户信息
         $scope.userMsg={};
         $http({
@@ -25,6 +25,8 @@ angular.module('swalk.userinfo', [])
         }).success(function(data){
             if(data.result==1){
                 $scope.userMsg=data;
+                console.log('----------------------');
+                console.log($scope.userMsg);
             }
         })
 
@@ -109,8 +111,22 @@ angular.module('swalk.userinfo', [])
         //退出登录
         $scope.toLoginOut=function(){
             userService.userMess={};
+            connectWebViewJavascriptBridge(function (bridge) {
+                //回app
+                bridge.callHandler('exitLogin', null, function (response) {
+
+                })
+            });
             $scope._goback();
         }
+        //上传成功的回调
+        connectWebViewJavascriptBridge(function (bridge) {
+            bridge.registerHandler('uploadAvatarSucceed', function (response) {
+                userService.userMess.smallImg = response.smallImg;
+                $scope.userMsg.smallImg = response.smallImg;
+                $scope.$digest();
+            })
+        });
     }])
     .controller('userInfoSave', ['$scope', '$state', 'userService', '$filter', '$ionicActionSheet', function ($scope, $state, userService, $filter, $ionicActionSheet) {
         $scope.userInfo = {};
@@ -171,13 +187,7 @@ angular.module('swalk.userinfo', [])
                 }
             })
         }
-        connectWebViewJavascriptBridge(function (bridge) {
-            bridge.registerHandler('uploadAvatarSucceed', function (response) {
-                userService.userMess.portrait = response;
-                $scope.userInfo.portrait = response;
-                $scope.$digest();
-            })
-        });
+
     }])
     .controller('setUserName', ['$scope', '$state','$http','userService','$ionicViewSwitcher', function ($scope, $state,$http,userService, $ionicViewSwitcher) {
         $scope.user = {
