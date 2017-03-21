@@ -27,6 +27,12 @@ angular.module('swalk.login', [])
                     console.log(data);
                     if(data.result==1){
                         userService.userMess=data;
+                        connectWebViewJavascriptBridge(function (bridge) {
+                            //回app
+                            bridge.callHandler('userMessage', data, function (response) {
+
+                            })
+                        });
                         $scope.back();
                     }else if(data.result==102){
                         $scope.alertTab('手机号输入错误');

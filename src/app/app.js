@@ -113,6 +113,18 @@ angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.service
     .controller('rooCtrl', ['$rootScope','$scope', '$ionicHistory','$ionicViewSwitcher', '$ionicPopup', '$timeout','userService','$location','$state','$interval',
         function ($rootScope,$scope, $ionicHistory,$ionicViewSwitcher,$ionicPopup, $timeout,userService,$location,$state,$interval) {
             //用户点击返回按钮要不要显示退出弹窗
+            connectWebViewJavascriptBridge(function (bridge) {
+                bridge.init(function (message, responseCallback) {
+                    var data = {'Javascript Responds': 'Wee!'};
+                    responseCallback(data);
+                });
+                bridge.registerHandler('getUserInfo', function (response) {
+                    bridge.registerHandler('userLoginInfoMsg', function (response) {
+                        userService.userMess=response;
+                    })
+                })
+            });
+
 
             var canShowWindow=true;
             $scope.confirmQuit=function(){
@@ -365,35 +377,16 @@ angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.service
             connectWebViewJavascriptBridge(function (bridge) {
                 bridge.registerHandler('onBack', function (response) {
                     var stateId=$ionicHistory.currentView().stateId;
-                    if((stateId.indexOf('tabs.mine')>=0)||(stateId.indexOf('tabs.home')>=0)||(stateId.indexOf('tabs.stay')>=0)||(stateId.indexOf('tabs.holiday')>=0)){
-                        if(canShowWindow){
-                            canShowWindow=false;
-                            $scope.confirmQuit();
-                        }
-                    }else if((stateId.indexOf('fillorder')>=0)||stateId.indexOf('stayOrder')>=0){
-                        //在订单填写页面广播事件
-                        $scope.$broadcast('android.mac.backbtn','');
-                    }else if(stateId.indexOf('payresult')>=0){
-                        var backUrl=$location.url();
-                        if(backUrl.indexOf('scan-pay')>=0){
-                            $state.go('tabs.home');
-                        }else if(backUrl.indexOf('pay-pro')>=0){
-                            $state.go('goods',{from:'payresult'});
-                        }else if(backUrl.indexOf('rsb-buy')>=0){
-                            $state.go('rsb',{type:'rsb-buy'});
-                        }else{
-                            $state.go('tabs.mine');
-                        }
-                        $ionicViewSwitcher.nextDirection('back');
-                    }else if(stateId.indexOf('giftresult')>=0){
-                        $state.go('rsb',{type:'rsb-buy'});
-                    }else if(stateId.indexOf('couponChoice')>=0){
-                        $scope.$broadcast('android.choicecoupon.backbtn','');
-                    }else if((stateId.indexOf('identity')>=0)&&($location.url().indexOf('change/identity/forget/app')>=0)){
-                        $scope.$broadcast('android.modifypassword.backbtn','');
+                    if($scope.showModelBackground){
+                        $scope.hideAllPanel();
+                        $scope.$digest();
                     }else{
-                        $ionicHistory.goBack();
-                        $ionicViewSwitcher.nextDirection('back');
+                        if((stateId.indexOf('tabs.mine')>=0)){
+                            console.log();
+                        }else{
+                            $ionicHistory.goBack();
+                            $ionicViewSwitcher.nextDirection('back');
+                        }
                     }
                 })
             });
