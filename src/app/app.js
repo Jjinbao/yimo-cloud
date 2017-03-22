@@ -391,12 +391,16 @@ angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.service
                 })
             });
 
-            //处理用户支付结果函数
+            $rootScope.netBreak=false;
+            //在没有网的情况下调用本函数
             connectWebViewJavascriptBridge(function (bridge) {
-                bridge.registerHandler('payResult', function (response) {
-                    $state.go('payresult', {status: response.code,type:response.type});
+                bridge.registerHandler('netBreak', function (response) {
+                    $rootScope.netBreak=response.netStatus;
+                    $state.go('tabs.mine',{});
+                    $scope.$digest();
                 })
             });
+
 
 
         }])

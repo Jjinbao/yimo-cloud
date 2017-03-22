@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('tab.mine',[])
-    .controller('mineCtrl', ['$scope','$state','$http','$ionicViewSwitcher','$ionicModal','$ionicHistory','$ionicScrollDelegate','$ionicActionSheet','userService', function($scope,$state,$http,$ionicViewSwitcher,$ionicModal,$ionicHistory,$ionicScrollDelegate,$ionicActionSheet,userService) {
+    .controller('mineCtrl', ['$rootScope','$scope','$state','$http','$ionicViewSwitcher','$ionicModal','$ionicHistory','$ionicScrollDelegate','$ionicActionSheet','userService', function($rootScope,$scope,$state,$http,$ionicViewSwitcher,$ionicModal,$ionicHistory,$ionicScrollDelegate,$ionicActionSheet,userService) {
         $scope.$on('$ionicView.beforeEnter',function(){
             $scope.userInfo=userService.userMess;
             $ionicHistory.clearHistory();
@@ -30,6 +30,10 @@ angular.module('tab.mine',[])
         })*/
 
         $scope.mineInfo=function(){
+            if($rootScope.netBreak){
+                $scope.alertTab('请检查网络');
+                return;
+            }
             if(userService.userMess&&userService.userMess.accountId){
                 $scope.showUserInfo();
             }else{
@@ -41,18 +45,30 @@ angular.module('tab.mine',[])
 
         //去登录
         $scope.mineLogin=function(){
+            if($rootScope.netBreak){
+                $scope.alertTab('请检查网络');
+                return;
+            }
             $state.go('login',{});
             $ionicViewSwitcher.nextDirection('forward');
         }
 
         //获取用户信息
         $scope.showUserInfo=function(){
+            if($rootScope.netBreak){
+                $scope.alertTab('请检查网络');
+                return;
+            }
             $state.go('userinfo',{});
             $ionicViewSwitcher.nextDirection('forward');
         }
 
         //去注册
         $scope.toRegister=function(){
+            if($rootScope.netBreak){
+                $scope.alertTab('请检查网络');
+                return;
+            }
             $state.go('register',{operation:1});
             $ionicViewSwitcher.nextDirection('forward');
         }
@@ -102,18 +118,30 @@ angular.module('tab.mine',[])
 
         //反馈记录
         $scope.helpFeedback=function(){
+            if($rootScope.netBreak){
+                $scope.alertTab('请检查网络');
+                return;
+            }
             $state.go('helpAnFeed',{});
             $ionicViewSwitcher.nextDirection('forward');
         }
 
         //历史记录
         $scope.historyRecord=function(){
+            if($rootScope.netBreak){
+                $scope.alertTab('请检查网络');
+                return;
+            }
             $state.go('history',{});
             $ionicViewSwitcher.nextDirection('forward');
         }
 
         //设置
         $scope.toSet=function(){
+            if($rootScope.netBreak){
+                $scope.alertTab('请检查网络');
+                return;
+            }
             $state.go('set',{});
             $ionicViewSwitcher.nextDirection('forward');
         }
