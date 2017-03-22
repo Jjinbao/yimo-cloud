@@ -424,7 +424,6 @@ angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.service
     })
     //隐藏底部导航栏
     .directive('hideTabs', function ($rootScope) {
-
         return {
             restrict: 'A',
             link: function (scope, element, attributes) {

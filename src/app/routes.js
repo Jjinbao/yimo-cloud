@@ -130,6 +130,18 @@ angular.module('swalk.route', [])
                 templateUrl:'app/modules/help/question.list.html',
                 controller:'questionList'
             })
+            //常见问题解答
+            .state('commonQuestion',{
+                params:{viewTitle:''},
+                url:'/common/question',
+                templateUrl:'app/modules/help/common.answer.html',
+                controller:'commonQuestion'
+            })
+            .state('feedQuestion',{
+                url:'/questioin/feed',
+                templateUrl:'app/modules/help/feed.detail.tpl.html',
+                controller:'feedDetail'
+            })
             //历史记录
             .state('history',{
                 url:'/history',
