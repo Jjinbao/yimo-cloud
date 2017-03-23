@@ -19,8 +19,15 @@ angular.module('ymy.help.feed',[])
             $ionicViewSwitcher.nextDirection('forward');
         }
     }])
-    .controller('questionList',['$scope','$state','$ionicViewSwitcher',function($scope,$state,$ionicViewSwitcher){
+    .controller('questionList',['$scope','$state','$http','$ionicViewSwitcher',function($scope,$state,$http,$ionicViewSwitcher){
         $scope.viewTitle=$state.params.viewTitle;
+        $http({
+            url:'ym/question2/list.api',
+            method:'POST',
+            params:{
+
+            }
+        })
         $scope.toQuestionDetail=function(){
             $state.go('commonQuestion',{viewTitle:$scope.viewTitle});
             $ionicViewSwitcher.nextDirection('forward');
