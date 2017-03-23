@@ -122,6 +122,7 @@ angular.module('tab.mine',[])
                 $scope.alertTab('请检查网络');
                 return;
             }
+
             $state.go('helpAnFeed',{});
             $ionicViewSwitcher.nextDirection('forward');
         }
@@ -132,8 +133,15 @@ angular.module('tab.mine',[])
                 $scope.alertTab('请检查网络');
                 return;
             }
-            $state.go('history',{});
-            $ionicViewSwitcher.nextDirection('forward');
+            if(userService.userMess&&userService.userMess.accountId){
+                $state.go('history',{});
+                $ionicViewSwitcher.nextDirection('forward');
+            }else{
+                $scope.indexShowModelBackground();
+                $scope.showLoginPanel();
+                return;
+            }
+
         }
 
         //设置

@@ -126,13 +126,13 @@ angular.module('swalk.route', [])
             //常见为题
             .state('questionList',{
                 params:{viewTitle:''},
-                url:'/question/list',
+                url:'/question/list/:categoryId',
                 templateUrl:'app/modules/help/question.list.html',
                 controller:'questionList'
             })
             //常见问题解答
             .state('commonQuestion',{
-                params:{viewTitle:''},
+                params:{question:''},
                 url:'/common/question',
                 templateUrl:'app/modules/help/common.answer.html',
                 controller:'commonQuestion'

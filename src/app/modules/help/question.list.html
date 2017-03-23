@@ -7,29 +7,16 @@
         <div class="feed-sub-title">
             常见问题
         </div>
-        <div class="feed-back-record" ng-click="toQuestionDetail()">
-            <div class="feed-back-question">
-                <div class="feed-question-body">
-                    我和家人能同事看么？我和家人能同事看么？我和家人能同事看么？我和家人能同事看么？我和家人能同事看么？
+        <div ng-show="resData.list&&resData.list.length!=0">
+            <div class="feed-back-record" ng-click="toQuestionDetail(que)" ng-repeat="que in resData.list">
+                <div class="feed-back-question">
+                    <div class="feed-question-body">
+                        {{que.question}}
+                    </div>
+                    <span class="icon ion-ios-arrow-right"></span>
                 </div>
-                <span class="icon ion-ios-arrow-right"></span>
             </div>
         </div>
-        <div class="feed-back-record">
-            <div class="feed-back-question">
-                <div class="feed-question-body">
-                    我和家人能同事看么？我和家人能同事看么？我和家人能同事看么？我和家人能同事看么？我和家人能同事看么？
-                </div>
-                <span class="icon ion-ios-arrow-right"></span>
-            </div>
-        </div>
-        <div class="feed-back-record">
-            <div class="feed-back-question">
-                <div class="feed-question-body">
-                    我和家人能同事看么？
-                </div>
-                <span class="icon ion-ios-arrow-right"></span>
-            </div>
-        </div>
+
     </ion-content>
 </ion-view>
