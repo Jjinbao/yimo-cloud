@@ -23,7 +23,7 @@ angular.module('ymy.help.feed',[])
             $ionicViewSwitcher.nextDirection('forward');
         }
     }])
-    .controller('questionList',['$scope','$state','$stateParams','$http','$ionicViewSwitcher',function($scope,$state,$stateParams,$http,$ionicViewSwitcher){
+    .controller('questionList',['$scope','$state','$stateParams','$http','$ionicViewSwitcher','userService',function($scope,$state,$stateParams,$http,$ionicViewSwitcher,userService){
         if($stateParams.categoryId==71){
             $scope.viewTitle='云平台';
         }else if($stateParams.categoryId==72){
@@ -61,6 +61,16 @@ angular.module('ymy.help.feed',[])
             $state.go('commonQuestion',{question:val});
             $ionicViewSwitcher.nextDirection('forward');
         }
+        $scope.feedQuestion=function(){
+            if(userService.userMess&&userService.userMess.accountId){
+                $state.go('toFeedQuestion',{group:$scope.viewTitle});
+                $ionicViewSwitcher.nextDirection('forward');
+            }else{
+                $state.go('login',{});
+                $ionicViewSwitcher.nextDirection('forward');
+            }
+
+        }
         $scope.loadMoreData=function(){
 
         }
@@ -70,6 +80,10 @@ angular.module('ymy.help.feed',[])
         $scope.viewTitle=$scope.question.groupName;
     }])
     .controller('feedDetail',['$scope','$state',function($scope,$state){
-        console.log('-------------------');
+        console.log('我的反馈问题解答界面');
+    }])
+
+    .controller('toFeedQues',['$scope','$stateParams',function($scope,$stateParams){
+        $scope.stage=$stateParams.group;
     }])
 
