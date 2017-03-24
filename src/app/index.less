@@ -207,8 +207,8 @@ ion-spinner{
   background-color: white;
   position: absolute;
   left: 0;
-  bottom: 0px;
   z-index: 101;
+  overflow: hidden;
   .yimo-logo{
     margin-top: 33px;
     width: auto;
@@ -224,7 +224,6 @@ ion-spinner{
     bottom: 30px;
     padding-left: 24px;
     padding-right: 24px;
-
     .index-login-btn{
       width: 50%;
       height: 100%;
@@ -307,4 +306,17 @@ ion-spinner{
       transform: translateY(-50%);
     }
   }
+}
+
+.up-load-tranform{
+  bottom: -160px;
+  -webkit-transform: translateY(-160px);
+  transform: translateY(-160px);
+  transition:opacity 500ms ease-in-out 2s,transform 0.2s ease-out;
+}
+.up-photo-transform{
+  bottom: -150px;
+  -webkit-transform: translateY(-150px);
+  transform: translateY(-150px);
+  transition:opacity 1500ms ease-in-out 2s,transform 0.2s ease-out;
 }

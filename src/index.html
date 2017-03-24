@@ -95,7 +95,7 @@
     <!-- endbuild -->
   <div class="up-load-background" ng-show="showModelBackground" ng-click="hideAllPanel()">
   </div>
-  <div class="login-up-load" ng-show="showindexLoginPanel">
+  <div class="login-up-load" ng-class="{true:'up-load-tranform',false:'down-load-transform'}[showindexLoginPanel==true]" ng-show="showindexLoginPanel">
     <div class="yimo-logo"></div>
     <div class="login-reg-btns">
       <div class="index-login-btn">
@@ -106,14 +106,14 @@
       </div>
     </div>
   </div>
-  <div class="login-up-load" style="height: 150px;" ng-show="indexPortraitPanel">
+  <div class="login-up-load" style="height: 150px;" ng-class="{true:'up-photo-transform'}[indexPortraitPanel==true]" ng-show="indexPortraitPanel">
     <div class="index-portrait-title">修改头像</div>
     <div class="index-portrait-xiangji" ng-click="modifyPortrait('0')">
-      <div class="xiangji-icon"></div>
+      <div class="xiangji-icon" style="background-size: 26px 21.5px"></div>
       手机拍照
     </div>
     <div class="index-portrait-xiangce" ng-click="modifyPortrait('1')">
-      <div class="xiangce-icon"></div>
+      <div class="xiangce-icon" style="background-size: 26px 21.5px"></div>
       本地图片
     </div>
   </div>
