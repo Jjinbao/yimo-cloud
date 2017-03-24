@@ -60,7 +60,8 @@ angular.module('swalk.login', [])
             }
 
             $scope.back=function(){
-                $state.go('tabs.mine',{})
-                $ionicViewSwitcher.nextDirection('back');
+                $scope._goback(-1);
+                //$state.go('tabs.mine',{})
+                //$ionicViewSwitcher.nextDirection('back');
             }
         }])

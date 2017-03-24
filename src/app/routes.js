@@ -126,13 +126,13 @@ angular.module('swalk.route', [])
             //常见为题
             .state('questionList',{
                 params:{viewTitle:''},
-                url:'/question/list',
+                url:'/question/list/:categoryId',
                 templateUrl:'app/modules/help/question.list.html',
                 controller:'questionList'
             })
             //常见问题解答
             .state('commonQuestion',{
-                params:{viewTitle:''},
+                params:{question:''},
                 url:'/common/question',
                 templateUrl:'app/modules/help/common.answer.html',
                 controller:'commonQuestion'
@@ -141,6 +141,11 @@ angular.module('swalk.route', [])
                 url:'/questioin/feed',
                 templateUrl:'app/modules/help/feed.detail.tpl.html',
                 controller:'feedDetail'
+            })
+            .state('toFeedQuestion',{
+                url:"feed/question/:group",
+                templateUrl:'app/modules/help/feed.question.html',
+                controller:'toFeedQues'
             })
             //历史记录
             .state('history',{
