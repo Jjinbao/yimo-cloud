@@ -143,9 +143,10 @@ angular.module('swalk.route', [])
                 controller:'feedDetail'
             })
             .state('toFeedQuestion',{
-                url:"feed/question/:group",
+                url:"/feed/question/:cid/:group",
                 templateUrl:'app/modules/help/feed.question.html',
-                controller:'toFeedQues'
+                controller:'toFeedQues',
+                cache:false
             })
             //历史记录
             .state('history',{

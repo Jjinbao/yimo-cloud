@@ -53,7 +53,7 @@ angular.module('ymy.help.feed',[])
                     $scope.resData.totalPage=data.totalPage;
                     $scope.resData.list=data.categoryQuestionList;
                 }else{
-                    $scope.alertTab('数据返回错误');
+                    $scope.alertTab('参数错误');
                 }
             })
         }
@@ -63,7 +63,7 @@ angular.module('ymy.help.feed',[])
         }
         $scope.feedQuestion=function(){
             if(userService.userMess&&userService.userMess.accountId){
-                $state.go('toFeedQuestion',{group:$scope.viewTitle});
+                $state.go('toFeedQuestion',{cid:$stateParams.categoryId,group:$scope.viewTitle});
                 $ionicViewSwitcher.nextDirection('forward');
             }else{
                 $state.go('login',{});
@@ -80,10 +80,56 @@ angular.module('ymy.help.feed',[])
         $scope.viewTitle=$scope.question.groupName;
     }])
     .controller('feedDetail',['$scope','$state',function($scope,$state){
-        console.log('我的反馈问题解答界面');
+        console.log('反馈问题详情');
     }])
 
-    .controller('toFeedQues',['$scope','$stateParams',function($scope,$stateParams){
+    .controller('toFeedQues',['$scope','$stateParams','$http','userService',function($scope,$stateParams,$http,userService){
         $scope.stage=$stateParams.group;
+        console.log($scope.stage);
+        $scope.feedInfo={
+            contact:'',
+            question:''
+        }
+        $scope.feed=function(){
+            if(!$scope.feedInfo.contact){
+                $scope.alertTab('请填写常用联系方式');
+                return;
+            }
+
+            if(!$scope.feedInfo.question){
+                $scope.alertTab('请填写反馈问题');
+                return;
+            }
+            console.log('------params----');
+            console.log(
+                userService.userMess.accountId,
+                $stateParams.cid,
+                $scope.feedInfo.contact,
+                $scope.feedInfo.question
+
+            );
+            console.log('ymy'+$stateParams.cid+$scope.feedInfo.contact+userService.userMess.accountId+$scope.feedInfo.question);
+            $http({
+                url:'ym/question/add.api',
+                method:'POST',
+                params:{
+                    publisher:userService.userMess.accountId,
+                    categoryId:$stateParams.cid,
+                    extstr1:encodeURI($scope.feedInfo.contact),
+                    question:encodeURI($scope.feedInfo.question),
+                    sign:md5('ymy'+$stateParams.cid+$scope.feedInfo.contact+userService.userMess.accountId+$scope.feedInfo.question)
+                }
+            }).success(function(data){
+                console.log('------result----');
+                console.log(data);
+                if(data.result==1){
+                    $scope.alertTab('反馈成功,请等待客服处理');
+                    $scope._goback(-1);
+                }else{
+                    $scope.alertTab('反馈失败');
+                }
+            })
+
+        }
     }])
 

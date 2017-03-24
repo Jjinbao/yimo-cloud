@@ -3,10 +3,21 @@
     <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
     </button>
   </ion-nav-buttons>
-  <ion-content>
+  <ion-content style="background-color: white">
     <div class="feed-sub-title">
       {{stage}}
     </div>
-    反馈问题textarea
+    <div class="feed-back-panel">
+      <div class="feed-contact">
+        <input type="text" ng-model="feedInfo.contact" placeholder="常用联系方式(必填)">
+      </div>
+      <div class="question-body">
+        <textarea placeholder="想跟我们说什么呢?" ng-model="feedInfo.question"></textarea>
+      </div>
+    </div>
+
+    <div class="login-operate">
+      <div class="login-button can-use-btn" ng-click="feed()">提交</div>
+    </div>
   </ion-content>
 </ion-view>

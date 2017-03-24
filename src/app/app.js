@@ -114,10 +114,6 @@ angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.service
         function ($rootScope,$scope, $ionicHistory,$ionicViewSwitcher,$ionicPopup, $timeout,userService,$location,$state,$interval) {
             //用户点击返回按钮要不要显示退出弹窗
             connectWebViewJavascriptBridge(function (bridge) {
-                bridge.init(function (message, responseCallback) {
-                    var data = {'Javascript Responds': 'Wee!'};
-                    responseCallback(data);
-                });
                 bridge.registerHandler('getUserInfo', function (response) {
                     bridge.registerHandler('userLoginInfoMsg', function (response) {
                         userService.userMess=response;
