@@ -2,6 +2,9 @@
 
 angular.module('swalk.setting',[])
     .controller('setting',['$rootScope','$scope','$state','$ionicViewSwitcher','userService',function($rootScope,$scope,$state,$ionicViewSwitcher,userService){
+        $scope.$on('$ionicView.beforeEnter',function(){
+            $scope.hideTabBar('hide');
+        })
         $scope.clearCache=function(){
 
         }

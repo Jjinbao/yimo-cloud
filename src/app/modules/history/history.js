@@ -1,5 +1,8 @@
 angular.module('ymy.history',[])
     .controller('historyRecord',['$scope','$state','$ionicViewSwitcher',function($scope,$state,$ionicViewSwitcher){
+        $scope.$on('$ionicView.beforeEnter',function(){
+            $scope.hideTabBar('hide');
+        })
         $scope.toPart=function(val){
             if(val=='应用'){
                 $state.go('application',{});

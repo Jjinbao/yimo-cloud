@@ -3,6 +3,7 @@
 angular.module('tab.mine',[])
     .controller('mineCtrl', ['$rootScope','$scope','$state','$http','$ionicViewSwitcher','$ionicModal','$ionicHistory','$ionicScrollDelegate','$ionicActionSheet','userService', function($rootScope,$scope,$state,$http,$ionicViewSwitcher,$ionicModal,$ionicHistory,$ionicScrollDelegate,$ionicActionSheet,userService) {
         $scope.$on('$ionicView.beforeEnter',function(){
+            $scope.hideTabBar('show');
             $scope.userInfo=userService.userMess;
             $ionicHistory.clearHistory();
         })

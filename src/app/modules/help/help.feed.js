@@ -2,6 +2,9 @@
 
 angular.module('ymy.help.feed',[])
     .controller('helpAnFeed',['$scope','$state','$ionicViewSwitcher','userService',function($scope,$state,$ionicViewSwitcher,userService){
+        $scope.$on('$ionicView.beforeEnter',function(){
+            $scope.hideTabBar('hide');
+        })
         $scope.feedRecord=function(){
             if(userService.userMess&&userService.userMess.accountId){
                 $state.go('feedRecord',{});

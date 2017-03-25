@@ -2,6 +2,9 @@
 
 angular.module('ymy.register',[])
     .controller('userRegister',['$scope','$state','$http','$interval','$ionicHistory','$ionicViewSwitcher',function($scope,$state,$http,$interval,$ionicHistory,$ionicViewSwitcher){
+        $scope.$on('$ionicView.beforeEnter',function(){
+            $scope.hideTabBar('hide');
+        })
         var operation=$state.params.operation;
         $scope.regInfo={
             phone:'',

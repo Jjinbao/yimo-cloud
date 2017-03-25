@@ -404,9 +404,17 @@ angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.service
                     $scope.$digest();
                 })
             });
-
-
-
+            $rootScope.hideTabBar=function(val){
+                var showHideInfo={
+                    type:val
+                }
+                console.log(showHideInfo);
+                connectWebViewJavascriptBridge(function (bridge) {
+                    //回app
+                    bridge.callHandler('showHideTab', showHideInfo, function (response) {
+                    })
+                });
+            }
         }])
     //session拦截器
     .factory("sessionInjector", ['$rootScope','$q',function ($rootScope,$q) {

@@ -3,6 +3,9 @@
 angular.module('swalk.login', [])
     .controller('userLogin', ['$scope','$http','$interval','$state','$ionicViewSwitcher','userService','$ionicHistory',
         function ($scope,$http,$interval,$state,$ionicViewSwitcher,userService,$ionicHistory) {
+            $scope.$on('$ionicView.beforeEnter',function(){
+                $scope.hideTabBar('hide');
+            })
             $scope.userInfo={
                 name:'',
                 password:''
