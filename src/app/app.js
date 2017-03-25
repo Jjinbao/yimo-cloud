@@ -408,7 +408,6 @@ angular.module('app', ['ionic','angular-carousel', 'swalk.route', 'swalk.service
                 var showHideInfo={
                     type:val
                 }
-                console.log(showHideInfo);
                 connectWebViewJavascriptBridge(function (bridge) {
                     //回app
                     bridge.callHandler('showHideTab', showHideInfo, function (response) {
