@@ -138,6 +138,7 @@ angular.module('swalk.route', [])
                 controller:'commonQuestion'
             })
             .state('feedQuestion',{
+                params:{ques:''},
                 url:'/questioin/feed',
                 templateUrl:'app/modules/help/feed.detail.tpl.html',
                 controller:'feedDetail'

@@ -17,16 +17,37 @@ angular.module('ymy.help.feed',[])
             $ionicViewSwitcher.nextDirection('forward');
         }
     }])
-    .controller('feedBackRecord',['$scope','$state','$ionicViewSwitcher',function($scope,$state,$ionicViewSwitcher){
-        $scope.toDetail=function(){
-            $state.go('feedQuestion',{});
+    .controller('feedBackRecord',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
+        $scope.toDetail=function(val){
+            $state.go('feedQuestion',{ques:val});
             $ionicViewSwitcher.nextDirection('forward');
         }
+        var reqParams={
+            publisher:userService.userMess.accountId,
+            sign:md5('ymy'+userService.userMess.accountId),
+            pageNumber:1,
+            pageSize:10
+        }
+        $scope.resData={
+            list:[],
+            totalNum:0
+        };
+        $http({
+            url:urlStr+'ym/question/list.api',
+            method:'POST',
+            params:reqParams
+        }).success(function(data){
+            if(data.result==1){
+                $scope.resData.list=data.categoryQuestionList;
+                $scope.resData.totalNum=data.totalPage;
+            }
+        })
+
     }])
     .controller('questionList',['$scope','$state','$stateParams','$http','$ionicViewSwitcher','userService',function($scope,$state,$stateParams,$http,$ionicViewSwitcher,userService){
-        if($stateParams.categoryId==71){
+        if($stateParams.categoryId==1001){
             $scope.viewTitle='云平台';
-        }else if($stateParams.categoryId==72){
+        }else if($stateParams.categoryId==1002){
             $scope.viewTitle='艾德产品';
         }else{
             $scope.viewTitle='复苏小龙';
@@ -44,7 +65,7 @@ angular.module('ymy.help.feed',[])
         requestDate();
         function requestDate(){
             $http({
-                url:'ym/question2/list.api',
+                url:urlStr+'ym/question2/list.api',
                 method:'POST',
                 params:$scope.reqDate
             }).success(function(data){
@@ -80,7 +101,7 @@ angular.module('ymy.help.feed',[])
         $scope.viewTitle=$scope.question.groupName;
     }])
     .controller('feedDetail',['$scope','$state',function($scope,$state){
-        console.log('反馈问题详情');
+        $scope.askQuestion=$state.params.ques;
     }])
 
     .controller('toFeedQues',['$scope','$stateParams','$http','userService',function($scope,$stateParams,$http,userService){
@@ -110,7 +131,7 @@ angular.module('ymy.help.feed',[])
             );
             console.log('ymy'+$stateParams.cid+$scope.feedInfo.contact+userService.userMess.accountId+$scope.feedInfo.question);
             $http({
-                url:'ym/question/add.api',
+                url:urlStr+'ym/question/add.api',
                 method:'POST',
                 params:{
                     publisher:userService.userMess.accountId,

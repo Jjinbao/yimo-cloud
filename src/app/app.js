@@ -9,19 +9,27 @@ var userInfoApp={
 };
 
 function connectWebViewJavascriptBridge(callback) {
-    if (window.WebViewJavascriptBridge) {
+    /*if (window.WebViewJavascriptBridge) {
         callback(WebViewJavascriptBridge)
     } else {
         document.addEventListener('WebViewJavascriptBridgeReady', function () {
             callback(WebViewJavascriptBridge)
         }, false)
-    }
+    }*/
+    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+    window.WVJBCallbacks = [callback];
+    var WVJBIframe = document.createElement('iframe');
+    WVJBIframe.style.display = 'none';
+    WVJBIframe.src = 'https://__bridge_loaded__';
+    document.documentElement.appendChild(WVJBIframe);
+    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
 }
 connectWebViewJavascriptBridge(function (bridge) {
-    bridge.init(function (message, responseCallback) {
+    /*bridge.init(function (message, responseCallback) {
         var data = {'Javascript Responds': 'Wee!'};
         responseCallback(data);
-    });
+    });*/
     bridge.registerHandler('getUserInfo', function (response) {
         if(response.device=='0'){
             var body = document.querySelector('body');
