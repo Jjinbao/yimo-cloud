@@ -27,7 +27,7 @@ angular.module('swalk.login', [])
                         sign:md5('ymy'+md5($scope.userInfo.password)+$scope.userInfo.name)
                     }
                 }).success(function(data){
-                    console.log(data);
+                    data.realPassword=$scope.userInfo.password;
                     if(data.result==1){
                         userService.userMess=data;
                         connectWebViewJavascriptBridge(function (bridge) {
