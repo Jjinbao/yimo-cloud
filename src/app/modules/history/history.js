@@ -15,10 +15,27 @@ angular.module('ymy.history',[])
         }
 
     }])
-    .controller('application',['$scope','$state','$ionicViewSwitcher',function($scope,$state,$ionicViewSwitcher){
-        console.log('展示应用列表');
+    .controller('application',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
+        $scope.appList='';
+        console.log('ymy'+userService.userMess.accountId+'app');
+        console.log({
+            accoundId:userService.userMess.accountId,
+            type:'app',
+            sign:md5('ymy'+userService.userMess.accountId+'app')
+        });
+        $http({
+            url:urlStr+'ym/history/list.api',
+            method:'POST',
+            params:{
+                accountId:userService.userMess.accountId,
+                type:'app',
+                sign:md5('ymy'+userService.userMess.accountId+'app')
+            }
+        }).success(function(data){
+            console.log(data);
+        })
     }])
-    .controller('teaching',['$scope','$state','$ionicViewSwitcher',function($scope,$state,$ionicViewSwitcher){
+    .controller('teaching',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
         $scope.panelType='sp'
         $scope.teachChoice=function(val){
             if($scope.panelType==val){
@@ -26,7 +43,30 @@ angular.module('ymy.history',[])
             }
             $scope.panelType=val;
         }
+        $http({
+            url:urlStr+'ym/history/list.api',
+            method:'POST',
+            params:{
+                accountId:userService.userMess.accountId,
+                type:'teach',
+                sign:md5('ymy'+userService.userMess.accountId+'teach')
+            }
+        }).success(function(data){
+            console.log(data);
+        })
     }])
-    .controller('information',['$scope','$state','$ionicViewSwitcher',function($scope,$state,$ionicViewSwitcher){
+    .controller('information',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
         console.log('应用列表');
+        $http({
+            url:urlStr+'ym/history/list.api',
+            method:'POST',
+            params:{
+                accountId:userService.userMess.accountId,
+                type:'news',
+                sign:md5('ymy'+userService.userMess.accountId+'news')
+            }
+        }).success(function(data){
+            console.log(data);
+        })
+
     }])

@@ -51,4 +51,8 @@ angular.module('swalk.setting',[])
             $state.go('about',{});
             $ionicViewSwitcher.nextDirection('forward');
         }
+        $scope.connectUs=function(){
+            $state.go('contact',{});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
     }])

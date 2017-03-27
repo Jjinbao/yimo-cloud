@@ -176,6 +176,10 @@ angular.module('swalk.route', [])
                 templateUrl:'app/modules/about/about.html',
                 controller:'aboutApp'
             })
+            .state('contact',{
+                url:'/contact/us',
+                templateUrl:'app/modules/contact/contact.tpl.html'
+            })
 
         $urlRouterProvider.otherwise("/tab/mine");
     });
