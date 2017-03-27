@@ -4,7 +4,9 @@ angular.module('swalk.services', [])
     .service('userService', ['$http', '$q', '$location', function ($http, $q, $location) {
         var result = {
             //用户信息
-            userMess: {},
+            userMess: {
+                accountId:5
+            },
             //获取登录验证码接口
             checkCode: function (phone) {
                 var halfUrl = "/mobile/login/loginVerify";

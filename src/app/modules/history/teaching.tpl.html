@@ -13,27 +13,10 @@
     </ion-header-bar>
     <ion-content class="has-subheader">
         <div class="teaching-itmes" ng-if="panelType=='sp'">
-            <div class="one-item">
-                <img src="../app/img/timing.jpg">
-                <span>111111111111111111111111111111111111111111</span>
-            </div>
-            <div class="one-item">
-                <img src="../app/img/timing.jpg">
-                <span>11111111111111111111111</span>
-            </div>
-            <div class="one-item">
-                <img src="../app/img/timing.jpg">
-                <span>11111111111111111111</span>
-            </div>
-            <div class="one-item">
-                <img src="../app/img/timing.jpg">
-                <span>1111111111111111111111111111111111111111111111</span>
-            </div>
-            <div class="one-item">
-                <img src="../app/img/timing.jpg">
-                <span>1111111111111111111111111111111111111111111111</span>
+            <div class="one-item" ng-repeat="teach in teachInfo" ng-click="toTeachVideo(teach)">
+                <img ng-src="{{teach.teach.imgSrc}}">
+                <span>{{teach.teach.title}}</span>
             </div>
         </div>
-
     </ion-content>
 </ion-view>

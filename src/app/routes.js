@@ -176,6 +176,18 @@ angular.module('swalk.route', [])
                 templateUrl:'app/modules/about/about.html',
                 controller:'aboutApp'
             })
+            //视频播放页面
+            .state('videoDetail',{
+                url:'/video/detail/:rootId/:id',
+                templateUrl:'app/modules/historyDetail/video.detail.html',
+                controller:'historyVideoDetail'
+            })
+            //图文展示页面
+            .state('infoDetail',{
+                url:'/info/detail',
+                templateUrl:'app/modules/historyDetail/info.detail.html',
+                controller:'historyInfoDetail'
+            })
             .state('contact',{
                 url:'/contact/us',
                 templateUrl:'app/modules/contact/contact.tpl.html'

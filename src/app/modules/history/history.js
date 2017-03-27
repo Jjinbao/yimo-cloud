@@ -17,12 +17,6 @@ angular.module('ymy.history',[])
     }])
     .controller('application',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
         $scope.appList='';
-        console.log('ymy'+userService.userMess.accountId+'app');
-        console.log({
-            accoundId:userService.userMess.accountId,
-            type:'app',
-            sign:md5('ymy'+userService.userMess.accountId+'app')
-        });
         $http({
             url:urlStr+'ym/history/list.api',
             method:'POST',
@@ -33,6 +27,9 @@ angular.module('ymy.history',[])
             }
         }).success(function(data){
             console.log(data);
+            if(data.result==1){
+                $scope.appList=data.list;
+            }
         })
     }])
     .controller('teaching',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
@@ -43,6 +40,7 @@ angular.module('ymy.history',[])
             }
             $scope.panelType=val;
         }
+        $scope.teachInfo=[];
         $http({
             url:urlStr+'ym/history/list.api',
             method:'POST',
@@ -53,10 +51,19 @@ angular.module('ymy.history',[])
             }
         }).success(function(data){
             console.log(data);
+            if(data.result==1){
+                $scope.teachInfo=data.list;
+            }
         })
+
+        $scope.toTeachVideo=function(val){
+            $state.go('videoDetail',{rootId:1,id:val.teach.id});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
     }])
     .controller('information',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
         console.log('应用列表');
+        $scope.infoList=[];
         $http({
             url:urlStr+'ym/history/list.api',
             method:'POST',
@@ -66,6 +73,9 @@ angular.module('ymy.history',[])
                 sign:md5('ymy'+userService.userMess.accountId+'news')
             }
         }).success(function(data){
+            if(data.result==1){
+                $scope.infoList=data.list;
+            }
             console.log(data);
         })
 
