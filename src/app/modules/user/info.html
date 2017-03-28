@@ -7,7 +7,9 @@
         <div class="user-info">
             <div class="userinfo-header" ng-click="showPortraitChoice()">
                 头像
-                <div class="user-info-portrait"></div>
+                <div class="user-info-portrait">
+                    <img ng-src="{{userMsg.smallImg}}"/>
+                </div>
                 <div class="icon ion-ios-arrow-right portrait-right-arraw"></div>
             </div>
             <div class="userinfo-other-itme" ng-click="toModifyName()">
