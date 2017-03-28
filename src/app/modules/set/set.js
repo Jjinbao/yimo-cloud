@@ -37,7 +37,7 @@ angular.module('swalk.setting',[])
             connectWebViewJavascriptBridge(function (bridge) {
                 //回app
                 bridge.callHandler('evaluateApp', null, function (response) {
-                    console.log(response);
+
                 })
             });
         }

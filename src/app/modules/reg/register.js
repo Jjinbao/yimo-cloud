@@ -35,7 +35,6 @@ angular.module('ymy.register',[])
                 return;
             }
             $scope.canGetCode=false;
-            console.log('ymy'+operation.toString()+$scope.regInfo.phone);
             $http({
                 url:urlStr+'ym/phoneCode/sendCode.api',
                 method:'POST',
@@ -45,10 +44,8 @@ angular.module('ymy.register',[])
                     sign:md5('ymy'+operation.toString()+$scope.regInfo.phone)
                 }
             }).success(function(data){
-                console.log(data);
                 if(data.result==1){
                     $scope.regInfo.identify=data.identifier;
-                    console.log('5555555555555');
                     $scope.intervalId=$interval(function(){
                         if($scope.timeLong>1){
                             $scope.timeLong--;
@@ -79,7 +76,6 @@ angular.module('ymy.register',[])
         $scope.doubleClick=true;
 
         $scope.ensureCode=function(){
-            console.log($scope.regInfo);
             if(!$scope.regInfo.phone||!$scope.regInfo.code){
                 return;
             }
@@ -97,7 +93,6 @@ angular.module('ymy.register',[])
                     sign:md5('ymy'+$scope.regInfo.identify+$scope.regInfo.phone+$scope.regInfo.code)
                 }
             }).success(function(data){
-                console.log(data);
                 if(data.result==1){
                     if(data.checkFlag==1){
                         if(operation==1){
@@ -149,7 +144,6 @@ angular.module('ymy.register',[])
             password:'',
             rePassword:''
         }
-        console.log($scope.userInfo);
 
         $scope.back=function(){
             $ionicHistory.goBack(-4);
@@ -192,7 +186,6 @@ angular.module('ymy.register',[])
                     sign:md5('ymy'+md5($scope.userInfo.password)+$scope.userInfo.phone+$scope.userInfo.name)
                 }
             }).success(function(data){
-                console.log(data);
                 if(data.result==1){
                     $state.go('tabs.mine',{});
                     $ionicViewSwitcher.nextDirection('back');
@@ -248,7 +241,6 @@ angular.module('ymy.register',[])
                     sign:md5('ymy'+md5($scope.userInfo.password)+$scope.userInfo.phone)
                 }
             }).success(function(data){
-                console.log(data);
                 if(data.result==1){
                     $state.go('login',{});
                     $ionicViewSwitcher.nextDirection('back');

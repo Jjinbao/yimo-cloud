@@ -72,7 +72,7 @@ angular.module('ymy.help.feed',[])
                 method:'POST',
                 params:$scope.reqDate
             }).success(function(data){
-                console.log(data);
+
                 if(data.result==1){
                     $scope.resData.totalPage=data.totalPage;
                     $scope.resData.list=data.categoryQuestionList;
@@ -109,7 +109,7 @@ angular.module('ymy.help.feed',[])
 
     .controller('toFeedQues',['$scope','$stateParams','$http','userService',function($scope,$stateParams,$http,userService){
         $scope.stage=$stateParams.group;
-        console.log($scope.stage);
+
         $scope.feedInfo={
             contact:'',
             question:''
@@ -124,15 +124,9 @@ angular.module('ymy.help.feed',[])
                 $scope.alertTab('请填写反馈问题');
                 return;
             }
-            console.log('------params----');
-            console.log(
-                userService.userMess.accountId,
-                $stateParams.cid,
-                $scope.feedInfo.contact,
-                $scope.feedInfo.question
 
-            );
-            console.log('ymy'+$stateParams.cid+$scope.feedInfo.contact+userService.userMess.accountId+$scope.feedInfo.question);
+
+
             $http({
                 url:urlStr+'ym/question/add.api',
                 method:'POST',
@@ -144,8 +138,6 @@ angular.module('ymy.help.feed',[])
                     sign:md5('ymy'+$stateParams.cid+$scope.feedInfo.contact+userService.userMess.accountId+$scope.feedInfo.question)
                 }
             }).success(function(data){
-                console.log('------result----');
-                console.log(data);
                 if(data.result==1){
                     $scope.alertTab('反馈成功,请等待客服处理');
                     $scope._goback(-1);

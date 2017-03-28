@@ -26,7 +26,6 @@ angular.module('ymy.history',[])
                 sign:md5('ymy'+userService.userMess.accountId+'app')
             }
         }).success(function(data){
-            console.log(data);
             if(data.result==1){
                 $scope.appList=data.list;
             }
@@ -50,7 +49,6 @@ angular.module('ymy.history',[])
                 sign:md5('ymy'+userService.userMess.accountId+'teach')
             }
         }).success(function(data){
-            console.log(data);
             if(data.result==1){
                 $scope.teachInfo=data.list;
             }
@@ -62,7 +60,6 @@ angular.module('ymy.history',[])
         }
     }])
     .controller('information',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
-        console.log('应用列表');
         $scope.infoList=[];
         $http({
             url:urlStr+'ym/history/list.api',
@@ -76,11 +73,9 @@ angular.module('ymy.history',[])
             if(data.result==1){
                 $scope.infoList=data.list;
             }
-            console.log(data);
         })
 
         $scope.toInfoDetail=function(val){
-            console.log(val);
             $state.go('infoDetail',{rootId:9,id:val.news.id});
             $ionicViewSwitcher.nextDirection('forward');
         }

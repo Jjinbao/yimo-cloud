@@ -146,7 +146,7 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
                             connectWebViewJavascriptBridge(function (bridge) {
                                 //回app
                                 bridge.callHandler('closeSwalk', null, function (response) {
-                                    console.log(response);
+
                                 })
                             });
                         }
@@ -209,7 +209,7 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
             }
 
             $scope.modifyPortrait = function (val) {
-                console.log(val);
+
                 var data = {
                     type: val
                 }
@@ -280,11 +280,11 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
                                     connectWebViewJavascriptBridge(function (bridge) {
                                         //回app
                                         bridge.callHandler('userMessage', data.list.data, function (response) {
-                                            console.log(response);
+
                                         })
                                     });
                                 } else {
-                                    console.log('自动登录失败');
+
                                     userService.userMess = {};
                                 }
                             })

@@ -17,8 +17,6 @@ angular.module('ymy.detail', [])
         //})
     }])
     .controller('historyInfoDetail',['$scope','$stateParams','$sce',function($scope,$stateParams,$sce){
-        console.log($stateParams.rootId);
-        console.log($stateParams.id);
         $scope.infoMsg={
             url:'http://123.57.184.42:8080/app/messageList.html',
             rootId:9,

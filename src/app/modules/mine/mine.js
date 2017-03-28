@@ -6,7 +6,6 @@ angular.module('tab.mine',[])
             $scope.userInfo=userService.userMess;
             $ionicHistory.clearHistory();
             $scope.hideTabBar('show');
-            console.log($scope.userInfo);
         });
         connectWebViewJavascriptBridge(function (bridge) {
             bridge.registerHandler('userLoginInfoMsg', function (response) {
@@ -68,7 +67,6 @@ angular.module('tab.mine',[])
                 ],
                 titleText:'<span style="background-color: green !important;">22222222</span>',
                 buttonClicked:function(index){
-                    console.log(index);
                     if(index==0){
                         $scope.mineLogin();
                     }else{

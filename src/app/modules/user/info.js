@@ -17,8 +17,6 @@ angular.module('swalk.userinfo', [])
         }).success(function(data){
             if(data.result==1){
                 $scope.userMsg=data;
-                console.log('----------------------');
-                console.log($scope.userMsg);
             }
         })
 
@@ -92,11 +90,6 @@ angular.module('swalk.userinfo', [])
             bridge.registerHandler('uploadAvatarSucceed', function (response,responseCallback) {
                 userService.userMess.smallImg = response.smallImg;
                 $scope.userMsg.smallImg = response.smallImg;
-                console.log('-----------------app端传递过来的图片信息-----------------');
-                console.log(userService.userMess);
-                console.log($scope.userMsg);
-                console.log(response);
-                console.log('-------------------------------------------------------');
                 $scope.$digest();
                 responseCallback('------modify portrait success---------');
             })
@@ -107,7 +100,6 @@ angular.module('swalk.userinfo', [])
             name: userService.userMess.userName
         };
         $scope.sureSubmit = function () {
-            console.log(!$scope.user.name);
             if (!$scope.user.name) {
                 $scope.alertTab('请输入正确的用户名');
                 return;
@@ -166,7 +158,6 @@ angular.module('swalk.userinfo', [])
                     sign:md5('ymy'+md5($scope.password.newPassword)+md5($scope.password.oldPassword)+userService.userMess.phone)
                 }
             }).success(function(data){
-                console.log(data);
                 if(data.result==1){
                     $scope._goback(-1);
                 }
