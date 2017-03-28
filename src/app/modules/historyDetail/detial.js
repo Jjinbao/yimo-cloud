@@ -16,11 +16,11 @@ angular.module('ymy.detail', [])
         //
         //})
     }])
-    .controller('historyInfoDetail',['$scope',function($scope){
+    .controller('historyInfoDetail',['$scope','$stateParams',function($scope,$stateParams){
         console.log($stateParams.rootId);
         console.log($stateParams.id);
         $scope.video={
-            url:'http://123.57.184.42:8080/app/teach.html',
+            url:'http://123.57.184.42:8080/app/messageList.html',
             rootId:9,
             iframeSrc:''
         }

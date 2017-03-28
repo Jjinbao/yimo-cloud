@@ -185,7 +185,7 @@ angular.module('swalk.route', [])
             })
             //图文展示页面
             .state('infoDetail',{
-                url:'/info/detail',
+                url:'/info/detail/:rootId/:id',
                 templateUrl:'app/modules/historyDetail/info.detail.html',
                 controller:'historyInfoDetail'
             })

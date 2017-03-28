@@ -79,4 +79,9 @@ angular.module('ymy.history',[])
             console.log(data);
         })
 
+        $scope.toInfoDetail=function(val){
+            console.log(val);
+            //$state.go('videoDetail',{rootId:9,id:val.teach.id,vsrc:val.teach.videoSrc});
+            //$ionicViewSwitcher.nextDirection('forward');
+        }
     }])
