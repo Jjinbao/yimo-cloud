@@ -3,7 +3,7 @@
         <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
         </button>
     </ion-nav-buttons>
-    <ion-content>
-        资讯图文
+    <ion-content style="-webkit-overflow-scrolling: touch !important;overflow: scroll !important;">
+        <iframe src="{{infoMsg.iframeSrc}}" style="width: 100%;height: auto"></iframe>
     </ion-content>
 </ion-view>

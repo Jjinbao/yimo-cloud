@@ -16,12 +16,12 @@ angular.module('ymy.detail', [])
         //
         //})
     }])
-    .controller('historyInfoDetail',['$scope','$stateParams',function($scope,$stateParams){
+    .controller('historyInfoDetail',['$scope','$stateParams','$sce',function($scope,$stateParams,$sce){
         console.log($stateParams.rootId);
         console.log($stateParams.id);
-        $scope.video={
+        $scope.infoMsg={
             url:'http://123.57.184.42:8080/app/messageList.html',
             rootId:9,
-            iframeSrc:''
+            iframeSrc:$sce.trustAsResourceUrl('http://123.57.184.42:8080/app/messageList.html?rootId='+$stateParams.rootId+'&id='+$stateParams.id)
         }
     }])

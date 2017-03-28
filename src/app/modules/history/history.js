@@ -81,7 +81,7 @@ angular.module('ymy.history',[])
 
         $scope.toInfoDetail=function(val){
             console.log(val);
-            //$state.go('videoDetail',{rootId:9,id:val.teach.id,vsrc:val.teach.videoSrc});
-            //$ionicViewSwitcher.nextDirection('forward');
+            $state.go('infoDetail',{rootId:9,id:val.news.id});
+            $ionicViewSwitcher.nextDirection('forward');
         }
     }])

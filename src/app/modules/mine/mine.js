@@ -3,32 +3,18 @@
 angular.module('tab.mine',[])
     .controller('mineCtrl', ['$rootScope','$scope','$state','$http','$ionicViewSwitcher','$ionicModal','$ionicHistory','$ionicScrollDelegate','$ionicActionSheet','userService', function($rootScope,$scope,$state,$http,$ionicViewSwitcher,$ionicModal,$ionicHistory,$ionicScrollDelegate,$ionicActionSheet,userService) {
         $scope.$on('$ionicView.beforeEnter',function(){
-            $scope.hideTabBar('show');
             $scope.userInfo=userService.userMess;
             $ionicHistory.clearHistory();
-        })
-        /*$http({
-            url:'/ym/account/register.api',
-            method:'POST',
-            params:{
-                phone:phone,
-                password:md5(password),
-                sign:sign
-            }
-        }).success(function(data){
-            console.log(data);
-        })*/
-        /*$http({
-            url:'/ym/account/login.api',
-            method:'POST',
-            params:{
-                phone:phone,
-                password:md5(password),
-                sign:sign
-            }
-        }).success(function(data){
-            console.log(data);
-        })*/
+            $scope.hideTabBar('show');
+            console.log($scope.userInfo);
+        });
+        connectWebViewJavascriptBridge(function (bridge) {
+            bridge.registerHandler('userLoginInfoMsg', function (response) {
+                userService.userMess = response;
+                $scope.userInfo=userService.userMess;
+                $scope.$digest();
+            })
+        });
 
         $scope.mineInfo=function(){
             if($rootScope.netBreak){

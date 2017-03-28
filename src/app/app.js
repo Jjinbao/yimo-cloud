@@ -127,13 +127,6 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
     .controller('rooCtrl', ['$rootScope', '$scope', '$ionicHistory', '$ionicViewSwitcher', '$ionicPopup', '$timeout', 'userService', '$location', '$state', '$interval',
         function ($rootScope, $scope, $ionicHistory, $ionicViewSwitcher, $ionicPopup, $timeout, userService, $location, $state, $interval) {
             //用户点击返回按钮要不要显示退出弹窗
-            connectWebViewJavascriptBridge(function (bridge) {
-                bridge.registerHandler('userLoginInfoMsg', function (response) {
-                    userService.userMess = response;
-                })
-            });
-
-
             var canShowWindow = true;
             $scope.confirmQuit = function () {
                 var confirmPopup = $ionicPopup.confirm({
@@ -409,7 +402,7 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
                 })
             });
 
-            $rootScope.hideTabBar = function (val) {
+            $scope.hideTabBar = function (val) {
                 var showHideInfo = {
                     type: val
                 }
