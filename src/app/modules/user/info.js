@@ -89,74 +89,19 @@ angular.module('swalk.userinfo', [])
         }
         //上传成功的回调
         connectWebViewJavascriptBridge(function (bridge) {
-            bridge.registerHandler('uploadAvatarSucceed', function (response) {
+            bridge.registerHandler('uploadAvatarSucceed', function (response,responseCallback) {
                 userService.userMess.smallImg = response.smallImg;
                 $scope.userMsg.smallImg = response.smallImg;
+                console.log('-----------------app端传递过来的图片信息-----------------');
+                console.log(userService.userMess);
+                console.log($scope.userMsg);
+                console.log(response);
+                console.log('-------------------------------------------------------');
                 $scope.$digest();
+                responseCallback('------modify portrait success---------');
             })
         });
     }])
-    //.controller('userInfoSave', ['$scope', '$state', 'userService', '$filter', '$ionicActionSheet', function ($scope, $state, userService, $filter, $ionicActionSheet) {
-    //    $scope.userInfo = {};
-    //    angular.copy($state.params.obj, $scope.userInfo);
-    //    /*var date=new Date(parseInt($scope.userInfo.birthday));
-    //     var year=date.getFullYear();
-    //     var month=(date.getMonth()>9)?date.getMonth()+1:'0'+(date.getMonth()+1);
-    //     var myDate=(date.getDate()>9)?date.getDate():'0'+date.getDate();
-    //     $scope.userInfo.birthday=year+'-'+month+'-'+myDate;*/
-    //    $scope.userInfo.birthday = new Date($scope.userInfo.birthday);
-    //
-    //    $scope.saveChangeInfo = function () {
-    //        updateUserInfo($scope.userInfo);
-    //    }
-    //    function updateUserInfo(val) {
-    //        var phoneReg = /^1[3|5|7|8]\d{9}$/;
-    //        if (!phoneReg.exec($scope.userInfo.phone)) {
-    //            $scope.alertTab('请输入正确的手机号码');
-    //            return;
-    //        }
-    //        userService.updateUserInfo(val).then(function (data) {
-    //            if (data.list.errcode == 10000) {
-    //                $scope.alertTab('修改成功', $scope._goback(-1));
-    //            } else {
-    //                $scope.alertTab(data.list.message);
-    //            }
-    //        })
-    //    }
-    //
-    //    $scope.change = function () {
-    //
-    //    }
-    //
-    //    $scope.choiceGender = function (val) {
-    //        if ($scope.userInfo.gender == val) {
-    //            return;
-    //        }
-    //        $scope.userInfo.gender = val
-    //    }
-    //
-    //
-    //    $scope.showSheet = function () {
-    //        var hideSheet = $ionicActionSheet.show({
-    //            buttons: [
-    //                {text: '从相册选择'},
-    //                {text: '从相机拍照'}
-    //            ],
-    //            titleText: '选择相机或者相册',
-    //            cancelText: '取消',
-    //            buttonClicked: function (index) {
-    //                var data = {type: index};
-    //                connectWebViewJavascriptBridge(function (bridge) {
-    //                    //回app
-    //                    bridge.callHandler('modifyAvatar', data, function (response) {
-    //                    })
-    //                });
-    //                return true;
-    //            }
-    //        })
-    //    }
-    //
-    //}])
     .controller('setUserName', ['$scope', '$state','$http','userService','$ionicViewSwitcher', function ($scope, $state,$http,userService, $ionicViewSwitcher) {
         $scope.user = {
             name: userService.userMess.userName
