@@ -5,9 +5,15 @@
     </ion-nav-buttons>
     <ion-content>
         <!--<iframe id="iframe" class="video-detail-frame" src="{{video.iframeSrc}}"></iframe>-->
-        <video id="vmedia" width="100%" controls>
-            <source id="v1" src="{{videoSrc}}" type="video/mp4" class="js-video-src">
-            Your browser does not support HTML5 video.
-        </video>
+        <div class="video-title">
+            {{videoTitle}}
+        </div>
+        <div class="video-media-body">
+            <video id="vmedia" width="100%" controls>
+                <source id="v1" src="{{videoSrc}}" type="video/mp4" class="js-video-src">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+
     </ion-content>
 </ion-view>

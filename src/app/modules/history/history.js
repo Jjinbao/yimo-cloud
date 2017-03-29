@@ -83,7 +83,7 @@ angular.module('ymy.history',[])
         $scope.teachChoice('sp');
 
         $scope.toTeachVideo=function(val){
-            $state.go('videoDetail',{rootId:1,id:val.teach.id,vsrc:val.teach.videoSrc});
+            $state.go('videoDetail',{rootId:1,id:val.teach.id,vsrc:val.teach.videoSrc,title:val.teach.title});
             $ionicViewSwitcher.nextDirection('forward');
         }
 
