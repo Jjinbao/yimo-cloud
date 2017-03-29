@@ -18,5 +18,15 @@
                 <span>{{teach.teach.title}}</span>
             </div>
         </div>
+
+        <div class="info-set-itmes" ng-if="panelType=='tw'">
+            <div class="list">
+                <div class="item item-thumbnail-left" ng-repeat="twInfo in teachInfo" ng-click="toTwInfoDetail(twInfo)">
+                    <img ng-src="{{twInfo.news.imgSrc}}">
+                    <p>{{info.news.title}}</p>
+                    <p class="item-sub-header">{{info.news.extstr1}}</p>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

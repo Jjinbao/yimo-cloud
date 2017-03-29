@@ -32,30 +32,46 @@ angular.module('ymy.history',[])
         })
     }])
     .controller('teaching',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
-        $scope.panelType='sp'
+        $scope.panelType;
+        $scope.teachInfo=[];
+        $scope.getTeachHistory=function(val){
+            $http({
+                url:urlStr+'ym/history/list.api',
+                method:'POST',
+                params:{
+                    accountId:userService.userMess.accountId,
+                    type:'teach',
+                    categoryId:val,
+                    sign:md5('ymy'+userService.userMess.accountId+'teach')
+                }
+            }).success(function(data){
+                if(data.result==1){
+                    $scope.teachInfo=data.list;
+                }
+            })
+        }
+
         $scope.teachChoice=function(val){
             if($scope.panelType==val){
                 return;
             }
             $scope.panelType=val;
+            if($scope.panelType=='sp'){
+                $scope.getTeachHistory(1);
+            }else{
+                $scope.getTeachHistory(2);
+            }
         }
-        $scope.teachInfo=[];
-        $http({
-            url:urlStr+'ym/history/list.api',
-            method:'POST',
-            params:{
-                accountId:userService.userMess.accountId,
-                type:'teach',
-                sign:md5('ymy'+userService.userMess.accountId+'teach')
-            }
-        }).success(function(data){
-            if(data.result==1){
-                $scope.teachInfo=data.list;
-            }
-        })
+
+        $scope.teachChoice('sp');
 
         $scope.toTeachVideo=function(val){
             $state.go('videoDetail',{rootId:1,id:val.teach.id,vsrc:val.teach.videoSrc});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
+
+        $scope.toTwInfoDetail=function(val){
+            $state.go('infoDetail',{rootId:9,id:val.news.id});
             $ionicViewSwitcher.nextDirection('forward');
         }
     }])
