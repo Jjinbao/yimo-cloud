@@ -8,11 +8,11 @@ angular.module('tab.mine',[])
             $scope.hideTabBar('show');
         });
         connectWebViewJavascriptBridge(function (bridge) {
-            bridge.registerHandler('userLoginInfoMsg', function (response,responseCallback) {
-                userService.userMess = response;
+            bridge.registerHandler('userLoginInfoMsg', function (data) {
+                userService.userMess = data;
                 $scope.userInfo=userService.userMess;
                 $scope.$digest();
-                responseCallback('---------------modify user message------------------');
+                //responseCallback('---------------modify user message------------------');
             })
         });
 

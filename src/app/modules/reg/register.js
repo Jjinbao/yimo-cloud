@@ -187,7 +187,7 @@ angular.module('ymy.register',[])
                 }
             }).success(function(data){
                 if(data.result==1){
-                    $state.go('tabs.mine',{});
+                    $state.go('login',{ragion:'reg'});
                     $ionicViewSwitcher.nextDirection('back');
                 }else{
                     $scope.alertTab('注册失败,请重新注册');

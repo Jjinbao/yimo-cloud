@@ -10,7 +10,7 @@ angular.module('ymy.help.feed',[])
                 $state.go('feedRecord',{});
                 $ionicViewSwitcher.nextDirection('forward');
             }else{
-                $state.go('login',{});
+                $state.go('login',{ragion:'feed'});
                 $ionicViewSwitcher.nextDirection('forward');
             }
         }
@@ -90,7 +90,7 @@ angular.module('ymy.help.feed',[])
                 $state.go('toFeedQuestion',{cid:$stateParams.categoryId,group:$scope.viewTitle});
                 $ionicViewSwitcher.nextDirection('forward');
             }else{
-                $state.go('login',{});
+                $state.go('login',{ragion:'feed'});
                 $ionicViewSwitcher.nextDirection('forward');
             }
 

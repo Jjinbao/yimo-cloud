@@ -3,7 +3,6 @@
 angular.module('swalk.login', [])
     .controller('userLogin', ['$scope','$http','$interval','$state','$ionicViewSwitcher','userService','$ionicHistory','$stateParams',
         function ($scope,$http,$interval,$state,$ionicViewSwitcher,userService,$ionicHistory,$stateParams) {
-            $stateParams.ragion;
             $scope.$on('$ionicView.beforeEnter',function(){
                 $scope.hideTabBar('hide');
             })
@@ -64,7 +63,12 @@ angular.module('swalk.login', [])
             }
 
             $scope.back=function(){
-                $scope._goback(-1);
+                if($stateParams.ragion=='reg'||$stateParams.ragion=='setPassword'){
+                    $state.go('tabs.mine',{});
+                    $ionicViewSwitcher.nextDirection('back');
+                }else{
+                    $scope._goback(-1);
+                }
                 //$state.go('tabs.mine',{})
                 //$ionicViewSwitcher.nextDirection('back');
             }

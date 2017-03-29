@@ -9,13 +9,13 @@ var userInfoApp = {
 };
 
 function connectWebViewJavascriptBridge(callback) {
-    /*if (window.WebViewJavascriptBridge) {
-     callback(WebViewJavascriptBridge)
-     } else {
-     document.addEventListener('WebViewJavascriptBridgeReady', function () {
-     callback(WebViewJavascriptBridge)
-     }, false)
-     }*/
+    if (window.WebViewJavascriptBridge) {
+        callback(WebViewJavascriptBridge)
+    } else {
+        document.addEventListener('WebViewJavascriptBridgeReady', function () {
+            callback(WebViewJavascriptBridge)
+        }, false)
+    }
     if (window.WebViewJavascriptBridge) {
         return callback(WebViewJavascriptBridge);
     }
@@ -32,10 +32,10 @@ function connectWebViewJavascriptBridge(callback) {
     }, 0)
 }
 connectWebViewJavascriptBridge(function (bridge) {
-    /*bridge.init(function (message, responseCallback) {
-     var data = {'Javascript Responds': 'Wee!'};
-     responseCallback(data);
-     });*/
+    bridge.init(function (message, responseCallback) {
+        var data = {'Javascript Responds': 'Wee!'};
+        responseCallback(data);
+    });
     bridge.registerHandler('getUserInfo', function (response) {
         if (response.device == '0') {
             var body = document.querySelector('body');
@@ -106,7 +106,7 @@ Array.prototype.remove = function (obj) {
 }
 
 angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.services', 'tab.home', 'tab.stay', 'tab.holiday', 'tab.mine',
-    'swalk.login', 'ymy.register', 'ymy.help.feed', 'ymy.history', 'swalk.userinfo', 'swalk.setting','ymy.detail','swalk.about'])
+    'swalk.login', 'ymy.register', 'ymy.help.feed', 'ymy.history', 'swalk.userinfo', 'swalk.setting', 'ymy.detail', 'swalk.about'])
     .config(['$ionicConfigProvider', function ($ionicConfigProvider) {
         $ionicConfigProvider.platform.ios.tabs.style('standard');
         $ionicConfigProvider.platform.ios.tabs.position('bottom');
@@ -223,7 +223,7 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
 
             $scope.indexToLogin = function () {
                 $scope.showindexLoginPanel = $scope.showModelBackground = false;
-                $state.go('login', {ragion:'mine'});
+                $state.go('login', {ragion: 'mine'});
                 $ionicViewSwitcher.nextDirection('forward');
             }
 
