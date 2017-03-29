@@ -55,7 +55,7 @@ angular.module('swalk.route', [])
             //登录
             .state('login',{
                 params:{code:null},
-                url:'/login',
+                url:'/login/:ragion',
                 templateUrl:'app/modules/login/login.html',
                 controller:'userLogin',
                 controllerAs:'login',

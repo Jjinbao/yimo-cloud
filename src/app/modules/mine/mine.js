@@ -8,10 +8,11 @@ angular.module('tab.mine',[])
             $scope.hideTabBar('show');
         });
         connectWebViewJavascriptBridge(function (bridge) {
-            bridge.registerHandler('userLoginInfoMsg', function (response) {
+            bridge.registerHandler('userLoginInfoMsg', function (response,responseCallback) {
                 userService.userMess = response;
                 $scope.userInfo=userService.userMess;
                 $scope.$digest();
+                responseCallback('---------------modify user message------------------');
             })
         });
 
@@ -35,7 +36,7 @@ angular.module('tab.mine',[])
                 $scope.alertTab('请检查网络');
                 return;
             }
-            $state.go('login',{});
+            $state.go('login',{ragion:'mine'});
             $ionicViewSwitcher.nextDirection('forward');
         }
 

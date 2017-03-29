@@ -206,8 +206,8 @@ angular.module('ymy.register',[])
             rePassword:''
         }
         $scope.back=function(){
-            $ionicHistory.goBack(-2);
-            $ionicViewSwitcher.nextDirection('back');
+            $state.go('login', {ragion:'setPassword'});
+            $ionicViewSwitcher.nextDirection('forward');
         }
 
         $scope.finishReset=function(){
@@ -242,7 +242,7 @@ angular.module('ymy.register',[])
                 }
             }).success(function(data){
                 if(data.result==1){
-                    $state.go('login',{});
+                    $state.go('login',{ragion:'setPassword'});
                     $ionicViewSwitcher.nextDirection('back');
                 }else{
                     $scope.doubleClick=true;

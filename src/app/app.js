@@ -223,7 +223,7 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
 
             $scope.indexToLogin = function () {
                 $scope.showindexLoginPanel = $scope.showModelBackground = false;
-                $state.go('login', {});
+                $state.go('login', {ragion:'mine'});
                 $ionicViewSwitcher.nextDirection('forward');
             }
 

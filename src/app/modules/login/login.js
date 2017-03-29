@@ -1,8 +1,9 @@
 'use strict'
 
 angular.module('swalk.login', [])
-    .controller('userLogin', ['$scope','$http','$interval','$state','$ionicViewSwitcher','userService','$ionicHistory',
-        function ($scope,$http,$interval,$state,$ionicViewSwitcher,userService,$ionicHistory) {
+    .controller('userLogin', ['$scope','$http','$interval','$state','$ionicViewSwitcher','userService','$ionicHistory','$stateParams',
+        function ($scope,$http,$interval,$state,$ionicViewSwitcher,userService,$ionicHistory,$stateParams) {
+            $stateParams.ragion;
             $scope.$on('$ionicView.beforeEnter',function(){
                 $scope.hideTabBar('hide');
             })
