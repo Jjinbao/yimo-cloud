@@ -17,9 +17,16 @@ angular.module('ymy.detail', [])
         //})
     }])
     .controller('historyInfoDetail',['$scope','$stateParams','$sce',function($scope,$stateParams,$sce){
+        var rootUrl='';
+        if($stateParams.rootId==1){
+            rootUrl='http://123.57.184.42:8080/app/teachPictureList.html?';
+        }else{
+            rootUrl='http://123.57.184.42:8080/app/messageList.html?';
+        }
+
         $scope.infoMsg={
-            url:'http://123.57.184.42:8080/app/messageList.html',
+            url:'',
             rootId:9,
-            iframeSrc:$sce.trustAsResourceUrl('http://123.57.184.42:8080/app/messageList.html?rootId='+$stateParams.rootId+'&id='+$stateParams.id)
+            iframeSrc:$sce.trustAsResourceUrl(rootUrl+$stateParams.rootId+'&id='+$stateParams.id)
         }
     }])

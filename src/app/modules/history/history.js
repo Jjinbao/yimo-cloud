@@ -33,21 +33,30 @@ angular.module('ymy.history',[])
     }])
     .controller('teaching',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
         $scope.panelType;
-        $scope.teachInfo=[];
-        $scope.getTeachHistory=function(val){
+        $scope.teachInfo={
+            listInfo:[],
+            totalPages:0
+        };
+        $scope.requesParams={
+            accountId:userService.userMess.accountId,
+            type:'teach',
+            categoryId:1,
+            sign:md5('ymy'+userService.userMess.accountId+'teach'),
+            pageNumber:1,
+            pageSize:10
+        };
+        $scope.getTeachHistory=function(){
             $http({
                 url:urlStr+'ym/history/list.api',
                 method:'POST',
-                params:{
-                    accountId:userService.userMess.accountId,
-                    type:'teach',
-                    categoryId:val,
-                    sign:md5('ymy'+userService.userMess.accountId+'teach')
-                }
+                params:$scope.requesParams
             }).success(function(data){
+                console.log(data);
                 if(data.result==1){
-                    $scope.teachInfo=data.list;
+                    $scope.teachInfo.totalPages=data.totalPage;
+                    $scope.teachInfo.listInfo=$scope.teachInfo.listInfo.concat(data.list);
                 }
+                $scope.$broadcast('scroll.infiniteScrollComplete');
             })
         }
 
@@ -55,11 +64,19 @@ angular.module('ymy.history',[])
             if($scope.panelType==val){
                 return;
             }
+            $scope.teachInfo={
+                listInfo:[],
+                totalPages:0
+            };
             $scope.panelType=val;
             if($scope.panelType=='sp'){
-                $scope.getTeachHistory(1);
+                $scope.requesParams.pageNumber=1;
+                $scope.requesParams.categoryId=1;
+                $scope.getTeachHistory();
             }else{
-                $scope.getTeachHistory(2);
+                $scope.requesParams.pageNumber=1;
+                $scope.requesParams.categoryId=2;
+                $scope.getTeachHistory();
             }
         }
 
@@ -71,8 +88,13 @@ angular.module('ymy.history',[])
         }
 
         $scope.toTwInfoDetail=function(val){
-            $state.go('infoDetail',{rootId:9,id:val.news.id});
+            $state.go('infoDetail',{rootId:1,id:val.teach.id});
             $ionicViewSwitcher.nextDirection('forward');
+        }
+
+        $scope.loadMoreDate=function(){
+            $scope.requesParams.pageNumber++;
+            $scope.getTeachHistory();
         }
     }])
     .controller('information',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){

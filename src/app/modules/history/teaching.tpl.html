@@ -13,7 +13,7 @@
     </ion-header-bar>
     <ion-content class="has-subheader">
         <div class="teaching-itmes" ng-if="panelType=='sp'">
-            <div class="one-item" ng-repeat="teach in teachInfo" ng-click="toTeachVideo(teach)">
+            <div class="one-item" ng-repeat="teach in teachInfo.listInfo" ng-click="toTeachVideo(teach)">
                 <img ng-src="{{teach.teach.imgSrc}}">
                 <span>{{teach.teach.title}}</span>
             </div>
@@ -21,12 +21,14 @@
 
         <div class="info-set-itmes" ng-if="panelType=='tw'">
             <div class="list">
-                <div class="item item-thumbnail-left" ng-repeat="twInfo in teachInfo" ng-click="toTwInfoDetail(twInfo)">
-                    <img ng-src="{{twInfo.news.imgSrc}}">
-                    <p>{{info.news.title}}</p>
-                    <p class="item-sub-header">{{info.news.extstr1}}</p>
+                <div class="item item-thumbnail-left tuwen-style" ng-repeat="twInfo in teachInfo.listInfo" ng-click="toTwInfoDetail(twInfo)">
+                    <img ng-src="{{twInfo.teach.imgSrc}}">
+                    <p>{{twInfo.teach.title}}</p>
+                    <p class="item-sub-header">{{twInfo.teach.extstr1}}</p>
                 </div>
             </div>
         </div>
+        <ion-infinite-scroll ng-if="requesParams.pageNumber<teachInfo.totalPages" on-infinite="loadMoreDate()" distance="1%" immediate-check="false">
+        </ion-infinite-scroll>
     </ion-content>
 </ion-view>
