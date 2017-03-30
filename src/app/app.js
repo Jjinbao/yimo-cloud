@@ -32,10 +32,10 @@ function connectWebViewJavascriptBridge(callback) {
     }, 0)
 }
 connectWebViewJavascriptBridge(function (bridge) {
-    bridge.init(function (message, responseCallback) {
-        var data = {'Javascript Responds': 'Wee!'};
-        responseCallback(data);
-    });
+    //bridge.init(function (message, responseCallback) {
+    //    var data = {'Javascript Responds': 'Wee!'};
+    //    responseCallback(data);
+    //});
     bridge.registerHandler('getUserInfo', function (response) {
         if (response.device == '0') {
             var body = document.querySelector('body');

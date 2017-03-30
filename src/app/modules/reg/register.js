@@ -24,7 +24,7 @@ angular.module('ymy.register',[])
         }
         //获取验证码
         $scope.canGetCode=true;
-        $scope.timeLong=59;
+        $scope.timeLong=60;
         $scope.intervalId='';
         $scope.getYanCode=function(){
             if(!$scope.canGetCode){
@@ -52,6 +52,7 @@ angular.module('ymy.register',[])
                             $scope.getCodeBtn=$scope.timeLong+'秒后获取';
                         }else{
                             $scope.canGetCode=true;
+                            $scope.timeLong=60;
                             $scope.getCodeBtn='获取验证码';
                             $interval.cancel($scope.intervalId);
                         }
