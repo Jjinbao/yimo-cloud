@@ -56,7 +56,7 @@ angular.module('ymy.help.feed',[])
             $scope.viewTitle='复苏小龙';
         }
         $scope.reqDate={
-            categoryId:$stateParams.categoryId,
+            appId:$stateParams.categoryId,
             sign:md5('ymy'+$stateParams.categoryId),
             pageNumber:1,
             pageSize:10
@@ -72,7 +72,6 @@ angular.module('ymy.help.feed',[])
                 method:'POST',
                 params:$scope.reqDate
             }).success(function(data){
-
                 if(data.result==1){
                     $scope.resData.totalPage=data.totalPage;
                     $scope.resData.list=data.categoryQuestionList;
@@ -132,7 +131,7 @@ angular.module('ymy.help.feed',[])
                 method:'POST',
                 params:{
                     publisher:userService.userMess.accountId,
-                    categoryId:$stateParams.cid,
+                    appId:$stateParams.cid,
                     extstr1:encodeURI($scope.feedInfo.contact),
                     question:encodeURI($scope.feedInfo.question),
                     sign:md5('ymy'+$stateParams.cid+$scope.feedInfo.contact+userService.userMess.accountId+$scope.feedInfo.question)
