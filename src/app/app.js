@@ -7,15 +7,26 @@ var userInfoApp = {
     phone: '',
     password: ''
 };
-
+var u = navigator.userAgent;
+var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
 function connectWebViewJavascriptBridge(callback) {
-    if (window.WebViewJavascriptBridge) {
-        callback(WebViewJavascriptBridge)
-    } else {
-        document.addEventListener('WebViewJavascriptBridgeReady', function () {
-            callback(WebViewJavascriptBridge)
-        }, false)
+    if(isAndroid){
+        if (window.WebViewJavascriptBridge) {
+            callback(WebViewJavascriptBridge);
+            return;
+        }else {
+            document.addEventListener('WebViewJavascriptBridgeReady', function () {
+                callback(WebViewJavascriptBridge)
+            }, false)
+            return;
+        }
+    }else{
+        if (window.WebViewJavascriptBridge) {
+            callback(WebViewJavascriptBridge);
+            return;
+        }
     }
+
     if (window.WebViewJavascriptBridge) {
         return callback(WebViewJavascriptBridge);
     }
@@ -32,21 +43,24 @@ function connectWebViewJavascriptBridge(callback) {
     }, 0)
 }
 connectWebViewJavascriptBridge(function (bridge) {
-    //bridge.init(function (message, responseCallback) {
-    //    var data = {'Javascript Responds': 'Wee!'};
-    //    responseCallback(data);
-    //});
-    bridge.registerHandler('getUserInfo', function (response) {
-        if (response.device == '0') {
-            var body = document.querySelector('body');
-            var bodyClass = body.getAttribute('class');
-            body.setAttribute('class', bodyClass + ' app');
-        }
-        window.localStorage.setItem('nowDevice', response.device);
-        userInfoApp.phone = response.phone;
-        userInfoApp.password = response.password;
-        //angular.bootstrap(document,['app']);//手动启动angularjs
-    })
+    if(isAndroid){
+        bridge.init(function (message, responseCallback) {
+            var data = {'Javascript Responds': 'Wee!'};
+            responseCallback(data);
+        });
+    }
+
+    //bridge.registerHandler('getUserInfo', function (response) {
+    //    if (response.device == '0') {
+    //        var body = document.querySelector('body');
+    //        var bodyClass = body.getAttribute('class');
+    //        body.setAttribute('class', bodyClass + ' app');
+    //    }
+    //    window.localStorage.setItem('nowDevice', response.device);
+    //    userInfoApp.phone = response.phone;
+    //    userInfoApp.password = response.password;
+    //    angular.bootstrap(document,['app']);//手动启动angularjs
+    //})
 });
 
 var deviceId = localStorage.getItem('nowDevice');
@@ -214,6 +228,7 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
                     type: val
                 }
                 connectWebViewJavascriptBridge(function (bridge) {
+                    console.log('--------------111111111-----------------');
                     //回app
                     bridge.callHandler('modifyAvatar', data, function (response) {
                     })
@@ -376,6 +391,7 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
             //处理安卓返回按钮
             connectWebViewJavascriptBridge(function (bridge) {
                 bridge.registerHandler('onBack', function (response) {
+                    console.log('----on back');
                     var stateId = $ionicHistory.currentView().stateId;
                     if ($scope.showModelBackground) {
                         $scope.hideAllPanel();
