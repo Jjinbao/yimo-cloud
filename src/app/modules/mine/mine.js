@@ -12,7 +12,6 @@ angular.module('tab.mine',[])
                 userService.userMess = data;
                 $scope.userInfo=userService.userMess;
                 $scope.$digest();
-                //responseCallback('---------------modify user message------------------');
             })
         });
 
