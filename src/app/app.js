@@ -413,7 +413,9 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
             connectWebViewJavascriptBridge(function (bridge) {
                 bridge.registerHandler('netBreak', function (response) {
                     $rootScope.netBreak = response.netStatus;
-                    $state.go('tabs.mine', {});
+                    if($rootScope.netBreak){
+                        $state.go('tabs.mine', {});
+                    }
                     //$scope.$digest();
                 })
             });
