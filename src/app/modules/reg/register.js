@@ -69,7 +69,8 @@ angular.module('ymy.register',[])
                 }
 
             }).error(function(){
-
+                $scope.canGetCode=true;
+                $scope.alertTab('网络异常,请检查网络!');
             })
 
         }
@@ -117,7 +118,8 @@ angular.module('ymy.register',[])
                     $scope.doubleClick=true;
                 }
             }).error(function(){
-
+                $scope.doubleClick=true;
+                $scope.alertTab('网络异常,请检查网络!');
             })
         }
 
@@ -195,7 +197,7 @@ angular.module('ymy.register',[])
                     $scope.doubleClick=true;
                 }
             }).error(function(){
-
+                $scope.alertTab('网络异常,请检查网络!');
             })
         }
 
@@ -251,7 +253,7 @@ angular.module('ymy.register',[])
                     $ionicViewSwitcher.nextDirection('back');
                 }
             }).error(function(){
-
+                $scope.alertTab('网络异常,请检查网络!');
             })
         }
     }])

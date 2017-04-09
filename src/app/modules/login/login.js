@@ -49,6 +49,8 @@ angular.module('swalk.login', [])
                         $scope.alertTab('系统错误，稍后重试');
                     }
 
+                }).error(function(){
+                    $scope.alertTab('网络异常,请检查网络');
                 })
             }
 

@@ -44,6 +44,9 @@ angular.module('ymy.help.feed',[])
                 $scope.resData.list=data.categoryQuestionList;
                 $scope.resData.totalNum=data.totalPage;
             }
+        }).error(function(){
+            $scope.alertTab('网络异常,请检查网络!');
+            $scope._goback(-1);
         })
 
     }])
@@ -78,6 +81,9 @@ angular.module('ymy.help.feed',[])
                 }else{
                     $scope.alertTab('参数错误');
                 }
+            }).error(function(){
+                $scope.alertTab('网络异常,请检查网络!');
+                $scope._goback(-1);
             })
         }
         $scope.toQuestionDetail=function(val){
@@ -143,6 +149,9 @@ angular.module('ymy.help.feed',[])
                 }else{
                     $scope.alertTab('反馈失败');
                 }
+            }).error(function(){
+                $scope.alertTab('网络异常,请检查网络!');
+                $scope._goback(-1);
             })
 
         }

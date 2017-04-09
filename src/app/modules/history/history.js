@@ -29,6 +29,9 @@ angular.module('ymy.history',[])
             if(data.result==1){
                 $scope.appList=data.list;
             }
+        }).error(function(){
+            $scope.alertTab('网络异常,请检查网络!');
+            $scope._goback(-1);
         })
     }])
     .controller('teaching',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
@@ -57,6 +60,9 @@ angular.module('ymy.history',[])
                     $scope.teachInfo.listInfo=$scope.teachInfo.listInfo.concat(data.list);
                 }
                 $scope.$broadcast('scroll.infiniteScrollComplete');
+            }).error(function(){
+                $scope.alertTab('网络异常,请检查网络!');
+                $scope._goback(-1);
             })
         }
 
@@ -111,6 +117,9 @@ angular.module('ymy.history',[])
             if(data.result==1){
                 $scope.infoList=data.list;
             }
+        }).error(function(){
+            $scope.alertTab('网络异常,请检查网络!');
+            $scope._goback(-1);
         })
 
         $scope.toInfoDetail=function(val){

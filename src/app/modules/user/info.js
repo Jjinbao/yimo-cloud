@@ -18,6 +18,9 @@ angular.module('swalk.userinfo', [])
             if(data.result==1){
                 $scope.userMsg=data;
             }
+        }).error(function(){
+            $scope.alertTab('网络异常,请检查网络!');
+            $scope._goback(-1);
         })
 
         $scope.changeUserInfo = function () {
@@ -119,6 +122,8 @@ angular.module('swalk.userinfo', [])
                 }else{
 
                 }
+            }).error(function(){
+                $scope.alertTab('网络异常,请检查网络!');
             })
         };
 
@@ -161,6 +166,8 @@ angular.module('swalk.userinfo', [])
                 if(data.result==1){
                     $scope._goback(-1);
                 }
+            }).error(function(){
+                $scope.alertTab('网络异常,请检查网络!');
             })
         }
 
