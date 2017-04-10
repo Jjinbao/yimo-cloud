@@ -126,7 +126,7 @@ angular.module('swalk.route', [])
             //常见为题
             .state('questionList',{
                 params:{viewTitle:''},
-                url:'/question/list/:categoryId',
+                url:'/question/list/:categoryId/:timestamp',
                 templateUrl:'app/modules/help/question.list.html',
                 controller:'questionList'
             })
@@ -139,7 +139,7 @@ angular.module('swalk.route', [])
             })
             .state('feedQuestion',{
                 params:{ques:''},
-                url:'/questioin/feed',
+                url:'/questioin/feed:timestamp',
                 templateUrl:'app/modules/help/feed.detail.tpl.html',
                 controller:'feedDetail'
             })
@@ -156,17 +156,17 @@ angular.module('swalk.route', [])
                 controller:'historyRecord'
             })
             .state('application',{
-                url:'/applicaiton/list',
+                url:'/applicaiton/list/:timestamp',
                 templateUrl:'app/modules/history/application.tpl.html',
                 controller:'application'
             })
             .state('teaching',{
-                url:'/teaching/list',
+                url:'/teaching/list/:timestamp',
                 templateUrl:'app/modules/history/teaching.tpl.html',
                 controller:'teaching'
             })
             .state('infoMsg',{
-                url:'/infomsg/list',
+                url:'/infomsg/list/:timestamp',
                 templateUrl:'app/modules/history/information.tpl.html',
                 controller:'information'
             })

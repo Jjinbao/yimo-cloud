@@ -4,12 +4,13 @@ angular.module('ymy.history',[])
             $scope.hideTabBar('hide');
         })
         $scope.toPart=function(val){
+            var timestamp=$scope.getTimeStamp();
             if(val=='应用'){
-                $state.go('application',{});
+                $state.go('application',{timestamp:timestamp});
             }else if(val=='资讯'){
-                $state.go('infoMsg',{});
+                $state.go('infoMsg',{timestamp:timestamp});
             }else if(val=='教学'){
-                $state.go('teaching',{});
+                $state.go('teaching',{timestamp:timestamp});
             }
             $ionicViewSwitcher.nextDirection('forward');
         }
@@ -30,8 +31,7 @@ angular.module('ymy.history',[])
                 $scope.appList=data.list;
             }
         }).error(function(){
-            $scope.alertTab('网络异常,请检查网络!');
-            $scope._goback(-1);
+            $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
         })
     }])
     .controller('teaching',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
@@ -61,8 +61,7 @@ angular.module('ymy.history',[])
                 }
                 $scope.$broadcast('scroll.infiniteScrollComplete');
             }).error(function(){
-                $scope.alertTab('网络异常,请检查网络!');
-                $scope._goback(-1);
+                $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
             })
         }
 
@@ -118,8 +117,7 @@ angular.module('ymy.history',[])
                 $scope.infoList=data.list;
             }
         }).error(function(){
-            $scope.alertTab('网络异常,请检查网络!');
-            $scope._goback(-1);
+            $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
         })
 
         $scope.toInfoDetail=function(val){

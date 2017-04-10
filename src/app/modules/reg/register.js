@@ -79,6 +79,7 @@ angular.module('ymy.register',[])
 
         $scope.ensureCode=function(){
             if(!$scope.regInfo.phone||!$scope.regInfo.code){
+                $scope.alertTab('请填写手机号和验证码');
                 return;
             }
             if(!$scope.doubleClick){

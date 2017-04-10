@@ -19,8 +19,7 @@ angular.module('swalk.userinfo', [])
                 $scope.userMsg=data;
             }
         }).error(function(){
-            $scope.alertTab('网络异常,请检查网络!');
-            $scope._goback(-1);
+            $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
         })
 
         $scope.changeUserInfo = function () {

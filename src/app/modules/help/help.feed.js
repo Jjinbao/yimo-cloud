@@ -16,13 +16,15 @@ angular.module('ymy.help.feed',[])
         }
 
         $scope.toQuestion=function(val){
-            $state.go('questionList',{categoryId:val});
+            var timestamp=$scope.getTimeStamp();
+            $state.go('questionList',{categoryId:val,timestamp:timestamp});
             $ionicViewSwitcher.nextDirection('forward');
         }
     }])
     .controller('feedBackRecord',['$scope','$state','$http','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicViewSwitcher,userService){
         $scope.toDetail=function(val){
-            $state.go('feedQuestion',{ques:val});
+            var timestamp=$scope.getTimeStamp();
+            $state.go('feedQuestion',{ques:val,timestamp:timestamp});
             $ionicViewSwitcher.nextDirection('forward');
         }
         var reqParams={
@@ -45,8 +47,7 @@ angular.module('ymy.help.feed',[])
                 $scope.resData.totalNum=data.totalPage;
             }
         }).error(function(){
-            $scope.alertTab('网络异常,请检查网络!');
-            $scope._goback(-1);
+            $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
         })
 
     }])
@@ -82,8 +83,7 @@ angular.module('ymy.help.feed',[])
                     $scope.alertTab('参数错误');
                 }
             }).error(function(){
-                $scope.alertTab('网络异常,请检查网络!');
-                $scope._goback(-1);
+                $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
             })
         }
         $scope.toQuestionDetail=function(val){
@@ -98,7 +98,6 @@ angular.module('ymy.help.feed',[])
                 $state.go('login',{ragion:'feed'});
                 $ionicViewSwitcher.nextDirection('forward');
             }
-
         }
         $scope.loadMoreData=function(){
 
@@ -151,7 +150,6 @@ angular.module('ymy.help.feed',[])
                 }
             }).error(function(){
                 $scope.alertTab('网络异常,请检查网络!');
-                $scope._goback(-1);
             })
 
         }

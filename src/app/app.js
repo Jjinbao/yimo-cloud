@@ -326,6 +326,7 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
                     }
                 }, 1500);
             }
+
             //通过向上传递来弹出提示窗口
             $scope.$on('popup.alert', function (evt, val) {
                 $scope.alertTab(val);
@@ -336,6 +337,11 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
                 $ionicViewSwitcher.nextDirection('back');
 
             };
+
+            $scope.netBreakBack=function(){
+                $state.go('tabs.mine', {});
+                $ionicViewSwitcher.nextDirection('back');
+            }
 
             //用户没有登录，跳转到登录界面
             $rootScope.$on('swalk.no.login', function (evt, val) {
@@ -432,6 +438,12 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
                     bridge.callHandler('showHideTab', showHideInfo, function (response) {
                     })
                 });
+            }
+
+            //获取当前时间戳
+            $scope.getTimeStamp=function(){
+                var timestamp = Date.parse(new Date());
+                return timestamp;
             }
         }])
     //session拦截器
