@@ -129,8 +129,6 @@ angular.module('ymy.help.feed',[])
                 return;
             }
 
-
-
             $http({
                 url:urlStr+'ym/question/add.api',
                 method:'POST',

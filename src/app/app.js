@@ -141,8 +141,8 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
         Waves.init();
     })
     /*所有控制器的父控制器*/
-    .controller('rooCtrl', ['$rootScope', '$scope', '$ionicHistory', '$ionicViewSwitcher', '$ionicPopup', '$timeout', 'userService', '$location', '$state', '$interval',
-        function ($rootScope, $scope, $ionicHistory, $ionicViewSwitcher, $ionicPopup, $timeout, userService, $location, $state, $interval) {
+    .controller('rooCtrl', ['$rootScope', '$scope', '$ionicHistory', '$ionicViewSwitcher', '$ionicPopup', '$timeout', 'userService', '$location', '$state', '$interval','$http',
+        function ($rootScope, $scope, $ionicHistory, $ionicViewSwitcher, $ionicPopup, $timeout, userService, $location, $state, $interval,$http) {
             //用户点击返回按钮要不要显示退出弹窗
             var canShowWindow = true;
             $scope.confirmQuit = function () {
@@ -226,16 +226,23 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
             }
 
             $scope.modifyPortrait = function (val) {
+                $http({
+                    url:urlStr+'ym/question/list.api',
+                    method:'POST',
+                    params:{}
+                }).success(function(val){
+                    var data = {
+                        type: val
+                    }
+                    connectWebViewJavascriptBridge(function (bridge) {
+                        //回app
+                        bridge.callHandler('modifyAvatar', data, function (response) {
+                        })
+                    });
 
-                var data = {
-                    type: val
-                }
-                connectWebViewJavascriptBridge(function (bridge) {
-                    console.log('--------------111111111-----------------');
-                    //回app
-                    bridge.callHandler('modifyAvatar', data, function (response) {
-                    })
-                });
+                }).error(function(){
+                    $scope.alertTab('网络异常,请检查网络!');
+                })
                 $scope.hideAllPanel();
             }
 
@@ -339,8 +346,9 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
             };
 
             $scope.netBreakBack=function(){
-                $state.go('tabs.mine', {});
-                $ionicViewSwitcher.nextDirection('back');
+                $scope._goback(-1);
+                //$state.go('tabs.mine', {});
+                //$ionicViewSwitcher.nextDirection('back');
             }
 
             //用户没有登录，跳转到登录界面
