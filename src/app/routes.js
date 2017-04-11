@@ -113,7 +113,7 @@ angular.module('swalk.route', [])
             })
             //帮助与反馈
             .state('helpAnFeed',{
-                url:'/help/feedback',
+                url:'/help/feedback/:timestamp',
                 templateUrl:'app/modules/help/help.feed.html',
                 controller:'helpAnFeed'
             })

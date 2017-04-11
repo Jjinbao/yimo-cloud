@@ -141,7 +141,7 @@ angular.module('ymy.register',[])
             }
         })
     }])
-    .controller('regSetName',['$scope','$state','$http','$ionicHistory','$ionicViewSwitcher',function($scope,$state,$http,$ionicHistory,$ionicViewSwitcher){
+    .controller('regSetName',['$scope','$state','$http','$ionicHistory','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicHistory,$ionicViewSwitcher,userService){
         $scope.userInfo={
             name:'',
             phone:$state.params.phone,
@@ -191,7 +191,8 @@ angular.module('ymy.register',[])
                 }
             }).success(function(data){
                 if(data.result==1){
-                    $state.go('login',{ragion:'reg'});
+                    userService.userMess=data;
+                    $state.go('tabs.mine',{});
                     $ionicViewSwitcher.nextDirection('back');
                 }else{
                     $scope.alertTab('注册失败,请重新注册');

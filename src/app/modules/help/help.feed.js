@@ -1,10 +1,23 @@
 'use strict'
 
 angular.module('ymy.help.feed',[])
-    .controller('helpAnFeed',['$scope','$state','$ionicViewSwitcher','userService',function($scope,$state,$ionicViewSwitcher,userService){
+    .controller('helpAnFeed',['$scope','$state','$ionicViewSwitcher','$http','userService',function($scope,$state,$ionicViewSwitcher,$http,userService){
         $scope.$on('$ionicView.beforeEnter',function(){
             $scope.hideTabBar('hide');
         })
+
+        $scope.appProList=[];
+        //$scope.$on('$ionicView.afterEnter',function(){
+            $http({
+                url:urlStr+'ym/app/list.api',
+                method:'POST'
+            }).success(function(data){
+                console.log(data);
+                $scope.appProList=data.list;
+            }).error(function(){
+                $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
+            })
+        //})
         $scope.feedRecord=function(){
             if(userService.userMess&&userService.userMess.accountId){
                 $state.go('feedRecord',{});
@@ -17,7 +30,7 @@ angular.module('ymy.help.feed',[])
 
         $scope.toQuestion=function(val){
             var timestamp=$scope.getTimeStamp();
-            $state.go('questionList',{categoryId:val,timestamp:timestamp});
+            $state.go('questionList',{categoryId:val.appId,viewTitle:val.appName,timestamp:timestamp});
             $ionicViewSwitcher.nextDirection('forward');
         }
     }])
@@ -52,13 +65,14 @@ angular.module('ymy.help.feed',[])
 
     }])
     .controller('questionList',['$scope','$state','$stateParams','$http','$ionicViewSwitcher','userService',function($scope,$state,$stateParams,$http,$ionicViewSwitcher,userService){
-        if($stateParams.categoryId==1001){
-            $scope.viewTitle='云平台';
-        }else if($stateParams.categoryId==1002){
-            $scope.viewTitle='艾德产品';
-        }else{
-            $scope.viewTitle='复苏小龙';
-        }
+        //if($stateParams.categoryId==1001){
+        //    $scope.viewTitle='云平台';
+        //}else if($stateParams.categoryId==1002){
+        //    $scope.viewTitle='艾德产品';
+        //}else{
+        //    $scope.viewTitle='复苏小龙';
+        //}
+        $scope.viewTitle=$state.params.viewTitle;
         $scope.reqDate={
             appId:$stateParams.categoryId,
             sign:md5('ymy'+$stateParams.categoryId),

@@ -13,17 +13,11 @@
             医模设备
         </div>
         <div class="set-itmes">
-            <div class="p-item" ng-click="toQuestion(1001)">
-                <div class="item-left-icon"></div>
-                云平台
-            </div>
-            <div class="p-item" ng-click="toQuestion(1002)">
-                <div class="item-icon-aide" style="background-size: 28px 28px"></div>
-                艾德产品
-            </div>
-            <div class="p-item" style="border-bottom: none" ng-click="toQuestion(1003)">
-                <div class="item-icon-fusu" style="background-size: 28px 28px"></div>
-                复苏小龙
+            <div class="p-item" ng-click="toQuestion(pro)" ng-repeat="pro in appProList">
+                <div class="item-left-icon">
+                    <img ng-src="{{pro.smallImage}}" alt="">
+                </div>
+                {{pro.appName}}
             </div>
         </div>
 

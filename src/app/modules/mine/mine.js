@@ -103,21 +103,13 @@ angular.module('tab.mine',[])
 
         //反馈记录
         $scope.helpFeedback=function(){
-            if($rootScope.netBreak){
-                $scope.alertTab('请检查网络');
-                return;
-            }
-
-            $state.go('helpAnFeed',{});
+            var timestamp=$scope.getTimeStamp();
+            $state.go('helpAnFeed',{timestamp:timestamp});
             $ionicViewSwitcher.nextDirection('forward');
         }
 
         //历史记录
         $scope.historyRecord=function(){
-            if($rootScope.netBreak){
-                $scope.alertTab('请检查网络');
-                return;
-            }
             if(userService.userMess&&userService.userMess.accountId){
                 $state.go('history',{});
                 $ionicViewSwitcher.nextDirection('forward');
