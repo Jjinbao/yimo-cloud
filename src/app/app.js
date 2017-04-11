@@ -225,18 +225,18 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
                 $scope.indexPortraitPanel = false;
             }
 
-            $scope.modifyPortrait = function (val) {
+            $scope.modifyPortrait = function (valtype) {
                 $http({
                     url:urlStr+'ym/question/list.api',
                     method:'POST',
                     params:{}
                 }).success(function(val){
-                    var data = {
-                        type: val
+                    var modifyData = {
+                        type: valtype
                     }
                     connectWebViewJavascriptBridge(function (bridge) {
                         //回app
-                        bridge.callHandler('modifyAvatar', data, function (response) {
+                        bridge.callHandler('modifyAvatar', modifyData, function (response) {
                         })
                     });
 
@@ -246,7 +246,7 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
                 $scope.hideAllPanel();
             }
 
-            $scope.indexToLogin = function () {
+            $scope.indexToLogin = function (){
                 $scope.showindexLoginPanel = $scope.showModelBackground = false;
                 $state.go('login', {ragion: 'mine'});
                 $ionicViewSwitcher.nextDirection('forward');
