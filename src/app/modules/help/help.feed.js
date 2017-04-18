@@ -103,7 +103,6 @@ angular.module('ymy.help.feed', [])
         method: 'POST',
         params: $scope.reqDate
       }).success(function (data) {
-        console.log(data);
         if (data.result == 1) {
           $scope.resData.totalPage = data.totalPage;
           $scope.resData.list = data.categoryQuestionList;
@@ -134,7 +133,8 @@ angular.module('ymy.help.feed', [])
   }])
   .controller('commonQuestion', ['$scope', '$state', function ($scope, $state) {
     $scope.question = $state.params.question;
-    $scope.viewTitle = $scope.question.groupName;
+    $scope.viewTitle = $scope.question.appName;
+      console.log($state.params.question);
   }])
   .controller('feedDetail', ['$scope', '$state', function ($scope, $state) {
     $scope.askQuestion = $state.params.ques;

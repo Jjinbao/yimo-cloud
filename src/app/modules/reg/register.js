@@ -189,7 +189,7 @@ angular.module('ymy.register',[])
             }
 
             if($scope.userInfo.password.length<8){
-                $scope.alertTab('密码不能少于6位');
+                $scope.alertTab('密码不能少于8位');
                 return;
             }
 

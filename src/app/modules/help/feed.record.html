@@ -1,8 +1,10 @@
-<ion-view view-title="反馈记录" hide-tabs="true">
-    <ion-nav-buttons side="left">
+<ion-header-bar align-title="center" class="bar-main-color">
+    <div class="buttons">
         <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
         </button>
-    </ion-nav-buttons>
+    </div>
+    <h1 class="title title-color">反馈记录</h1>
+</ion-header-bar>
     <ion-content>
         <div ng-show="resData.totalNum>0">
             <div class="feed-back-record" ng-click="toDetail(que)" ng-repeat="que in resData.list">
@@ -20,4 +22,3 @@
                              immediate-check="false">
         </ion-infinite-scroll>
     </ion-content>
-</ion-view>

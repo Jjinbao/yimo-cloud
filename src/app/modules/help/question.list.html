@@ -1,15 +1,18 @@
 <ion-view view-title="{{viewTitle}}" hide-tabs="true">
-    <ion-nav-buttons side="left">
-        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
-        </button>
-    </ion-nav-buttons>
+    <ion-header-bar align-title="center" class="bar-main-color">
+        <div class="buttons">
+            <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
+            </button>
+        </div>
+        <h1 class="title title-color">{{viewTitle}}</h1>
+    </ion-header-bar>
     <ion-content>
         <div class="feed-sub-title">
             常见问题
         </div>
         <div ng-show="resData.list&&resData.list.length!=0">
             <div class="feed-back-record" ng-click="toQuestionDetail(que)" ng-repeat="que in resData.list">
-                <div class="feed-back-question">
+                <div class="feed-back-question"  ng-class="{'feed-back-record-last':$last}">
                     <div class="feed-question-body">
                         {{que.question}}
                     </div>
