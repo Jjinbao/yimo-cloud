@@ -17,6 +17,20 @@ angular.module('ymy.register',[])
             $state.go('regname',{});
             $ionicViewSwitcher.nextDirection('forward');
         }
+
+        //获取图形验码啊接口
+        $scope.userImgCode={
+            code:''
+        };
+        $scope.getImgCode=function(){
+            $http({
+                url:urlStr+'ym/randCodeImage.api',
+                method:'POST',
+            }).success(function(data){
+                $scope.imgCode=data;
+            })
+        }
+        $scope.getImgCode();
         //返回上一级
         $scope.back=function(){
             $ionicHistory.goBack();
@@ -34,6 +48,15 @@ angular.module('ymy.register',[])
                 $scope.alertTab('请填写正确的手机号');
                 return;
             }
+            if($scope.userImgCode.code.toLowerCase()!=$scope.imgCode.code.toLowerCase()){
+                $scope.alertTab('图形验证码不正确');
+                if($scope.userImgCode.code){
+                    $scope.userImgCode.code='';
+                    $scope.getImgCode();
+                }
+                return;
+            }
+
             $scope.canGetCode=false;
             $http({
                 url:urlStr+'ym/phoneCode/sendCode.api',

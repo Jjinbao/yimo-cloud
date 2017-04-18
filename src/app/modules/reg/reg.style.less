@@ -55,10 +55,43 @@
     height: 50px;
     border-bottom: 1px solid @login-border;
     font-size: 16px;
+    .img-code{
+      position: absolute;
+      top: 50%;
+      right: 35px;
+      width: 90px;
+      height: 35px;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    .imgcode-refash{
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 24px;
+      height: 22px;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    .reg-img-code{
+      position: absolute;
+      right: 0;
+      width: 100px;
+      background-color: green;
+    }
     input{
       font-size: 16px;
       height: 100%;
       width: 80%;
+      padding-top:0;
+      padding-bottom:0;
+      color: #333333;
+    }
+
+    .reg-img-input{
+      font-size: 16px;
+      height: 100%;
+      width: 40%;
       padding-top:0;
       padding-bottom:0;
       color: #333333;
