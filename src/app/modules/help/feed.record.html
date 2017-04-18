@@ -14,5 +14,10 @@
                 </div>
             </div>
         </div>
+        <ion-infinite-scroll ng-if="reqParams.pageNumber<resData.totalNum"
+                             on-infinite="loadMoreDate()"
+                             distance="1%"
+                             immediate-check="false">
+        </ion-infinite-scroll>
     </ion-content>
 </ion-view>

@@ -27,8 +27,12 @@ angular.module('ymy.history',[])
                 sign:md5('ymy'+userService.userMess.accountId+'app')
             }
         }).success(function(data){
+            console.log(data);
             if(data.result==1){
                 $scope.appList=data.list;
+                $scope.appList.forEach(function(val){
+                  val.date=new Date(parseInt(val.readTime) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+                })
             }
         }).error(function(){
             $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);

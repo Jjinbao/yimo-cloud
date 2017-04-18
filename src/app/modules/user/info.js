@@ -147,10 +147,20 @@ angular.module('swalk.userinfo', [])
                 return;
             }
 
+          if($scope.password.oldPassword.length<8){
+            $scope.alertTab('旧密码不能少于8位');
+            return;
+          }
+
             if(!$scope.password.newPassword){
                 $scope.alertTab('请输入新密码');
                 return;
             }
+
+          if($scope.password.newPassword.length<8){
+            $scope.alertTab('新密码不能少于8位');
+            return;
+          }
 
             $scope.doubleClick=true;
             $http({
@@ -165,9 +175,13 @@ angular.module('swalk.userinfo', [])
             }).success(function(data){
                 if(data.result==1){
                     $scope._goback(-1);
+                }else if(data.result==103){
+                    $scope.alertTab('当前密码输入错误');
                 }
+              $scope.doubleClick=false;
             }).error(function(){
                 $scope.alertTab('网络异常,请检查网络!');
+              $scope.doubleClick=false;
             })
         }
 

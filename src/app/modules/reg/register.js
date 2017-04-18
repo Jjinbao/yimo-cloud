@@ -165,7 +165,7 @@ angular.module('ymy.register',[])
                 return;
             }
 
-            if($scope.userInfo.password.length<6){
+            if($scope.userInfo.password.length<8){
                 $scope.alertTab('密码不能少于6位');
                 return;
             }
@@ -222,8 +222,8 @@ angular.module('ymy.register',[])
                 return;
             }
 
-            if($scope.userInfo.password.length<6){
-                $scope.alertTab('密码不能少于6位');
+            if($scope.userInfo.password.length<8){
+                $scope.alertTab('密码不能少于8位');
                 return;
             }
 
