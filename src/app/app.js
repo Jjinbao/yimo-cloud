@@ -408,18 +408,27 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
             //处理安卓返回按钮
             connectWebViewJavascriptBridge(function (bridge) {
                 bridge.registerHandler('onBack', function (response) {
-                    console.log('----on back');
                     var stateId = $ionicHistory.currentView().stateId;
-                    if ($scope.showModelBackground) {
-                        $scope.hideAllPanel();
-                        //$scope.$digest();
-                    }
+                    if(stateId.indexOf('userinfo')>=0||stateId.indexOf('history')>=0||stateId.indexOf('history')>=0||stateId.indexOf('helpAnFeed')>=0){
+                      bridge.callHandler('backToApp', null, function (response) {
 
-                    if ((stateId.indexOf('tabs.mine') >= 0)) {
-                        return;
-                    } else {
-                        $ionicHistory.goBack();
-                        $ionicViewSwitcher.nextDirection('back');
+                      })
+                    }else if(stateId.indexOf('set')>=0&&$location.url().indexOf('/mine/set')>=0){
+                      bridge.callHandler('backToApp', null, function (response) {
+
+                      })
+                    }else if(stateId.indexOf('login')>=0&&$location.url().indexOf('/login/mine')>=0){
+                      bridge.callHandler('backToApp', null, function (response) {
+
+                      })
+                    }else if(stateId.indexOf('register')>=0&&$location.url().indexOf('/register/1')>=0){
+                      bridge.callHandler('backToApp', null, function (response) {
+
+                      })
+                    }else if(stateId.indexOf('regname')>=0){
+                        $scope._goback(-1);
+                    }else{
+                        $scope._goback(-1);
                     }
                 })
             });
