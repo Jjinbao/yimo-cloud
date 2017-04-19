@@ -6,22 +6,41 @@ angular.module('swalk.userinfo', [])
         $scope.$on('$ionicView.beforeEnter',function(){
             $scope.hideTabBar('hide');
         })
-        $scope.userMsg={};
-        $http({
-            url:urlStr+'ym/account/getInfo.api',
-            method:'POST',
-            params:{
+
+      $scope.backApp=function(){
+        connectWebViewJavascriptBridge(function (bridge) {
+          //回app
+          bridge.callHandler('backToApp', null, function (response) {
+
+          })
+        });
+      }
+
+      $scope.$on('$ionicView.afterEnter',function(){
+        connectWebViewJavascriptBridge(function (bridge) {
+          //回app
+          bridge.callHandler('getAppUserData', null, function (response) {
+            userService.userMess=response;
+            $scope.userMsg={};
+            $http({
+              url:urlStr+'ym/account/getInfo.api',
+              method:'POST',
+              params:{
                 accountId:userService.userMess.accountId,
                 sign:md5('ymy'+userService.userMess.accountId)
-            }
-        }).success(function(data){
-            if(data.result==1){
+              }
+            }).success(function(data){
+              if(data.result==1){
                 $scope.userMsg=data;
                 userService.userMess=data;
-            }
-        }).error(function(){
-            $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
-        })
+              }
+            }).error(function(){
+              $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
+            })
+          })
+        });
+      })
+
 
         $scope.changeUserInfo = function () {
             if (!$scope.userInfo) {
@@ -86,7 +105,7 @@ angular.module('swalk.userinfo', [])
 
                 })
             });
-            $scope._goback();
+            //$scope._goback();
         }
         //上传成功的回调
         connectWebViewJavascriptBridge(function (bridge) {
@@ -174,6 +193,12 @@ angular.module('swalk.userinfo', [])
                 }
             }).success(function(data){
                 if(data.result==1){
+                  connectWebViewJavascriptBridge(function (bridge) {
+                    //回app
+                    var password={realPassword:$scope.password.newPassword}
+                    bridge.callHandler('modifyUserPassword', password, function (response) {
+                    })
+                  });
                     $scope._goback(-1);
                 }else if(data.result==103){
                     $scope.alertTab('当前密码输入错误');

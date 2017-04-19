@@ -9,6 +9,15 @@ angular.module('swalk.setting',[])
 
         }
 
+      $scope.backApp=function(){
+        connectWebViewJavascriptBridge(function (bridge) {
+          //回app
+          bridge.callHandler('backToApp', null, function (response) {
+
+          })
+        });
+      }
+
         $scope.toLogin=function(){
             $state.go('login');
             $ionicViewSwitcher.nextDirection('forward');

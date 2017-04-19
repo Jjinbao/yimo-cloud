@@ -1,11 +1,11 @@
 'use strict'
 
 angular.module('ymy.register',[])
-    .controller('userRegister',['$scope','$state','$http','$interval','$ionicHistory','$ionicViewSwitcher',function($scope,$state,$http,$interval,$ionicHistory,$ionicViewSwitcher){
+    .controller('userRegister',['$scope','$state','$http','$interval','$ionicHistory','$ionicViewSwitcher','$stateParams',function($scope,$state,$http,$interval,$ionicHistory,$ionicViewSwitcher,$stateParams){
         $scope.$on('$ionicView.beforeEnter',function(){
             $scope.hideTabBar('hide');
         })
-        var operation=$state.params.operation;
+        var operation=$stateParams.operation;
         $scope.regInfo={
             phone:'',
             code:'',
@@ -33,8 +33,16 @@ angular.module('ymy.register',[])
         $scope.getImgCode();
         //返回上一级
         $scope.back=function(){
-            $ionicHistory.goBack();
-            $ionicViewSwitcher.nextDirection('back');
+            if(operation==1){
+              connectWebViewJavascriptBridge(function (bridge) {
+                //回app
+                bridge.callHandler('backToApp', null, function (response) {
+
+                })
+              });
+            }else{
+              $scope._goback(-1);
+            }
         }
         //获取验证码
         $scope.canGetCode=true;
@@ -121,9 +129,9 @@ angular.module('ymy.register',[])
             }).success(function(data){
                 if(data.result==1){
                     if(data.checkFlag==1){
-                        if(operation==1){
+                        if(operation==1||operation==2){
                             $scope.regSetName();
-                        }else if(operation==2){
+                        }else if(operation==3){
                             $scope.resetPassword();
                         }
                     }else if(data.checkFlg==2){
@@ -215,8 +223,15 @@ angular.module('ymy.register',[])
             }).success(function(data){
                 if(data.result==1){
                     userService.userMess=data;
-                    $state.go('tabs.mine',{});
-                    $ionicViewSwitcher.nextDirection('back');
+                    data.realPassword=$scope.userInfo.rePassword;
+                    connectWebViewJavascriptBridge(function (bridge) {
+                    //回app
+                        bridge.callHandler('userMessage', data, function (response) {
+
+                        })
+                  });
+                    //$state.go('tabs.mine',{});
+                    //$ionicViewSwitcher.nextDirection('back');
                 }else{
                     $scope.alertTab('注册失败,请重新注册');
                     $scope.doubleClick=true;

@@ -31,13 +31,18 @@ angular.module('swalk.login', [])
                     data.realPassword=$scope.userInfo.password;
                     if(data.result==1){
                         userService.userMess=data;
+                      if($stateParams.ragion=='mine'){
                         connectWebViewJavascriptBridge(function (bridge) {
-                            //回app
-                            bridge.callHandler('userMessage', data, function (response) {
+                          //回app
+                          bridge.callHandler('userMessage', data, function (response) {
 
-                            })
+                          })
                         });
-                        $scope.back();
+                      }else{
+                          $scope._goback(-1);
+                      }
+
+                        //$scope.back();
                     }else if(data.result==102){
                         $scope.alertTab('手机号输入错误');
                     }else if(data.result==103){
@@ -56,23 +61,37 @@ angular.module('swalk.login', [])
             }
 
             $scope.toRegister=function(){
-                $state.go('register',{operation:1});
-                $ionicViewSwitcher.nextDirection('forward');
-            }
-
-            $scope.toModify=function(){
                 $state.go('register',{operation:2});
                 $ionicViewSwitcher.nextDirection('forward');
             }
 
+            $scope.toModify=function(){
+                $state.go('register',{operation:3});
+                $ionicViewSwitcher.nextDirection('forward');
+            }
+
             $scope.back=function(){
+
                 if($stateParams.ragion=='reg'||$stateParams.ragion=='setPassword'){
-                    $state.go('tabs.mine',{});
-                    $ionicViewSwitcher.nextDirection('back');
+                  connectWebViewJavascriptBridge(function (bridge) {
+                    //回app
+                    bridge.callHandler('backToApp', null, function (response) {
+
+                    })
+                  });
+                    // $state.go('tabs.mine',{});
+                    // $ionicViewSwitcher.nextDirection('back');
+                }else if($stateParams.ragion=='mine'){
+                  connectWebViewJavascriptBridge(function (bridge) {
+                    //回app
+                    bridge.callHandler('backToApp', null, function (response) {
+
+                    })
+                  });
                 }else{
                     $scope._goback(-1);
                 }
-                //$state.go('tabs.mine',{})
-                //$ionicViewSwitcher.nextDirection('back');
+                // $state.go('tabs.mine',{})
+                // $ionicViewSwitcher.nextDirection('back');
             }
         }])

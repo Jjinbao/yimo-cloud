@@ -3,6 +3,25 @@ angular.module('ymy.history',[])
         $scope.$on('$ionicView.beforeEnter',function(){
             $scope.hideTabBar('hide');
         })
+
+      $scope.$on('$ionicView.afterEnter',function(){
+        connectWebViewJavascriptBridge(function (bridge) {
+          //回app
+          bridge.callHandler('getAppUserData', null, function (response) {
+            userService.userMess=response;
+          })
+        });
+      })
+
+      $scope.backApp=function(){
+        connectWebViewJavascriptBridge(function (bridge) {
+          //回app
+          bridge.callHandler('backToApp', null, function (response) {
+
+          })
+        });
+      }
+
         $scope.toPart=function(val){
             var timestamp=$scope.getTimeStamp();
             if(val=='应用'){

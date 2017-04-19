@@ -6,6 +6,24 @@ angular.module('ymy.help.feed', [])
       $scope.hideTabBar('hide');
     })
 
+    $scope.$on('$ionicView.afterEnter',function(){
+      connectWebViewJavascriptBridge(function (bridge) {
+        //回app
+        bridge.callHandler('getAppUserData', null, function (response) {
+          userService.userMess=response;
+        })
+      });
+    })
+
+    $scope.backApp=function(){
+      connectWebViewJavascriptBridge(function (bridge) {
+        //回app
+        bridge.callHandler('backToApp', null, function (response) {
+
+        })
+      });
+    }
+
     $scope.appProList = [];
     //$scope.$on('$ionicView.afterEnter',function(){
     $http({
@@ -27,6 +45,8 @@ angular.module('ymy.help.feed', [])
         $ionicViewSwitcher.nextDirection('forward');
       }
     }
+
+
 
     $scope.toQuestion = function (val) {
       var timestamp = $scope.getTimeStamp();

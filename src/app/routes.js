@@ -63,8 +63,7 @@ angular.module('swalk.route', [])
             })
             //注册+修改密码
             .state('register',{
-                params:{operation:null},
-                url:'/register',
+                url:'/register/:operation',
                 templateUrl:'app/modules/reg/register.tpl.html',
                 controller:'userRegister',
                 cache:false
