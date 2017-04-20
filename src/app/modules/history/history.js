@@ -5,6 +5,7 @@ angular.module('ymy.history',[])
         })
 
       $scope.$on('$ionicView.afterEnter',function(){
+          console.log('----------enter in the page-------------');
         connectWebViewJavascriptBridge(function (bridge) {
           //回app
           bridge.callHandler('getAppUserData', null, function (response) {
