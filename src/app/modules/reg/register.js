@@ -52,6 +52,7 @@ angular.module('ymy.register',[])
             if(!$scope.canGetCode){
                 return;
             }
+            console.log('0000000000000');
             if(!$scope.regInfo.phone){
                 $scope.alertTab('请填写正确的手机号');
                 return;
@@ -66,15 +67,22 @@ angular.module('ymy.register',[])
             }
 
             $scope.canGetCode=false;
+            var op=1;
+            if(operation==3||operation==1){
+                op=1;
+            }else{
+                op=2;
+            }
             $http({
                 url:urlStr+'ym/phoneCode/sendCode.api',
                 method:'POST',
                 params:{
                     phone:$scope.regInfo.phone,
-                    operation:operation,
-                    sign:md5('ymy'+operation.toString()+$scope.regInfo.phone)
+                    operation:op,
+                    sign:md5('ymy'+op.toString()+$scope.regInfo.phone)
                 }
             }).success(function(data){
+                console.log(data);
                 if(data.result==1){
                     $scope.regInfo.identify=data.identifier;
                     $scope.intervalId=$interval(function(){
@@ -127,17 +135,18 @@ angular.module('ymy.register',[])
                     sign:md5('ymy'+$scope.regInfo.identify+$scope.regInfo.phone+$scope.regInfo.code)
                 }
             }).success(function(data){
+                console.log(data);
                 if(data.result==1){
                     if(data.checkFlag==1){
-                        if(operation==1||operation==2){
+                        if(operation==1||operation==3){
                             $scope.regSetName();
-                        }else if(operation==3){
+                        }else if(operation==2){
                             $scope.resetPassword();
                         }
-                    }else if(data.checkFlg==2){
+                    }else if(data.checkFlag==2){
                         $scope.alertTab('验证码错误');
                         $scope.doubleClick=true;
-                    }else if(data.checkFlg==3){
+                    }else if(data.checkFlag==3){
                         $scope.alertTab('验证码已过期');
                         $scope.doubleClick=true;
                     }
@@ -285,7 +294,7 @@ angular.module('ymy.register',[])
                 }
             }).success(function(data){
                 if(data.result==1){
-                    $state.go('login',{ragion:'setPassword'});
+                    $state.go('login',{ragion:'mine'});
                     $ionicViewSwitcher.nextDirection('back');
                 }else{
                     $scope.doubleClick=true;

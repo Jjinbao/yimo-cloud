@@ -1,18 +1,15 @@
 angular.module('ymy.history',[])
-    .controller('historyRecord',['$scope','$state','$ionicViewSwitcher',function($scope,$state,$ionicViewSwitcher){
+    .controller('historyRecord',['$scope','$state','$ionicViewSwitcher','userService',function($scope,$state,$ionicViewSwitcher,userService){
         $scope.$on('$ionicView.beforeEnter',function(){
             $scope.hideTabBar('hide');
         })
 
-      $scope.$on('$ionicView.afterEnter',function(){
-          console.log('----------enter in the page-------------');
         connectWebViewJavascriptBridge(function (bridge) {
           //回app
           bridge.callHandler('getAppUserData', null, function (response) {
             userService.userMess=response;
           })
         });
-      })
 
       $scope.backApp=function(){
         connectWebViewJavascriptBridge(function (bridge) {

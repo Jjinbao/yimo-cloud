@@ -27,7 +27,7 @@
         <div class="user-info-sigle">
             <div class="userinfo-email-itme">
                 手机号
-                <span>{{userMsg.phone}}</span>
+                <span>{{userMsg.phone | phoneHash}}</span>
             </div>
             <div class="userinfo-email-itme" style="border-bottom: none" ng-click="toModifyPassowrd()">
                 修改密码

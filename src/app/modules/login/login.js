@@ -61,12 +61,12 @@ angular.module('swalk.login', [])
             }
 
             $scope.toRegister=function(){
-                $state.go('register',{operation:2});
+                $state.go('register',{operation:3});
                 $ionicViewSwitcher.nextDirection('forward');
             }
 
             $scope.toModify=function(){
-                $state.go('register',{operation:3});
+                $state.go('register',{operation:2});
                 $ionicViewSwitcher.nextDirection('forward');
             }
 

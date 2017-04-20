@@ -14,7 +14,7 @@
                 <input type="tel" ng-model="regInfo.phone" placeholder="手机号">
             </div>
             <div class="reg-code">
-                <input type="tel" class="reg-img-input" maxlength="4" ng-model="userImgCode.code" placeholder="图形验证码"/>
+                <input type="text" class="reg-img-input" maxlength="4" ng-model="userImgCode.code" placeholder="图形验证码"/>
                 <img class="img-code" ng-src="{{imgCode.img}}"/>
                 <img class="imgcode-refash" src="./app/img/shuanxin.png" ng-click="getImgCode()"/>
             </div>

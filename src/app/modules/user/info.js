@@ -16,30 +16,32 @@ angular.module('swalk.userinfo', [])
         });
       }
 
-      $scope.$on('$ionicView.afterEnter',function(){
-        connectWebViewJavascriptBridge(function (bridge) {
-          //回app
-          bridge.callHandler('getAppUserData', null, function (response) {
-            userService.userMess=response;
-            $scope.userMsg={};
+        $scope.getUserMsg=function(){
             $http({
-              url:urlStr+'ym/account/getInfo.api',
-              method:'POST',
-              params:{
-                accountId:userService.userMess.accountId,
-                sign:md5('ymy'+userService.userMess.accountId)
-              }
+                url:urlStr+'ym/account/getInfo.api',
+                method:'POST',
+                params:{
+                    accountId:userService.userMess.accountId,
+                    sign:md5('ymy'+userService.userMess.accountId)
+                }
             }).success(function(data){
-              if(data.result==1){
-                $scope.userMsg=data;
-                userService.userMess=data;
-              }
+                if(data.result==1){
+                    $scope.userMsg=data;
+                    userService.userMess=data;
+                }
             }).error(function(){
-              $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
+                $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
             })
-          })
+        }
+
+
+        connectWebViewJavascriptBridge(function (bridge) {
+            //回app
+            bridge.callHandler('getAppUserData', null, function (response) {
+                userService.userMess=response;
+                $scope.getUserMsg();
+            })
         });
-      })
 
 
         $scope.changeUserInfo = function () {
@@ -113,7 +115,7 @@ angular.module('swalk.userinfo', [])
                 userService.userMess.smallImg = response.smallImg;
                 $scope.userMsg.smallImg = response.smallImg;
                 $scope.$digest();
-                responseCallback('------modify portrait success---------');
+                responseCallback();
             })
         });
     }])
@@ -137,7 +139,14 @@ angular.module('swalk.userinfo', [])
             }).success(function(data){
                 if(data.result==1){
                     userService.userMess.userName=$scope.user.name;
-                    $scope._goback();
+                    var userName={userName:$scope.user.name}
+                    connectWebViewJavascriptBridge(function (bridge) {
+                        //回app
+                        bridge.callHandler('modifyUserName', userName, function (response) {
+
+                        })
+                    });
+                    $scope._goback(-1);
                 }else{
 
                 }
@@ -166,10 +175,10 @@ angular.module('swalk.userinfo', [])
                 return;
             }
 
-          if($scope.password.oldPassword.length<8){
-            $scope.alertTab('旧密码不能少于8位');
-            return;
-          }
+          //if($scope.password.oldPassword.length<8){
+          //  $scope.alertTab('旧密码不能少于8位');
+          //  return;
+          //}
 
             if(!$scope.password.newPassword){
                 $scope.alertTab('请输入新密码');
