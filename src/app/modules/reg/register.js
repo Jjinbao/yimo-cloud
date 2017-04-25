@@ -202,7 +202,6 @@ angular.module('ymy.register',[])
 
             if(!$scope.userInfo.password){
                 $scope.alertTab('请设置密码');
-
                 return;
             }
 
