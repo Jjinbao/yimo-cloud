@@ -1,0 +1,30 @@
+<ion-view view-title="文章" hide-tabs="true" hide-nav-bar="true">
+    <ion-content style="background-color: white">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true"
+                       slide-interval=5000 show-pager="true" pager-click="homeObj.pageClick(index)" delegate-handle="delegateHandler">
+            <ion-slide ng-repeat="curimg in curItem" class="my-slider-img">
+                <div class="box blue">
+                    <img ng-src="{{curimg.imgSrc}}" width="100%" ng-click="bannerClick(curimg)">
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+        <!--<ul rn-carousel rn-carousel-auto-slide rn-carousel-buffered class="image" style="height: 200px;">-->
+            <!--<li ng-repeat="image in curItem">-->
+                <!--<div class="layer"><img ng-src={{image.imgSrc}} ng-click="clickImg(image)"></div>-->
+            <!--</li>-->
+        <!--</ul>-->
+        <div class="passage-img-list">
+            <div class="list">
+                <div class="item item-thumbnail-left" ng-repeat="info in resData.list" ng-class="{'no-border':$last}" ng-click="toInfoDetail(info)">
+                    <img ng-src="{{info.imgSrc}}">
+                    <p class="tuwen-item-title">{{info.title}}</p>
+                    <p class="item-sub-header">{{info.extstr1}}</p>
+                    <div class="passage-pinglun">
+                        {{info.extstr2}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

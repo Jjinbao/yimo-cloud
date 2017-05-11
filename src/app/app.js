@@ -119,8 +119,8 @@ Array.prototype.remove = function (obj) {
     }
 }
 
-angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.services', 'tab.home', 'tab.stay', 'tab.holiday', 'tab.mine',
-    'swalk.login', 'ymy.register', 'ymy.help.feed', 'ymy.history', 'swalk.userinfo', 'swalk.setting', 'ymy.detail', 'swalk.about'])
+angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.services', 'tab.home', 'tab.stay', 'tab.passage', 'tab.mine',
+    'swalk.login', 'ymy.register', 'ymy.help.feed', 'ymy.history', 'swalk.userinfo', 'swalk.setting', 'ymy.detail', 'swalk.about','ymy.passage.detail'])
     .config(['$ionicConfigProvider', function ($ionicConfigProvider) {
         if(isAndroid){
             $ionicConfigProvider.views.transition('none');

@@ -18,7 +18,6 @@ angular.module('swalk.route', [])
                     }
                 }
             })
-
             .state('tabs.stay', {
                 params: {stayInDate: null, stayOutDate: null},
                 url: "/stay",
@@ -29,16 +28,20 @@ angular.module('swalk.route', [])
                     }
                 }
             })
-
             .state('tabs.holiday', {
-                url: "/holiday",
+                url: "/passage",
                 views: {
                     'holiday-tab': {
-                        templateUrl: "app/modules/holiday/holiday.html",
-                        controller: 'holidayCtrl',
-                        controllerAs:'holidaytab'
+                        templateUrl: "app/modules/passage/passage.html",
+                        controller: 'passageCtrl'
                     }
                 }
+            })
+            .state('passageDetail', {
+                url: "/detail/:id",
+                templateUrl:'app/modules/passageDetail/detail.html',
+                controller:'passageDetail',
+                cache:'false'
             })
             //我的界面
             .state('tabs.mine', {
@@ -193,5 +196,5 @@ angular.module('swalk.route', [])
                 templateUrl:'app/modules/contact/contact.tpl.html'
             })
 
-        $urlRouterProvider.otherwise("/tab/mine");
+        $urlRouterProvider.otherwise("/tab/passage");
     });

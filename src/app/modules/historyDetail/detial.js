@@ -18,16 +18,7 @@ angular.module('ymy.detail', [])
         //})
     }])
     .controller('historyInfoDetail',['$scope','$stateParams','$sce',function($scope,$stateParams,$sce){
-        var rootUrl='';
-        if($stateParams.rootId==1){
-            rootUrl='http://123.57.184.42:8080/app/teachPictureList.html?';
-        }else{
-            rootUrl='http://123.57.184.42:8080/app/messageList.html?';
-        }
+        console.log($stateParams.rootId);
+        console.log($stateParams.id);
 
-        $scope.infoMsg={
-            url:'',
-            rootId:9,
-            iframeSrc:$sce.trustAsResourceUrl(rootUrl+$stateParams.rootId+'&id='+$stateParams.id)
-        }
     }])
