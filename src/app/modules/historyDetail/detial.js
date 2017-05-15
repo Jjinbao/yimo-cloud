@@ -17,11 +17,11 @@ angular.module('ymy.detail', [])
         //
         //})
     }])
-    .controller('historyInfoDetail',['$scope','$stateParams','$http',function($scope,$stateParams,$http){
+    .controller('historyInfoDetail',['$scope','$stateParams','$http','userService','$state','$ionicViewSwitcher',function($scope,$stateParams,$http,userService,$state,$ionicViewSwitcher){
         console.log($stateParams.rootId);
         console.log($stateParams.id);
         $http({
-            url:'ym/news/field.api',
+            url:urlStr+'ym/news/field.api',
             method:'POST',
             params:{
                 id:$stateParams.id
@@ -30,7 +30,30 @@ angular.module('ymy.detail', [])
             console.log(res);
             if(res.result==1){
                 $scope.detailMsg=res;
-                console.log(new Date($scope.detailMsg.pubTime*1000).getFullYear());
+                $scope.detailMsg.formateDate=new Date(res.pubTime*1000).format('yyyy-MM-dd');
             }
         })
+        //获取评论列表
+        $scope.$on('$ionicView.afterEnter',function(){
+            $http({
+                url:urlStr+'ym/comment/list.api',
+                method:'POST',
+                params:{
+                    categoryRootId:$stateParams.rootId,
+                    categoryItemId:$stateParams.id
+                }
+            }).success(function(res){
+                console.log(res);
+            })
+        })
+
+        $scope.toSubmitComment=function(){
+            if(!userService.userMess.accountId){
+                $state.go('login', {ragion: 'commont'});
+                $ionicViewSwitcher.nextDirection('forward');
+            }else{
+                $state.go('comment',{rootId:$stateParams.rootId,id:$stateParams.id});
+                $ionicViewSwitcher.nextDirection('forward');
+            }
+        }
     }])

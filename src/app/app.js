@@ -103,6 +103,26 @@ function getDays(strDateStart, strDateEnd) {
     return iDays;
 }
 
+Date.prototype.format =function(format)
+{
+    var o = {
+        "M+" : this.getMonth()+1, //month
+        "d+" : this.getDate(), //day
+        "h+" : this.getHours(), //hour
+        "m+" : this.getMinutes(), //minute
+        "s+" : this.getSeconds(), //second
+        "q+" : Math.floor((this.getMonth()+3)/3), //quarter
+        "S" : this.getMilliseconds() //millisecond
+    }
+    if(/(y+)/.test(format)) format=format.replace(RegExp.$1,
+        (this.getFullYear()+"").substr(4- RegExp.$1.length));
+    for(var k in o)if(new RegExp("("+ k +")").test(format))
+        format = format.replace(RegExp.$1,
+            RegExp.$1.length==1? o[k] :
+                ("00"+ o[k]).substr((""+ o[k]).length));
+    return format;
+}
+
 //数组移除指定元素
 Array.prototype.remove = function (obj) {
     for (var i = 0; i < this.length; i++) {
@@ -120,7 +140,8 @@ Array.prototype.remove = function (obj) {
 }
 
 angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.services', 'tab.home', 'tab.stay', 'tab.passage', 'tab.mine',
-    'swalk.login', 'ymy.register', 'ymy.help.feed', 'ymy.history', 'swalk.userinfo', 'swalk.setting', 'ymy.detail', 'swalk.about','ymy.passage.detail'])
+    'swalk.login', 'ymy.register', 'ymy.help.feed', 'ymy.history', 'swalk.userinfo', 'swalk.setting', 'ymy.detail', 'swalk.about',
+    'ymy.passage.detail','ymy.comment'])
     .config(['$ionicConfigProvider', function ($ionicConfigProvider) {
         if(isAndroid){
             $ionicConfigProvider.views.transition('none');

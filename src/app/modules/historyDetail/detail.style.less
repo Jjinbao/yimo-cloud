@@ -20,12 +20,59 @@
 }
 
 .info-detail-title{
-  text-align: center;
-  height: 50px;
+  padding: 10px 10px 0;
+  line-height: 1.5;
   font-size: 18px;
-  line-height: 49px;
+}
+.info-pub-time{
+  padding: 10px;
+  color: #666;
 }
 .info-detail-body{
   padding-left: 15px;
   padding-right: 10px;
+  img{
+    width: 100%;
+  }
+}
+
+.info-comment{
+  width: 100%;
+  padding: 10px;
+  .info-comment-title{
+    color: @main-color;
+    font-size: 17px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ddd;
+  }
+  .info-comment-item{
+    position: relative;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 10px;
+    .user-head{
+      width: 40px;
+      height: 40px;
+      background-image: url('../app/img/touxiang@2x.png');
+      background-size: 100%;
+      border-radius: 20px;
+      margin-top: 10px;
+      img{
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+      }
+    }
+    .user-comment-name{
+      position: absolute;
+      top: 4px;
+      left: 50px;
+      color: #555;
+      line-height: 1.3;
+    }
+    .info-comment-content{
+      margin-top: 5px;
+      color: #555;
+    }
+  }
 }

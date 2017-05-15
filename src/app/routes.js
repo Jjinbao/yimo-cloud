@@ -195,6 +195,12 @@ angular.module('swalk.route', [])
                 url:'/contact/us',
                 templateUrl:'app/modules/contact/contact.tpl.html'
             })
+        //发表评论
+            .state('comment',{
+                url:'/comment/:rootId/:id',
+                templateUrl:'app/modules/comment/comment.tpl.html',
+                controller:'comment'
+            })
 
         $urlRouterProvider.otherwise("/tab/passage");
     });

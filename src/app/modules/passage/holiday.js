@@ -56,8 +56,9 @@ angular.module('tab.passage', [])
                 console.log(val);
             }
 
-            $scope.clickImg=function(val){
-                console.log(val);
+            $scope.bannerClick=function(val){
+                $state.go('infoDetail',{rootId:val.rootId,id:val.id});
+                $ionicViewSwitcher.nextDirection('forward');
             }
 
             $scope.toInfoDetail=function(val){

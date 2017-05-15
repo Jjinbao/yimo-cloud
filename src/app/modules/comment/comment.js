@@ -1,0 +1,10 @@
+angular.module('ymy.comment',[])
+    .controller('comment',['$scope','$stateParams','userService',function($scope,$stateParams,userService){
+        $scope.commentObj={
+            categoryRootId:$stateParams.rootId,
+            categoryItemId:$stateParams.id,
+            commentInfo:'',
+            content:'',
+            ip:''
+        }
+    }])
