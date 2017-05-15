@@ -57,12 +57,26 @@ angular.module('tab.passage', [])
             }
 
             $scope.bannerClick=function(val){
-                $state.go('infoDetail',{rootId:val.rootId,id:val.id});
+                $state.go('infoDetail',{from:'list',rootId:val.rootId,id:val.id});
                 $ionicViewSwitcher.nextDirection('forward');
+                var bannerData={from:'list',rootId:val.rootId,id:val.id};
+                connectWebViewJavascriptBridge(function (bridge) {
+                    //回app
+                    bridge.callHandler('toPassageDetail', bannerData, function (response) {
+                        userService.userMess=response;
+                    })
+                });
             }
 
             $scope.toInfoDetail=function(val){
-                $state.go('infoDetail',{rootId:val.rootId,id:val.id});
+                $state.go('infoDetail',{from:'list',rootId:val.rootId,id:val.id});
                 $ionicViewSwitcher.nextDirection('forward');
+                var detailData={from:'list',rootId:val.rootId,id:val.id};
+                connectWebViewJavascriptBridge(function (bridge) {
+                    //回app
+                    bridge.callHandler('toPassageDetail', detailData, function (response) {
+                        userService.userMess=response;
+                    })
+                });
             }
         }])

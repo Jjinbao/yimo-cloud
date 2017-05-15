@@ -1,6 +1,6 @@
 <ion-header-bar align-title="center" class="bar-main-color">
     <div class="buttons">
-        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="backFrant()">
         </button>
     </div>
     <h1 class="title title-color">文章详情</h1>
@@ -19,7 +19,7 @@
             <div class="info-comment-title">
                 热门评论
             </div>
-            <div class="info-comment-item">
+            <div ng-show="userComment.total>0" class="info-comment-item" ng-class="{'none-bottom-border':$last}" ng-repeat="comm in userComment.list">
                 <div class="user-head">
 
                 </div>
@@ -28,28 +28,15 @@
                         总有刁民想害朕
                     </div>
                     <div>
-                        2017-05-15
+                        <span>{{comm.pushTime}}</span>
                     </div>
                 </div>
                 <div class="info-comment-content">
-                    这个应用用着是真不赖这个应用用着是真不赖这个应用用着是真不赖这个应用用着是真不赖这个应用用着是真不赖这个应用用着是真不赖
+                    {{comm.content}}
                 </div>
             </div>
-            <div class="info-comment-item">
-                <div class="user-head">
-
-                </div>
-                <div class="user-comment-name">
-                    <div>
-                        总有刁民想害朕
-                    </div>
-                    <div>
-                        2017-05-15
-                    </div>
-                </div>
-                <div class="info-comment-content">
-                    这个应用用着是真不赖这
-                </div>
+            <div class="none-comment" ng-show="userComment.total<=0">
+                还没有评论！
             </div>
         </div>
     </ion-content>
