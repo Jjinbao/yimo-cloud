@@ -17,8 +17,20 @@ angular.module('ymy.detail', [])
         //
         //})
     }])
-    .controller('historyInfoDetail',['$scope','$stateParams','$sce',function($scope,$stateParams,$sce){
+    .controller('historyInfoDetail',['$scope','$stateParams','$http',function($scope,$stateParams,$http){
         console.log($stateParams.rootId);
         console.log($stateParams.id);
-
+        $http({
+            url:'ym/news/field.api',
+            method:'POST',
+            params:{
+                id:$stateParams.id
+            }
+        }).success(function(res){
+            console.log(res);
+            if(res.result==1){
+                $scope.detailMsg=res;
+                console.log(new Date($scope.detailMsg.pubTime*1000).getFullYear());
+            }
+        })
     }])
