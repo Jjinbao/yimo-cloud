@@ -7,7 +7,6 @@ angular.module('swalk.pay', [])
             $scope.payData = {};
             //需要微信支付数量
             $scope.moneyPay = 0;
-            //荣盛币数量
             $scope.rsPay = 0;
             //用户选择的支付方式
             $scope.payType = {
@@ -26,7 +25,6 @@ angular.module('swalk.pay', [])
 
             });
 
-            //选择荣盛币支付
             $scope.rsCoinPay = function (evt) {
                 $scope.payType.rsb = evt.target.checked;
                 paydealMoey();
@@ -167,7 +165,7 @@ angular.module('swalk.pay', [])
                     $scope.payRSB();
                 }
             }
-            //使用荣盛币支付
+
             $scope.payRSB = function () {
                 var nowTime = new Date().format('yyyy-MM-dd hh:mm:ss');
                 if ($scope.payType.rsb && ($scope.payData.canPayable > 0)) {

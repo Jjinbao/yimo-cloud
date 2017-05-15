@@ -18,13 +18,13 @@ angular.module('swalk.route', [])
                     }
                 }
             })
-            .state('tabs.stay', {
+            .state('tabs.video', {
                 params: {stayInDate: null, stayOutDate: null},
-                url: "/stay",
+                url: "/video",
                 views: {
                     'stay-tab': {
-                        templateUrl: "app/modules/stay/stay.html",
-                        controller: 'stayCtrl'
+                        templateUrl: "app/modules/video/video.list.html",
+                        controller: 'videoListCtrl'
                     }
                 }
             })

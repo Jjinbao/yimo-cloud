@@ -139,7 +139,7 @@ Array.prototype.remove = function (obj) {
     }
 }
 
-angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.services', 'tab.home', 'tab.stay', 'tab.passage', 'tab.mine',
+angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.services', 'tab.home', 'tab.video', 'tab.passage', 'tab.mine',
     'swalk.login', 'ymy.register', 'ymy.help.feed', 'ymy.history', 'swalk.userinfo', 'swalk.setting', 'ymy.detail', 'swalk.about',
     'ymy.passage.detail','ymy.comment'])
     .config(['$ionicConfigProvider', function ($ionicConfigProvider) {
@@ -169,7 +169,7 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
             $scope.confirmQuit = function () {
                 var confirmPopup = $ionicPopup.confirm({
                     title: '退出应用',
-                    template: '你确定你要退出盛行天下?',
+                    template: '你确定你要退出医模云平台?',
                     buttons: [{ //Array[Object] (可选)。放在弹窗footer内的按钮。
                         text: '取消',
                         type: 'button-default',
