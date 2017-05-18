@@ -1,10 +1,36 @@
 angular.module('ymy.comment',[])
-    .controller('comment',['$scope','$stateParams','userService',function($scope,$stateParams,userService){
+    .controller('comment',['$scope','$stateParams','userService','$http',function($scope,$stateParams,userService,$http){
         $scope.commentObj={
+            uid:userService.userMess.accountId,
             categoryRootId:$stateParams.rootId,
             categoryItemId:$stateParams.id,
             commentInfo:'',
             content:'',
-            ip:''
+            device:'pc'
+        }
+        $scope.holdDoubleClick=false;
+        $scope.sendComment=function(){
+            if($scope.holdDoubleClick){
+                return;
+            }
+            if(!$scope.commentObj.commentInfo){
+                $scope.alertTab('请填写评论！');
+                return;
+            }
+            $scope.holdDoubleClick=true;
+            $scope.commentObj.content=encodeURI($scope.commentObj.commentInfo);
+            $http({
+                url:urlStr+'ym/comment/add.api',
+                method:'POST',
+                params:$scope.commentObj
+            }).success(function(data){
+                if(data.result==1){
+                    $scope.commentObj.content='';
+                    $scope.holdDoubleClick=false;
+                    $scope.alertTab('提交评论成功！',$scope._goback);
+                }else{
+                    $scope.holdDoubleClick=false;
+                }
+            })
         }
     }])

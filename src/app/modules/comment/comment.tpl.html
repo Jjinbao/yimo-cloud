@@ -4,9 +4,13 @@
         </button>
     </div>
     <h1 class="title title-color">发表评论</h1>
+    <div class="buttons">
+        <button class="button button-icon" ng-click="sendComment()" style="color: white;font-size: 13px;">发送
+        </button>
+    </div>
 </ion-header-bar>
 <ion-content>
     <div class="comment-content">
-        <textarea placeholder="请输入评论"></textarea>
+        <textarea placeholder="写下评论和大家一起分享..." ng-model="commentObj.commentInfo"></textarea>
     </div>
 </ion-content>

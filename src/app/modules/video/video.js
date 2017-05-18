@@ -12,8 +12,11 @@ angular.module('tab.video', [])
             //获取文章轮播图
             $scope.getCarousel = function () {
                 $http({
-                    url: 'ym/show/list.api',
-                    method: 'POST'
+                    url: urlStr+'ym/show/list.api',
+                    method: 'POST',
+                    params:{
+                        rootId:9
+                    }
                 }).success(function (res) {
                     if (res.result == 1) {
                         $scope.curItem = res.shows;
@@ -31,5 +34,21 @@ angular.module('tab.video', [])
             }
             $scope.pageClick = function (val) {
                 console.log(val);
+            }
+            //获取视频推荐列表
+            $scope.recVideoList=[];
+            $http({
+                url:urlStr+'ym/album/list.api',
+                method:'POST'
+            }).success(function(res){
+                console.log(res);
+                if(res.result==1){
+                    $scope.recVideoList=res.albumList;
+                }
+            })
+
+            $scope.toAlbumDetail=function(val){
+                $state.go('videoDetail',{id:val.id});
+                $ionicViewSwitcher.nextDirection('forward');
             }
         }])

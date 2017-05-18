@@ -19,7 +19,6 @@ angular.module('swalk.route', [])
                 }
             })
             .state('tabs.video', {
-                params: {stayInDate: null, stayOutDate: null},
                 url: "/video",
                 views: {
                     'stay-tab': {
@@ -181,7 +180,7 @@ angular.module('swalk.route', [])
             //视频播放页面
             .state('videoDetail',{
                 params:{vsrc:'',title:''},
-                url:'/video/detail/:rootId/:id',
+                url:'/video/detail/:id',
                 templateUrl:'app/modules/historyDetail/video.detail.html',
                 controller:'historyVideoDetail'
             })
@@ -203,5 +202,5 @@ angular.module('swalk.route', [])
                 controller:'comment'
             })
 
-        $urlRouterProvider.otherwise("/tab/passage");
+        $urlRouterProvider.otherwise("/tab/video");
     });

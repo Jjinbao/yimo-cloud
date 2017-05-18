@@ -1,12 +1,12 @@
 'use strict'
 
 angular.module('ymy.detail', [])
-    .controller('historyVideoDetail', ['$scope','$stateParams','$sce','$state',function ($scope,$stateParams,$sce,$state) {
-        $scope.video={
-            iframeSrc:$sce.trustAsResourceUrl('http://123.57.184.42:8080/app/teachVideo.html?id='+$stateParams.rootId+'&rootId='+$stateParams.rootId)
-        }
-        $scope.videoSrc=$sce.trustAsResourceUrl($state.params.vsrc);
-        $scope.videoTitle=$state.params.title;
+    .controller('historyVideoDetail', ['$scope','$stateParams','$sce','$state','$http',function ($scope,$stateParams,$sce,$state,$http) {
+        // $scope.video={
+        //     iframeSrc:$sce.trustAsResourceUrl('http://123.57.184.42:8080/app/teachVideo.html?id='+$stateParams.rootId+'&rootId='+$stateParams.rootId)
+        // }
+        // $scope.videoSrc=$sce.trustAsResourceUrl($state.params.vsrc);
+        // $scope.videoTitle=$state.params.title;
         //angular.element(document).ready(function(){
         //    var iframe1=document.getElementById('iframe');
         //    iframe1.onload=function(){
@@ -16,6 +16,15 @@ angular.module('ymy.detail', [])
         //    }
         //
         //})
+        $http({
+            url:urlStr+'ym/album/field.api',
+            method:'POST',
+            params:{
+                id:$stateParams.id
+            }
+        }).success(function(res){
+            console.log(res);
+        })
     }])
     .controller('historyInfoDetail',['$scope','$stateParams','$http','userService','$state','$ionicViewSwitcher',function($scope,$stateParams,$http,userService,$state,$ionicViewSwitcher){
         console.log($stateParams.rootId);

@@ -1,25 +1,40 @@
-<ion-view view-title="文章" hide-tabs="true" hide-nav-bar="true">
-    <ion-content style="background-color: white">
+<ion-view view-title="视频列表" hide-tabs="true" hide-nav-bar="true">
+    <div class="video-subheader-bar">
+        <div class="video-left-icon">
+            <span class="ion-navicon"></span>
+        </div>
+        <div class="video-right-search">
+            <input placeholder="搜索">
+            <div class="search-btn">
+                搜索
+            </div>
+        </div>
+    </div>
+    <ion-content class="has-header" style="background-color: white;top: 45px;">
         <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true"
-                       slide-interval=5000 show-pager="true" pager-click="homeObj.pageClick(index)" delegate-handle="delegateHandler">
+                       slide-interval=5000 show-pager="true" delegate-handle="delegateHandler">
             <ion-slide ng-repeat="curimg in curItem" class="my-slider-img">
                 <div class="box blue">
-                    <img ng-src="{{curimg.imgSrc}}" width="100%" ng-click="bannerClick(curimg)">
+                    <img ng-src="{{curimg.imgSrc}}" width="100%" ng-click="pageClick(curimg)">
                 </div>
             </ion-slide>
         </ion-slide-box>
-        <div class="passage-img-list">
-            <div class="list">
-                <div class="item item-thumbnail-left" ng-repeat="info in resData.list" ng-class="{'no-border':$last}" ng-click="toInfoDetail(info)">
-                    <img ng-src="{{info.imgSrc}}">
-                    <p class="tuwen-item-title">{{info.title}}</p>
-                    <p class="item-sub-header">{{info.extstr1}}</p>
-                    <div class="passage-pinglun">
-                        {{info.extstr2}}
-                    </div>
+        <div class="video-list">
+            <div class="video-category-rec">
+                <div class="left-icon">
+
+                </div>
+                <div class="right-title">
+                    热门视频
+                </div>
+            </div>
+            <div class="video-list-body">
+                <div class="video-album" ng-repeat="album in recVideoList" ng-click="toAlbumDetail(album)">
+                    <img ng-src="{{album.smallImage}}">
+                    <div class="video-album-title">{{album.albumTitle}}</div>
+                    <div class="video-album-desc">{{album.albumAuthor}}</div>
                 </div>
             </div>
         </div>
-
     </ion-content>
 </ion-view>
