@@ -7,9 +7,12 @@
 </ion-header-bar>
 <div class="video-player">
 
-</div>
+</div>0
 <ion-content>
-    <video id="detailVideo" ng-src="{{trustUrl(videoList.nowActiveVideo)}}" width="100%" height="auto" autoplay
-           controls></video>
-    视频列表
+    <video id="detailVideo" ng-src="{{trustUrl(videoList.nowActiveVideo)}}" width="100%" height="auto" autoplay controls></video>
+    <div class="alubm-list-panel">
+        <div class="alubm-item" ng-class="{'active-alubm-item':voidsrc.id==videoList.nowActiveVideoId}" ng-repeat="voidsrc in videoList.list" ng-click="changeActiveVideo(voidsrc)">
+            {{voidsrc.groupName}}
+        </div>
+    </div>
 </ion-content>

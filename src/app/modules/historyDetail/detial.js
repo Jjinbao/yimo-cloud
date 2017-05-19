@@ -30,6 +30,7 @@ angular.module('ymy.detail', [])
         })
         $scope.videoList={
             nowActiveVideo:'',
+            nowActiveVideoId:'',
             list:[]
         };
         function getAlbumList(val){
@@ -48,8 +49,13 @@ angular.module('ymy.detail', [])
                 if(res.result==1){
                     $scope.videoList.list=res.teachList;
                     $scope.videoList.nowActiveVideo=res.teachList[0].videoSrc;
+                    $scope.videoList.nowActiveVideoId=res.teachList[0].id;
                 }
             })
+        }
+        $scope.changeActiveVideo=function(val){
+            $scope.videoList.nowActiveVideo=val.videoSrc;
+            $scope.videoList.nowActiveVideoId=val.id;
         }
         $scope.trustUrl=function(value){
             return $sce.trustAsResourceUrl(value);
