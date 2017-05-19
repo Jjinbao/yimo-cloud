@@ -201,6 +201,11 @@ angular.module('swalk.route', [])
                 templateUrl:'app/modules/comment/comment.tpl.html',
                 controller:'comment'
             })
+            .state('category',{
+                url:'/category',
+                templateUrl:'app/modules/video/category.tpl.html',
+                controller:'category'
+            })
 
         $urlRouterProvider.otherwise("/tab/video");
     });

@@ -1,8 +1,8 @@
 'use strict'
 
 angular.module('tab.video', [])
-    .controller('videoListCtrl', ['$rootScope', '$scope', '$state', '$ionicHistory','$ionicSlideBoxDelegate', '$http', '$ionicViewSwitcher', 'userService',
-        function ($rootScope, $scope, $state, $ionicHistory,$ionicSlideBoxDelegate, $http, $ionicViewSwitcher, userService) {
+    .controller('videoListCtrl', ['$rootScope', '$scope', '$state', '$ionicHistory', '$ionicSlideBoxDelegate', '$http', '$ionicViewSwitcher', 'userService',
+        function ($rootScope, $scope, $state, $ionicHistory, $ionicSlideBoxDelegate, $http, $ionicViewSwitcher, userService) {
             $scope.$on('$ionicView.afterEnter', function () {
                 $ionicSlideBoxDelegate.start();
                 $ionicSlideBoxDelegate.$getByHandle("delegateHandler").loop(true);
@@ -12,10 +12,10 @@ angular.module('tab.video', [])
             //获取文章轮播图
             $scope.getCarousel = function () {
                 $http({
-                    url: urlStr+'ym/show/list.api',
+                    url: urlStr + 'ym/show/list.api',
                     method: 'POST',
-                    params:{
-                        rootId:9
+                    params: {
+                        rootId: 9
                     }
                 }).success(function (res) {
                     if (res.result == 1) {
@@ -30,25 +30,79 @@ angular.module('tab.video', [])
 
             $scope.getCarousel();
             $scope.slideHasChanged = function (val) {
-                console.log(val);
+
             }
             $scope.pageClick = function (val) {
                 console.log(val);
             }
             //获取视频推荐列表
-            $scope.recVideoList=[];
+            $scope.recVideoList = [];
             $http({
-                url:urlStr+'ym/album/list.api',
-                method:'POST'
-            }).success(function(res){
+                url: urlStr + 'ym/album/list.api',
+                method: 'POST'
+            }).success(function (res) {
                 console.log(res);
-                if(res.result==1){
-                    $scope.recVideoList=res.albumList;
+                if (res.result == 1) {
+                    $scope.recVideoList = res.albumList;
                 }
             })
 
-            $scope.toAlbumDetail=function(val){
-                $state.go('videoDetail',{id:val.id});
+            $scope.toAlbumDetail = function (val) {
+                $state.go('videoDetail', {id: val.id});
+                $ionicViewSwitcher.nextDirection('forward');
+            }
+
+            $scope.toCategory = function () {
+                $state.go('category',{});
                 $ionicViewSwitcher.nextDirection('forward');
             }
         }])
+    .controller('category', ['$scope','$http', function ($scope,$http) {
+        //获取视频分类列表
+        $scope.categoryList=[];
+        //二级分类和三级分类
+        $scope.secondCategoryList='';
+        $scope.activeCategory={
+            first:'',
+            second:'',
+            third:''
+        }
+        $http({
+            url:urlStr+'ym/category/list.api',
+            method:'POST'
+        }).success(function(data){
+            console.log(data);
+            if(data.result==1){
+                $scope.categoryList=data.list;
+                //初始化数据
+                $scope.activeCategory.first=$scope.categoryList[0].id;
+                $scope.secondCategoryList=$scope.categoryList[0].categoryList;
+
+            }
+        });
+
+        //更改一及分类
+        $scope.changeFirstCategory=function(value){
+            $scope.activeCategory.first=value.id;
+            $scope.secondCategoryList=value.categoryList;
+            console.log(value.categoryList);
+        }
+
+        //更改三级分类
+        $scope.thirdCategoryId='';
+        $scope.changeThirdCategory=function(val){
+            $scope.thirdCategoryId=val.categoryId;
+            console.log(val);
+            // $http({
+            //     url:urlStr+'ym/album/list.api',
+            //     method:'POST',
+            //     params:{
+            //         rootId:val.rootId,
+            //         catIdLev2:val.parentId,
+            //         catIdLev3:val.categoryId
+            //     }
+            // }).success(function(res){
+            //     console.log(res);
+            // })
+        }
+    }])

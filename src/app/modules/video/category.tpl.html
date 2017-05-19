@@ -1,0 +1,25 @@
+<ion-header-bar align-title="center" class="bar-main-color">
+    <div class="buttons">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
+        </button>
+    </div>
+    <h1 class="title title-color">分类</h1>
+</ion-header-bar>
+<div class="category-left-menu">
+    <div class="category-item" ng-class="{'category-item-active':activeCategory.first==firstCate.id}" ng-click="changeFirstCategory(firstCate)" ng-repeat="firstCate in categoryList">
+        <span>{{firstCate.categoryName}}</span>
+    </div>
+</div>
+<ion-content style="left: 100px;" has-bouncing="false">
+    <div class="category-list">
+        <div class="category-panel" ng-repeat="secondCategory in secondCategoryList">
+            <div class="second-category-title">
+                {{secondCategory.groupName}}
+            </div>
+            <div class="third-category" ng-class="{'third-category-active':thirdCategoryId==third.categoryId}" ng-repeat="third in secondCategory.childrenList" ng-click="changeThirdCategory(third)">
+                {{third.groupName}}
+            </div>
+        </div>
+
+    </div>
+</ion-content>
