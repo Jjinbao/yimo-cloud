@@ -13,7 +13,7 @@ angular.module('tab.passage', [])
             }
             function getPassageList() {
                 $http({
-                    url: 'ym/news/list.api',
+                    url: urlStr+'ym/news/list.api',
                     method: 'POST',
                     params: $scope.reqParams
                 }).success(function (res) {
@@ -35,7 +35,7 @@ angular.module('tab.passage', [])
             //获取文章轮播图
             $scope.getCarousel=function() {
                 $http({
-                    url: 'ym/show/list.api',
+                    url: urlStr+'ym/show/list.api',
                     method: 'POST'
                 }).success(function (res) {
                     if (res.result == 1) {
