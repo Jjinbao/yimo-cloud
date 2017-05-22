@@ -50,15 +50,15 @@ angular.module('tab.passage', [])
 
             $scope.getCarousel();
             $scope.slideHasChanged = function (val) {
-                console.log(val);
+                //console.log(val);
             }
             $scope.pageClick = function (val) {
-                console.log(val);
+                //console.log(val);
             }
 
             $scope.bannerClick=function(val){
-                $state.go('infoDetail',{from:'list',rootId:val.rootId,id:val.id});
-                $ionicViewSwitcher.nextDirection('forward');
+                //$state.go('infoDetail',{from:'list',rootId:val.rootId,id:val.id});
+                //$ionicViewSwitcher.nextDirection('forward');
                 var bannerData={from:'list',rootId:val.rootId,id:val.id};
                 connectWebViewJavascriptBridge(function (bridge) {
                     //回app
@@ -69,13 +69,13 @@ angular.module('tab.passage', [])
             }
 
             $scope.toInfoDetail=function(val){
-                $state.go('infoDetail',{from:'list',rootId:val.rootId,id:val.id});
-                $ionicViewSwitcher.nextDirection('forward');
+                //$state.go('infoDetail',{from:'list',rootId:val.rootId,id:val.id});
+                //$ionicViewSwitcher.nextDirection('forward');
                 var detailData={from:'list',rootId:val.rootId,id:val.id};
                 connectWebViewJavascriptBridge(function (bridge) {
                     //回app
                     bridge.callHandler('toPassageDetail', detailData, function (response) {
-                        userService.userMess=response;
+                        //userService.userMess=response;
                     })
                 });
             }

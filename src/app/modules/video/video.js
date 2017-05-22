@@ -63,8 +63,6 @@ angular.module('tab.video', [])
 
 
             $scope.toAlbumDetail = function (val) {
-                console.log('----------1112121-');
-                console.log(val);
                 var videoId={rootId:1,id:val.id};
                 connectWebViewJavascriptBridge(function (bridge) {
                     //回app
@@ -72,8 +70,8 @@ angular.module('tab.video', [])
 
                     })
                 });
-                $state.go('videoDetail', {detail:'list',rootId:1,id: val.id});
-                $ionicViewSwitcher.nextDirection('forward');
+                //$state.go('videoDetail', {detail:'list',rootId:1,id: val.id});
+                //$ionicViewSwitcher.nextDirection('forward');
             }
 
             $scope.toCategory = function () {
@@ -83,8 +81,8 @@ angular.module('tab.video', [])
 
                     })
                 });
-                $state.go('category',{});
-                $ionicViewSwitcher.nextDirection('forward');
+                //$state.go('category',{});
+                //$ionicViewSwitcher.nextDirection('forward');
             }
 
             //搜索框
@@ -153,7 +151,7 @@ angular.module('tab.video', [])
                 catIdLev2:val.parentId,
                 catIdLev3:val.categoryId
             }
-            console.log(category);
+            //console.log(category);
             connectWebViewJavascriptBridge(function (bridge) {
                 //回app
                 bridge.callHandler('videoCategory', category, function (response) {
