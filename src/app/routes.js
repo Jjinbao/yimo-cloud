@@ -180,7 +180,7 @@ angular.module('swalk.route', [])
             //视频播放页面
             .state('videoDetail',{
                 params:{vsrc:'',title:''},
-                url:'/video/detail/:id',
+                url:'/video/:detail/:rootId/:id',
                 templateUrl:'app/modules/historyDetail/video.detail.html',
                 controller:'historyVideoDetail'
             })

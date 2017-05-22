@@ -63,14 +63,16 @@ angular.module('tab.video', [])
 
 
             $scope.toAlbumDetail = function (val) {
-                var videoId={id:val.id};
+                console.log('----------1112121-');
+                console.log(val);
+                var videoId={rootId:1,id:val.id};
                 connectWebViewJavascriptBridge(function (bridge) {
                     //回app
                     bridge.callHandler('videoDetail', videoId, function (response) {
 
                     })
                 });
-                $state.go('videoDetail', {id: val.id});
+                $state.go('videoDetail', {detail:'list',rootId:1,id: val.id});
                 $ionicViewSwitcher.nextDirection('forward');
             }
 
@@ -83,6 +85,32 @@ angular.module('tab.video', [])
                 });
                 $state.go('category',{});
                 $ionicViewSwitcher.nextDirection('forward');
+            }
+
+            //搜索框
+            $scope.searchInfo='';
+            $scope.doubleHold=false;
+            $scope.searchVideo=function(){
+                if(!$scope.searchInfo){
+                    return;
+                }
+                if($scope.doubleHold){
+                    return;
+                }
+                $scope.doubleHold=true;
+                $http({
+                    url: urlStr + 'ym/album/list.api',
+                    method: 'POST',
+                    params:{
+                        albumTitle:encodeURI($scope.searchInfo)
+                    }
+                }).success(function (res) {
+                    console.log(res);
+                    if (res.result == 1) {
+                        $scope.recVideoList = res.albumList;
+                    }
+                    $scope.doubleHold=false;
+                })
             }
         }])
     .controller('category', ['$scope','$http', function ($scope,$http) {
@@ -151,6 +179,6 @@ angular.module('tab.video', [])
 
                 })
             })
-            $scope._goback(-1);
+            //$scope._goback(-1);
         }
     }])

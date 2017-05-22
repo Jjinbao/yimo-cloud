@@ -87,8 +87,17 @@ angular.module('ymy.detail', [])
         })
         $scope.goBackToList=function(){
             myVideo.pause();
+            if($stateParams.detail=='list'){
+                connectWebViewJavascriptBridge(function (bridge) {
+                    //回app
+                    bridge.callHandler('backToApp', null, function (response) {
 
-            $scope._goback(-1);
+                    })
+                });
+            }else{
+                $scope._goback(-1);
+            }
+
         }
 
         if(userService.userMess&&userService.userMess.accountId){
@@ -101,6 +110,43 @@ angular.module('ymy.detail', [])
                 })
             });
         }
+
+        $scope.toSubmitComment=function(){
+            myVideo.pause();
+            if(!userService.userMess.accountId){
+                $state.go('login', {ragion: 'commont'});
+                $ionicViewSwitcher.nextDirection('forward');
+            }else{
+                $state.go('comment',{rootId:$stateParams.rootId,id:$stateParams.id});
+                $ionicViewSwitcher.nextDirection('forward');
+            }
+        }
+        //获取评论列表
+        $scope.userComment={
+            list:[],
+            total:0
+        }
+        $http({
+            url:urlStr+'ym/comment/list.api',
+            method:'POST',
+            params:{
+                categoryRootId:$stateParams.rootId,
+                categoryItemId:$stateParams.id
+            }
+        }).success(function(res){
+            console.log(res);
+            if(res.result==1){
+                if(res.comments.length>0){
+                    res.comments.forEach(function(val){
+                        val.pushTime=new Date(val.createTime*1000).format('yyyy-MM-dd');
+                    })
+                }
+                $scope.userComment.list=$scope.userComment.list.concat(res.comments);
+                $scope.userComment.total=res.totalPage;
+            }
+        }).error(function(){
+            $scope.alertTab('网络错误，稍后再试');
+        })
     }])
     .controller('historyInfoDetail',['$scope','$stateParams','$http','userService','$state','$ionicViewSwitcher',function($scope,$stateParams,$http,userService,$state,$ionicViewSwitcher){
         console.log($stateParams.rootId);
@@ -175,7 +221,6 @@ angular.module('ymy.detail', [])
 
                     })
                 });
-                $scope._goback(-1);
             }else{
                 $scope._goback(-1);
             }

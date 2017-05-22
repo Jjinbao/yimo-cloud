@@ -15,4 +15,33 @@
             {{voidsrc.groupName}}
         </div>
     </div>
+    <div class="info-comment">
+        <div class="info-comment-title">
+            热门评论
+        </div>
+        <div ng-show="userComment.total>0" class="info-comment-item" ng-class="{'none-bottom-border':$last}" ng-repeat="comm in userComment.list">
+            <div class="user-head">
+                <img ng-show="comm.smallImg" ng-src="{{comm.smallImg}}"/>
+            </div>
+            <div class="user-comment-name">
+                <div>
+                    {{comm.userName}}
+                </div>
+                <div>
+                    <span>{{comm.pushTime}}</span>
+                </div>
+            </div>
+            <div class="info-comment-content">
+                {{comm.content}}
+            </div>
+        </div>
+        <div class="none-comment" ng-show="userComment.total<=0">
+            还没有评论！
+        </div>
+    </div>
 </ion-content>
+<ion-footer-bar class="question-list-feed">
+    <div class="feed-ques" ng-click="toSubmitComment()">
+        发布评论
+    </div>
+</ion-footer-bar>
