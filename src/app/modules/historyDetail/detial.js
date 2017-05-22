@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('ymy.detail', [])
-    .controller('historyVideoDetail', ['$scope','$stateParams','$sce','$state','$http',function ($scope,$stateParams,$sce,$state,$http) {
+    .controller('historyVideoDetail', ['$scope','$stateParams','$sce','$state','$http','userService',function ($scope,$stateParams,$sce,$state,$http,userService) {
         // $scope.video={
         //     iframeSrc:$sce.trustAsResourceUrl('http://123.57.184.42:8080/app/teachVideo.html?id='+$stateParams.rootId+'&rootId='+$stateParams.rootId)
         // }
@@ -16,6 +16,8 @@ angular.module('ymy.detail', [])
         //    }
         //
         //})
+        //获取用户信息
+
         var myVideo=document.getElementById('detailVideo');
         $http({
             url:urlStr+'ym/album/field.api',
@@ -87,6 +89,17 @@ angular.module('ymy.detail', [])
             myVideo.pause();
 
             $scope._goback(-1);
+        }
+
+        if(userService.userMess&&userService.userMess.accountId){
+
+        }else{
+            connectWebViewJavascriptBridge(function (bridge) {
+                //回app
+                bridge.callHandler('getAppUserData', null, function (response) {
+                    userService.userMess=response;
+                })
+            });
         }
     }])
     .controller('historyInfoDetail',['$scope','$stateParams','$http','userService','$state','$ionicViewSwitcher',function($scope,$stateParams,$http,userService,$state,$ionicViewSwitcher){
