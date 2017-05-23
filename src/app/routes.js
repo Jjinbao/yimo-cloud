@@ -13,8 +13,7 @@ angular.module('swalk.route', [])
                 views: {
                     'home-tab': {
                         templateUrl: "app/modules/home/home.html",
-                        controller: 'homeCtrl',
-                        controllerAs: 'homeObj'
+                        controller: 'homeCtrl'
                     }
                 }
             })
@@ -35,6 +34,11 @@ angular.module('swalk.route', [])
                         controller: 'passageCtrl'
                     }
                 }
+            })
+            .state('addapp',{
+                url:'/home/addapp',
+                templateUrl:'app/modules/home/addapp.html',
+                controller:'addApp'
             })
             .state('passageDetail', {
                 url: "/detail/:id",

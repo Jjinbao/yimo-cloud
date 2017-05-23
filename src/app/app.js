@@ -3,6 +3,17 @@
  userId:'14490',
  token:'app_token_63420871-bd80-4183-9e5e-ed59490e284b'
  };*/
+Array.prototype.del=function(index){
+    if(isNaN(index)||index>=this.length){
+        return false;
+    }
+    for(var i=0,n=0;i<this.length;i++){
+        if(this[i]!=this[index]){
+            this[n++]=this[i];
+        }
+    }
+    this.length-=1;
+};
 var userInfoApp = {
     phone: '',
     password: ''
@@ -518,4 +529,17 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
                 });
             }
         };
-    });
+    })
+    .directive("ngTouchstart", function () {
+        return {
+            controller: ["$scope", "$element", function ($scope, $element) {
+
+                $element.bind("touchstart", onTouchStart);
+                function onTouchStart(event) {
+                    var method = $element.attr("ng-touchstart");
+                    $scope.$apply(method);
+                }
+
+            }]
+        }
+    })

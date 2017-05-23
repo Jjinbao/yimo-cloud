@@ -1,23 +1,64 @@
-@import "../../common/veriables";
-.url-img{
-  margin-top: 5px;
-  margin-bottom: 5px;
-  img{
-    width: 100%;
+.add-app-list{
+  position: relative;
+  min-height: 80px;
+  padding-left: 15px;
+  padding-top: 10px;
+  border-bottom: 1px solid gainsboro;
+  .app-img{
+    img{
+      width: 60px;
+      height: 60px;
+    }
   }
-}
-.home-scan-pay{
-  position: fixed;
-  right: 10px;
-  top: 10px;
-  z-index: 11;
-  img{
-    .px2rem(width,70);
+  .app-name{
+    position: absolute;
+    top: 0;
+    left: 90px;
+    line-height: 80px;
+  }
+  .app-add-btn{
+    line-height: 25px;
+    height: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    right: 15px;
+    top: 23px;
+    color: white;
+    background-color: @main-color;
+    border-radius: 2px;
   }
 }
 
-.home-scan-ios{
-  position: fixed;
-  .px2rem(right,15);
-  .px2rem(top,45);
+.home-app-list{
+  position: relative;
+  min-height: 50px;
+  padding-left: 15px;
+  border-bottom: none;
+  margin-bottom: 4px;
+  .app-img{
+    img{
+      width: 40px;
+      height: 40px;
+    }
+  }
+  .app-name{
+    position: absolute;
+    top: 28px;
+    left: 65px;
+    font-size: 16px;
+    line-height: 1;
+  }
+  .app-right-arrow{
+    position: absolute;
+    right: 15px;
+    top: 30px;
+    font-size: 22px;
+    color: #999;
+  }
+  .app-del-btn{
+    background-color: #ff4d44;
+    color: white;
+  }
 }
+

@@ -1,0 +1,22 @@
+<ion-view view-title="添加应用" hide-tabs="true" can-swipe-back="false">
+    <ion-header-bar align-title="center" class="bar-main-color">
+        <div class="buttons">
+            <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="backApp()">
+            </button>
+        </div>
+        <h1 class="title title-color">添加应用</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="add-app-list" ng-repeat="app in appList">
+            <div class="app-img">
+                <img ng-src="{{app.smallImage}}">
+            </div>
+            <div class="app-name">
+                {{app.appName}}
+            </div>
+            <div class="app-add-btn" ng-click="addOneApp(app)">
+                添加
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
