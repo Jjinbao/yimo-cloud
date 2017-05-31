@@ -113,10 +113,10 @@ angular.module('swalk.services', [])
             return out;
         }
     }])
-    .filter('couponName',[function(){
+    .filter('passageDescFilter',[function(){
         return function(value){
-            if(value.toString().length>12){
-                value=value.substr(0,12)+'...';
+            if(value.toString().length>13){
+                value=value.substr(0,13)+'...';
             }
             return value;
         }
