@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('ymy.detail', [])
-    .controller('historyVideoDetail', ['$scope','$stateParams','$sce','$state','$http','userService',function ($scope,$stateParams,$sce,$state,$http,userService) {
+    .controller('historyVideoDetail', ['$scope','$stateParams','$sce','$state','$http','$ionicViewSwitcher','userService',function ($scope,$stateParams,$sce,$state,$http,$ionicViewSwitcher,userService) {
         // $scope.video={
         //     iframeSrc:$sce.trustAsResourceUrl('http://123.57.184.42:8080/app/teachVideo.html?id='+$stateParams.rootId+'&rootId='+$stateParams.rootId)
         // }
@@ -17,6 +17,29 @@ angular.module('ymy.detail', [])
         //
         //})
         //获取用户信息
+        $scope.$on('$ionicView.enter',function(){
+            $http({
+                url:urlStr+'ym/comment/list.api',
+                method:'POST',
+                params:{
+                    categoryRootId:$stateParams.rootId,
+                    categoryItemId:$stateParams.id
+                }
+            }).success(function(res){
+                console.log(res);
+                if(res.result==1){
+                    if(res.comments.length>0){
+                        res.comments.forEach(function(val){
+                            val.pushTime=new Date(val.createTime*1000).format('yyyy-MM-dd');
+                        })
+                    }
+                    $scope.userComment.list=$scope.userComment.list.concat(res.comments);
+                    $scope.userComment.total=res.totalPage;
+                }
+            }).error(function(){
+                $scope.alertTab('网络错误，稍后再试');
+            })
+        })
 
         var myVideo=document.getElementById('detailVideo');
         $http({
@@ -126,27 +149,8 @@ angular.module('ymy.detail', [])
             list:[],
             total:0
         }
-        $http({
-            url:urlStr+'ym/comment/list.api',
-            method:'POST',
-            params:{
-                categoryRootId:$stateParams.rootId,
-                categoryItemId:$stateParams.id
-            }
-        }).success(function(res){
-            console.log(res);
-            if(res.result==1){
-                if(res.comments.length>0){
-                    res.comments.forEach(function(val){
-                        val.pushTime=new Date(val.createTime*1000).format('yyyy-MM-dd');
-                    })
-                }
-                $scope.userComment.list=$scope.userComment.list.concat(res.comments);
-                $scope.userComment.total=res.totalPage;
-            }
-        }).error(function(){
-            $scope.alertTab('网络错误，稍后再试');
-        })
+
+
     }])
     .controller('historyInfoDetail',['$scope','$stateParams','$http','userService','$state','$ionicViewSwitcher',function($scope,$stateParams,$http,userService,$state,$ionicViewSwitcher){
         console.log($stateParams.rootId);

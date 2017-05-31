@@ -8,7 +8,7 @@
 <div class="video-player">
 
 </div>0
-<ion-content>
+<ion-content style="bottom:50px;">
     <video id="detailVideo" ng-src="{{trustUrl(videoList.nowActiveVideo)}}" width="100%" height="auto" autoplay controls></video>
     <div class="alubm-list-panel">
         <div class="alubm-item" ng-class="{'active-alubm-item':voidsrc.id==videoList.nowActiveVideoId}" ng-repeat="voidsrc in videoList.list" ng-click="changeActiveVideo(voidsrc)">
@@ -16,10 +16,10 @@
         </div>
     </div>
     <div class="info-comment">
-        <div class="info-comment-title">
+        <div class="info-comment-title" style="padding-left: 15px;">
             热门评论
         </div>
-        <div ng-show="userComment.total>0" class="info-comment-item" ng-class="{'none-bottom-border':$last}" ng-repeat="comm in userComment.list">
+        <div ng-show="userComment.total>0" class="info-comment-item" style="padding-left: 15px;padding-right: 15px;" ng-class="{'none-bottom-border':$last}" ng-repeat="comm in userComment.list">
             <div class="user-head">
                 <img ng-show="comm.smallImg" ng-src="{{comm.smallImg}}"/>
             </div>
@@ -27,8 +27,8 @@
                 <div>
                     {{comm.userName}}
                 </div>
-                <div>
-                    <span>{{comm.pushTime}}</span>
+                <div class="pass-com-time">
+                    {{comm.pushTime}}
                 </div>
             </div>
             <div class="info-comment-content">
@@ -40,8 +40,14 @@
         </div>
     </div>
 </ion-content>
-<ion-footer-bar class="question-list-feed">
-    <div class="feed-ques" ng-click="toSubmitComment()">
-        发布评论
+<ion-footer-bar class="passage-video-comment">
+    <div class="comment-padding">
+        <div class="comment-ques" ng-click="toSubmitComment()">
+            写下评论和大家一起分享！
+        </div>
+    </div>
+
+    <div class="share-passage">
+        分享
     </div>
 </ion-footer-bar>

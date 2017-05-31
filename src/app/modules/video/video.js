@@ -70,8 +70,8 @@ angular.module('tab.video', [])
 
                     })
                 });
-                //$state.go('videoDetail', {detail:'list',rootId:1,id: val.id});
-                //$ionicViewSwitcher.nextDirection('forward');
+                $state.go('videoDetail', {detail:'list',rootId:1,id: val.id});
+                $ionicViewSwitcher.nextDirection('forward');
             }
 
             $scope.toCategory = function () {
@@ -81,8 +81,8 @@ angular.module('tab.video', [])
 
                     })
                 });
-                //$state.go('category',{});
-                //$ionicViewSwitcher.nextDirection('forward');
+                // $state.go('category',{});
+                // $ionicViewSwitcher.nextDirection('forward');
             }
 
             //搜索框

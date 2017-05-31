@@ -5,13 +5,16 @@
     </div>
     <h1 class="title title-color">文章详情</h1>
 </ion-header-bar>
-    <ion-content style="bottom:55px;">
-        <div class="info-detail-title">
-            {{detailMsg.title}}
+    <ion-content style="bottom:50px;padding-left: 15px;padding-right: 15px;">
+        <div class="passage-detail-title">
+            <div class="info-detail-title">
+                {{detailMsg.title}}
+            </div>
+            <div class="info-pub-time">
+                {{detailMsg.formateDate}}发表
+            </div>
         </div>
-        <div class="info-pub-time">
-            {{detailMsg.formateDate}}
-        </div>
+
         <div class="info-detail-body">
             <div ng-bind-html="detailMsg.text"></div>
         </div>
@@ -27,8 +30,8 @@
                     <div>
                         {{comm.userName}}
                     </div>
-                    <div>
-                        <span>{{comm.pushTime}}</span>
+                    <div class="pass-com-time">
+                        {{comm.pushTime}}
                     </div>
                 </div>
                 <div class="info-comment-content">
@@ -40,8 +43,14 @@
             </div>
         </div>
     </ion-content>
-<ion-footer-bar class="question-list-feed">
-    <div class="feed-ques" ng-click="toSubmitComment()">
-        发布评论
+<ion-footer-bar class="passage-video-comment">
+    <div class="comment-padding">
+        <div class="comment-ques" ng-click="toSubmitComment()">
+            写下评论和大家一起分享！
+        </div>
+    </div>
+
+    <div class="share-passage">
+        分享
     </div>
 </ion-footer-bar>
