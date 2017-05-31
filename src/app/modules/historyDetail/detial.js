@@ -17,7 +17,7 @@ angular.module('ymy.detail', [])
         //
         //})
         //获取用户信息
-        $scope.$on('$ionicView.enter',function(){
+        //$scope.$on('$ionicView.enter',function(){
             $http({
                 url:urlStr+'ym/comment/list.api',
                 method:'POST',
@@ -39,7 +39,7 @@ angular.module('ymy.detail', [])
             }).error(function(){
                 $scope.alertTab('网络错误，稍后再试');
             })
-        })
+        //})
 
         var myVideo=document.getElementById('detailVideo');
         $http({
