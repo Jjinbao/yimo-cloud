@@ -4,7 +4,7 @@
             <span class="ion-navicon" ng-click="toCategory()"></span>
         </div>
         <div class="video-right-search">
-            <input placeholder="搜索" ng-model="searchInfo">
+            <input placeholder="搜索" ng-model="searchInfo" ng-focus="searchOn()" ng-blur="searchOut()" ng-keyup="myKeyup($event)">
             <div class="search-btn" ng-click="searchVideo()">
                 搜索
             </div>

@@ -110,6 +110,17 @@ angular.module('tab.video', [])
                     $scope.doubleHold=false;
                 })
             }
+            $scope.searchOn=function(){
+                console.log('获得焦点');
+            }
+            $scope.searchOut=function(){
+                console.log('失去焦点');
+            }
+
+            $scope.myKeyup=function(e){
+                var keycode = window.event?e.keyCode:e.which;
+                console.log(keycode);
+            }
         }])
     .controller('category', ['$scope','$http', function ($scope,$http) {
         //获取视频分类列表

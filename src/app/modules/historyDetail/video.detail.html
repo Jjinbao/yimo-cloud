@@ -7,10 +7,30 @@
 </ion-header-bar>
 <div class="video-player">
 
-</div>0
+</div>
 <ion-content style="bottom:50px;">
-    <video id="detailVideo" ng-src="{{trustUrl(videoList.nowActiveVideo)}}" width="100%" height="auto" autoplay controls></video>
+        <video id="detailVideo" ng-src="{{trustUrl(videoList.nowActiveVideo)}}" width="100%" height="auto" autoplay controls></video>
+    <div class="alubm-info-intro">
+        <img ng-show="albuminfo.smallImage" ng-src="{{albuminfo.smallImage}}"/>
+        <div class="album-intro-title">
+            {{albuminfo.albumTitle}}
+        </div>
+        <div class="album-intro-author">
+            {{albuminfo.albumAuthor}}
+        </div>
+        <div class="album-create-time">
+            {{albuminfo.createTime}}
+        </div>
+    </div>
+    <div class="album-desc">
+        <div class="desc">
+            专辑介绍:{{albuminfo.albumDesc}}
+        </div>
+    </div>
     <div class="alubm-list-panel">
+        <div class="album-list-tile">
+            专辑列表
+        </div>
         <div class="alubm-item" ng-class="{'active-alubm-item':voidsrc.id==videoList.nowActiveVideoId}" ng-repeat="voidsrc in videoList.list" ng-click="changeActiveVideo(voidsrc)">
             {{voidsrc.groupName}}
         </div>

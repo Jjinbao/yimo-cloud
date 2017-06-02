@@ -40,7 +40,7 @@ angular.module('ymy.detail', [])
                 $scope.alertTab('网络错误，稍后再试');
             })
         //})
-
+        $scope.albuminfo
         var myVideo=document.getElementById('detailVideo');
         $http({
             url:urlStr+'ym/album/field.api',
@@ -49,7 +49,9 @@ angular.module('ymy.detail', [])
                 id:$stateParams.id
             }
         }).success(function(res){
+            console.log('--------------111----------');
             console.log(res);
+            $scope.albuminfo=res;
             getAlbumList(res.id);
 
         })
