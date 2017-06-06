@@ -49,8 +49,10 @@ angular.module('tab.passage', [])
             }
 
             $scope.getCarousel();
+            $scope.nowActiveBanner=0;
             $scope.slideHasChanged = function (val) {
-                //console.log(val);
+                console.log(val);
+                $scope.nowActiveBanner=val;
             }
             $scope.pageClick = function (val) {
                 //console.log(val);

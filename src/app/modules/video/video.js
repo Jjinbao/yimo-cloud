@@ -54,8 +54,9 @@ angular.module('tab.video', [])
             }
 
             $scope.getCarousel();
+            $scope.activeBanner=0;
             $scope.slideHasChanged = function (val) {
-
+                $scope.activeBanner=val;
             }
             $scope.pageClick = function (val) {
                 console.log(val);

@@ -11,14 +11,22 @@
         </div>
     </div>
     <ion-content class="has-header" style="background-color: white;top: 45px;">
-        <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true"
-                       slide-interval=5000 show-pager="true" delegate-handle="delegateHandler">
-            <ion-slide ng-repeat="curimg in curItem" class="my-slider-img">
-                <div class="box blue">
-                    <img ng-src="{{curimg.imgSrc}}" width="100%" ng-click="pageClick(curimg)">
+        <div style="position: relative">
+            <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true"
+                           slide-interval=5000 show-pager="true" delegate-handle="delegateHandler">
+                <ion-slide ng-repeat="curimg in curItem" class="my-slider-img">
+                    <div class="box blue">
+                        <img ng-src="{{curimg.imgSrc}}" width="100%" ng-click="pageClick(curimg)">
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+            <div class="passage-banner-dian">
+                <div class="baner-point" ng-repeat="curimg in curItem">
+                    <img src="./app/img/banner_dian@2x.png" ng-show="activeBanner==$index">
                 </div>
-            </ion-slide>
-        </ion-slide-box>
+            </div>
+        </div>
+
         <div class="video-list">
             <div class="video-category-rec">
                 <div class="left-icon">
