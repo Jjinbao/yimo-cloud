@@ -7,6 +7,10 @@ angular.module('tab.video', [])
                 $ionicSlideBoxDelegate.start();
                 $ionicSlideBoxDelegate.$getByHandle("delegateHandler").loop(true);
             })
+            $scope.styleHeight={
+                height:(document.documentElement.clientHeight-43)+'px'
+            }
+            console.log(document.documentElement.clientHeight);
             //获取视频推荐列表
             $scope.recVideoList = [];
             $http({
@@ -122,6 +126,31 @@ angular.module('tab.video', [])
                 var keycode = window.event?e.keyCode:e.which;
                 console.log(keycode);
             }
+
+
+            //获取视频分类列表
+            $scope.categoryList=[];
+            //二级分类和三级分类
+            $scope.secondCategoryList='';
+            $scope.activeCategory={
+                first:'',
+                second:'',
+                third:''
+            }
+            $http({
+                url:urlStr+'ym/category/list.api',
+                method:'POST'
+            }).success(function(data){
+                console.log(data);
+                if(data.result==1){
+                    $scope.categoryList=data.list;
+                    //初始化数据
+                    $scope.activeCategory.first=$scope.categoryList[0].id;
+                    $scope.secondCategoryList=$scope.categoryList[0].categoryList;
+
+                }
+            });
+
         }])
     .controller('category', ['$scope','$http', function ($scope,$http) {
         //获取视频分类列表

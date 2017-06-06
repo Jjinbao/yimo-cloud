@@ -44,7 +44,7 @@ function browserSyncInit(baseDir, browser) {
     startPath: '/',
     server: server,
     browser: browser,
-      port:7070
+      port:7087
   });
 }
 

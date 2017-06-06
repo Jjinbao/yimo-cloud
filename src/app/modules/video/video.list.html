@@ -1,17 +1,15 @@
 <ion-view view-title="视频列表" hide-tabs="true" hide-nav-bar="true">
     <div class="video-subheader-bar">
-        <div class="video-left-icon">
-            <span class="ion-navicon" ng-click="toCategory()"></span>
-        </div>
+        <!--<div class="video-left-icon">-->
+        <!--<span class="ion-navicon" ng-click="toCategory()"></span>-->
+        <!--</div>-->
         <div class="video-right-search">
-            <input placeholder="搜索" ng-model="searchInfo" ng-focus="searchOn()" ng-blur="searchOut()" ng-keyup="myKeyup($event)">
-            <div class="search-btn" ng-click="searchVideo()">
-                搜索
-            </div>
+            <input placeholder="搜索" ng-model="searchInfo" ng-click="searchOn()">
+            <div class="icon ion-ios-search-strong search-fangda" ng-click="searchVideo()"></div>
         </div>
     </div>
-    <ion-content class="has-header" style="background-color: white;top: 45px;">
-        <div style="position: relative">
+    <ion-content style="background-color: #f5f5f5;top: 44px;">
+        <div style="position: relative;margin-top: 0">
             <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true"
                            slide-interval=5000 show-pager="true" delegate-handle="delegateHandler">
                 <ion-slide ng-repeat="curimg in curItem" class="my-slider-img">
@@ -29,12 +27,7 @@
 
         <div class="video-list">
             <div class="video-category-rec">
-                <div class="left-icon">
-
-                </div>
-                <div class="right-title">
-                    热门视频
-                </div>
+                热门视频
             </div>
             <div class="video-list-body">
                 <div class="video-album" ng-repeat="album in recVideoList" ng-click="toAlbumDetail(album)">
@@ -45,4 +38,20 @@
             </div>
         </div>
     </ion-content>
+    <div class="video-classic" ng-style="styleHeight">
+        <div class="video-category-first" ng-repeat="first in categoryList">
+            <div class="category-title">{{first.categoryName}}</div>
+            <div class="right-flag-arrow"></div>
+            <div class="category-second-third" ng-repeat="second in first.categoryList" ng-show="false">
+                <div class="category-second-title">
+                    <div>{{second.groupName}}</div>
+                </div>
+                <div class="third-category-list" ng-repeat="third in second.childrenList">
+                    <div class="third-category-btn">
+                        {{third.groupName}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </ion-view>
