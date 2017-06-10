@@ -38,11 +38,11 @@
             </div>
         </div>
     </ion-content>
-    <div class="video-classic" ng-style="styleHeight">
+    <div class="video-classic" ng-style="styleHeight" ng-show="showCategoryList">
         <div class="video-category-first" ng-repeat="first in categoryList">
-            <div class="category-title">{{first.categoryName}}</div>
-            <div class="right-flag-arrow"></div>
-            <div class="category-second-third" ng-repeat="second in first.categoryList" ng-show="false">
+            <div class="category-title" ng-click="changeCategoryList(first.id)">{{first.categoryName}}</div>
+            <div class="right-flag-arrow" ng-class="{'right-arrow-active':nowActiveCategory==first.id}"></div>
+            <div class="category-second-third" ng-repeat="second in first.categoryList" ng-show="nowActiveCategory==first.id">
                 <div class="category-second-title">
                     <div>{{second.groupName}}</div>
                 </div>

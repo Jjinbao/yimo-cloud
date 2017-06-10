@@ -116,7 +116,7 @@ angular.module('tab.video', [])
                 })
             }
             $scope.searchOn=function(){
-                console.log('获得焦点');
+                $scope.showCategoryList=false;
             }
             $scope.searchOut=function(){
                 console.log('失去焦点');
@@ -127,7 +127,15 @@ angular.module('tab.video', [])
                 console.log(keycode);
             }
 
+            //显示隐藏分类列表
+            $scope.showCategoryList=false;
+            $scope.operateCategoryList=function(){
+                $scope.showCategoryList=!$scope.showCategoryList;
+            }
 
+
+            //当前显示的分类列表
+            $scope.nowActiveCategory=0;
             //获取视频分类列表
             $scope.categoryList=[];
             //二级分类和三级分类
@@ -145,11 +153,22 @@ angular.module('tab.video', [])
                 if(data.result==1){
                     $scope.categoryList=data.list;
                     //初始化数据
+                    $scope.nowActiveCategory=$scope.categoryList[0].id;
                     $scope.activeCategory.first=$scope.categoryList[0].id;
                     $scope.secondCategoryList=$scope.categoryList[0].categoryList;
 
                 }
             });
+
+            //切换分类列表
+            $scope.changeCategoryList=function(val){
+                if($scope.nowActiveCategory==val){
+                    $scope.nowActiveCategory=0;
+                    return;
+                }
+                $scope.nowActiveCategory=val;
+
+            }
 
         }])
     .controller('category', ['$scope','$http', function ($scope,$http) {
