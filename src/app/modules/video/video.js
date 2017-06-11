@@ -64,6 +64,7 @@ angular.module('tab.video', [])
             }
             $scope.pageClick = function (val) {
                 console.log(val);
+                $scope.toAlbumDetail(val);
             }
 
 
@@ -75,8 +76,8 @@ angular.module('tab.video', [])
 
                     })
                 });
-                $state.go('videoDetail', {detail:'list',rootId:1,id: val.id});
-                $ionicViewSwitcher.nextDirection('forward');
+                //$state.go('videoDetail', {detail:'list',rootId:1,id: val.id});
+                //$ionicViewSwitcher.nextDirection('forward');
             }
 
             $scope.toCategory = function () {
@@ -168,6 +169,24 @@ angular.module('tab.video', [])
                 }
                 $scope.nowActiveCategory=val;
 
+            }
+
+            $scope.choicedCategory=function(val){
+                console.log(val);
+                $scope.showCategoryList=false;
+                $scope.activeCategory.third=val.categoryId;
+                $http({
+                    url:urlStr+'ym/album/list.api',
+                    method:'POST',
+                    params:{
+                        rootId:val.rootId,
+                        catIdLev2:val.parentId,
+                        catIdLev3:val.categoryId
+                    }
+                }).success(function(res){
+                    console.log(res);
+                    $scope.recVideoList=res.albumList;
+                })
             }
 
         }])

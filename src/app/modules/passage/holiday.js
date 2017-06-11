@@ -70,8 +70,8 @@ angular.module('tab.passage', [])
             }
 
             $scope.toInfoDetail=function(val){
-                $state.go('infoDetail',{from:'list',rootId:val.rootId,id:val.id});
-                $ionicViewSwitcher.nextDirection('forward');
+                //$state.go('infoDetail',{from:'list',rootId:val.rootId,id:val.id});
+                //$ionicViewSwitcher.nextDirection('forward');
                 var detailData={from:'list',rootId:val.rootId,id:val.id};
                 connectWebViewJavascriptBridge(function (bridge) {
                     //回app
