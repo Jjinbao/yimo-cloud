@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('ymy.detail', [])
-    .controller('historyVideoDetail', ['$scope','$stateParams','$sce','$state','$http','$ionicViewSwitcher','userService',function ($scope,$stateParams,$sce,$state,$http,$ionicViewSwitcher,userService) {
+    .controller('historyVideoDetail', ['$rootScope','$scope','$stateParams','$sce','$state','$http','$ionicViewSwitcher','$location','userService',function ($rootScope,$scope,$stateParams,$sce,$state,$http,$ionicViewSwitcher,$location,userService) {
         // $scope.video={
         //     iframeSrc:$sce.trustAsResourceUrl('http://123.57.184.42:8080/app/teachVideo.html?id='+$stateParams.rootId+'&rootId='+$stateParams.rootId)
         // }
@@ -99,16 +99,19 @@ angular.module('ymy.detail', [])
             //screen.orientation.lock('landscape');
         })
         document.addEventListener('webkitfullscreenchange',function(e){
-            screen.orientation.lock('landscape');
-            console.log('1full screen');
+            console.log('全屏-webkit');
+            //screen.orientation.lock('landscape');
+            //console.log('1full screen');
         })
         document.addEventListener('mozfullscreenchange ',function(e){
-            screen.orientation.lock('landscape');
-            console.log('2full screen');
+            //screen.orientation.lock('landscape');
+            //console.log('2full screen');
+            console.log('全屏-moz');
         })
         document.addEventListener('fullscreenchange',function(e){
-            screen.orientation.lock('landscape');
-            console.log('3full screen');
+            //screen.orientation.lock('landscape');
+            //console.log('3full screen');
+            console.log('全屏-normal');
         })
         $scope.goBackToList=function(){
             myVideo.pause();
@@ -139,8 +142,10 @@ angular.module('ymy.detail', [])
         $scope.toSubmitComment=function(){
             myVideo.pause();
             if(!userService.userMess.accountId){
-                $state.go('login', {ragion: 'commont'});
-                $ionicViewSwitcher.nextDirection('forward');
+                $rootScope.isDetailLogin='albumComment';
+                console.log($location.url());
+                //$state.go('login', {ragion: 'commont'});
+                //$ionicViewSwitcher.nextDirection('forward');
             }else{
                 $state.go('comment',{rootId:$stateParams.rootId,id:$stateParams.id});
                 $ionicViewSwitcher.nextDirection('forward');
@@ -154,7 +159,7 @@ angular.module('ymy.detail', [])
 
 
     }])
-    .controller('historyInfoDetail',['$scope','$stateParams','$http','userService','$state','$ionicViewSwitcher',function($scope,$stateParams,$http,userService,$state,$ionicViewSwitcher){
+    .controller('historyInfoDetail',['$rootScope','$scope','$stateParams','$http','userService','$state','$location','$ionicViewSwitcher',function($rootScope,$scope,$stateParams,$http,userService,$state,$location,$ionicViewSwitcher){
         console.log($stateParams.rootId);
         console.log($stateParams.id);
         //获取用户信息
@@ -211,6 +216,11 @@ angular.module('ymy.detail', [])
 
         $scope.toSubmitComment=function(){
             if(!userService.userMess.accountId){
+                $rootScope.isDetailLogin={
+                    url:$location.url(),
+                    flag:'infoDetail'
+                };
+                console.log($rootScope.isDetailLogin);
                 $state.go('login', {ragion: 'commont'});
                 $ionicViewSwitcher.nextDirection('forward');
             }else{

@@ -162,15 +162,22 @@ angular.module('ymy.register',[])
                 $scope.doubleClick=true;
                 $scope.alertTab('网络异常,请检查网络!');
             })
+            // if(operation==1||operation==3){
+            //                     $scope.regSetName();
+            //                 }else if(operation==2){
+            //                     $scope.resetPassword();
+            //                 }
         }
 
         //注册设置用户名和密码
         $scope.regSetName=function(){
+            console.log('-----------执行的是这里--设置用户名密码');
             $state.go('regname',{phone:$scope.regInfo.phone});
             $ionicViewSwitcher.nextDirection('forward');
         }
         //重置密码
         $scope.resetPassword=function(){
+            console.log('直接重新修改密码---------');
             $state.go('newPassword',{phone:$scope.regInfo.phone});
             $ionicViewSwitcher.nextDirection('forward');
         }

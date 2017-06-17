@@ -1,8 +1,8 @@
 'use strict'
 
 angular.module('swalk.login', [])
-    .controller('userLogin', ['$scope','$http','$interval','$state','$ionicViewSwitcher','userService','$ionicHistory','$stateParams',
-        function ($scope,$http,$interval,$state,$ionicViewSwitcher,userService,$ionicHistory,$stateParams) {
+    .controller('userLogin', ['$rootScope','$scope','$http','$interval','$state','$ionicViewSwitcher','userService','$ionicHistory','$stateParams','$location',
+        function ($rootScope,$scope,$http,$interval,$state,$ionicViewSwitcher,userService,$ionicHistory,$stateParams,$location) {
             $scope.$on('$ionicView.beforeEnter',function(){
                 $scope.hideTabBar('hide');
             })
@@ -71,7 +71,9 @@ angular.module('swalk.login', [])
             }
 
             $scope.back=function(){
-
+                if($rootScope.isDetailLogin&&$rootScope.isDetailLogin.flag&&$rootScope.isDetailLogin.flag=='infoDetail'){
+                    $location.path($rootScope.isDetailLogin.url);
+                }
                 if($stateParams.ragion=='reg'||$stateParams.ragion=='setPassword'){
                   connectWebViewJavascriptBridge(function (bridge) {
                     //回app

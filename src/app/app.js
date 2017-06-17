@@ -440,9 +440,11 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
             //处理安卓返回按钮
             connectWebViewJavascriptBridge(function (bridge) {
                 bridge.registerHandler('onBack', function (response) {
+                    console.log('app-调用了h5的onBack函数-----------');
                     var stateId = $ionicHistory.currentView().stateId;
-                    if(stateId.indexOf('userinfo')>=0||stateId.indexOf('history')>=0||stateId.indexOf('helpAnFeed')>=0||stateId.indexOf('infoDetail')>=0||stateId.indexOf('videoDetail')){
-                      bridge.callHandler('backToApp', null, function (response) {
+                    if(stateId.indexOf('userinfo')>=0||stateId.indexOf('history')>=0||stateId.indexOf('helpAnFeed')>=0||stateId.indexOf('infoDetail')>=0||stateId.indexOf('videoDetail')>=0){
+                      console.log('h5去调用app的-backToApp函数-------------');
+                        bridge.callHandler('backToApp', null, function (response) {
 
                       })
                     }else if(stateId.indexOf('set')>=0&&$location.url().indexOf('/mine/set')>=0){
