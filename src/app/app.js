@@ -441,7 +441,7 @@ angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.servic
             connectWebViewJavascriptBridge(function (bridge) {
                 bridge.registerHandler('onBack', function (response) {
                     var stateId = $ionicHistory.currentView().stateId;
-                    if(stateId.indexOf('userinfo')>=0||stateId.indexOf('history')>=0||stateId.indexOf('history')>=0||stateId.indexOf('helpAnFeed')>=0){
+                    if(stateId.indexOf('userinfo')>=0||stateId.indexOf('history')>=0||stateId.indexOf('helpAnFeed')>=0||stateId.indexOf('infoDetail')>=0||stateId.indexOf('videoDetail')){
                       bridge.callHandler('backToApp', null, function (response) {
 
                       })
