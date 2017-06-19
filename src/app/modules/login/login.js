@@ -73,6 +73,7 @@ angular.module('swalk.login', [])
             $scope.back=function(){
                 if($rootScope.isDetailLogin&&$rootScope.isDetailLogin.flag&&$rootScope.isDetailLogin.flag=='infoDetail'){
                     $location.path($rootScope.isDetailLogin.url);
+                    $ionicViewSwitcher.nextDirection('back');
                 }
                 if($stateParams.ragion=='reg'||$stateParams.ragion=='setPassword'){
                   connectWebViewJavascriptBridge(function (bridge) {

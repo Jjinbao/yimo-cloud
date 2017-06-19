@@ -188,7 +188,7 @@ angular.module('ymy.register',[])
             }
         })
     }])
-    .controller('regSetName',['$scope','$state','$http','$ionicHistory','$ionicViewSwitcher','userService',function($scope,$state,$http,$ionicHistory,$ionicViewSwitcher,userService){
+    .controller('regSetName',['$rootScope','$scope','$state','$http','$ionicHistory','$ionicViewSwitcher','userService','$location',function($rootScope,$scope,$state,$http,$ionicHistory,$ionicViewSwitcher,userService,$location){
         $scope.userInfo={
             name:'',
             phone:$state.params.phone,
@@ -240,12 +240,17 @@ angular.module('ymy.register',[])
                 if(data.result==1){
                     userService.userMess=data;
                     data.realPassword=$scope.userInfo.rePassword;
-                    connectWebViewJavascriptBridge(function (bridge) {
-                    //回app
-                        bridge.callHandler('userMessage', data, function (response) {
+                    if($rootScope.isDetailLogin&&$rootScope.isDetailLogin.flag=='infoDetail'){
+                        $location.path($rootScope.isDetailLogin.url);
+                        $ionicViewSwitcher.nextDirection('back');
+                    }else{
+                        connectWebViewJavascriptBridge(function (bridge) {
+                            //回app
+                            bridge.callHandler('userMessage', data, function (response) {
 
-                        })
-                  });
+                            })
+                        });
+                    }
                     //$state.go('tabs.mine',{});
                     //$ionicViewSwitcher.nextDirection('back');
                 }else{

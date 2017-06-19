@@ -142,10 +142,12 @@ angular.module('ymy.detail', [])
         $scope.toSubmitComment=function(){
             myVideo.pause();
             if(!userService.userMess.accountId){
-                $rootScope.isDetailLogin='albumComment';
-                console.log($location.url());
-                //$state.go('login', {ragion: 'commont'});
-                //$ionicViewSwitcher.nextDirection('forward');
+                $rootScope.isDetailLogin={
+                    url:$location.url(),
+                    flag:'infoDetail'
+                };
+                $state.go('login', {ragion: 'commont'});
+                $ionicViewSwitcher.nextDirection('forward');
             }else{
                 $state.go('comment',{rootId:$stateParams.rootId,id:$stateParams.id});
                 $ionicViewSwitcher.nextDirection('forward');
