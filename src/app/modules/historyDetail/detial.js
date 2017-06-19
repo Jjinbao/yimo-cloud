@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('ymy.detail', [])
-    .controller('historyVideoDetail', ['$rootScope','$scope','$stateParams','$sce','$state','$http','$ionicViewSwitcher','$location','userService',function ($rootScope,$scope,$stateParams,$sce,$state,$http,$ionicViewSwitcher,$location,userService) {
+    .controller('historyVideoDetail', ['$rootScope','$scope','$stateParams','$sce','$state','$http','$ionicViewSwitcher','$location','userService','$timeout',function ($rootScope,$scope,$stateParams,$sce,$state,$http,$ionicViewSwitcher,$location,userService,$timeout) {
         // $scope.video={
         //     iframeSrc:$sce.trustAsResourceUrl('http://123.57.184.42:8080/app/teachVideo.html?id='+$stateParams.rootId+'&rootId='+$stateParams.rootId)
         // }
@@ -40,8 +40,12 @@ angular.module('ymy.detail', [])
                 $scope.alertTab('网络错误，稍后再试');
             })
         //})
-        $scope.albuminfo
+        $scope.albuminfo;
         var myVideo=document.getElementById('detailVideo');
+            $timeout(function(){
+                myVideo=document.getElementById('detailVideo');
+            },2000)
+            console.log(myVideo);
         $http({
             url:urlStr+'ym/album/field.api',
             method:'POST',

@@ -76,8 +76,8 @@ angular.module('tab.video', [])
 
                     })
                 });
-                //$state.go('videoDetail', {detail:'list',rootId:1,id: val.id});
-                //$ionicViewSwitcher.nextDirection('forward');
+                // $state.go('videoDetail', {detail:'list',rootId:1,id: val.id});
+                // $ionicViewSwitcher.nextDirection('forward');
             }
 
             $scope.toCategory = function () {
