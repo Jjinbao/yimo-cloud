@@ -7,11 +7,9 @@
 </ion-header-bar>
 <div class="video-player">
 
-
 </div>
 <ion-content style="bottom:50px;">
-    <iframe src="http://res.imtt.qq.com/qqbrowser/js/test_video_orientation_attr.html" style="width: 100%;height: auto"></iframe>
-        <video id="detailVideo" ng-src="{{trustUrl(videoList.nowActiveVideo)}}" x5-video-player-type="h5" x5-video-player-fullscreen="true" x5-video-orientation="landscape" style="width: 100%;height: auto" autoplay controls></video>
+        <video id="detailVideo" x5-video-player-type="h5" x5-video-player-fullscreen="true" ng-src="{{trustUrl(videoList.nowActiveVideo)}}" width="100%" height="auto" autoplay controls></video>
     <div class="alubm-info-intro">
         <img ng-show="albuminfo.smallImage" ng-src="{{albuminfo.smallImage}}"/>
         <div class="album-intro-title">

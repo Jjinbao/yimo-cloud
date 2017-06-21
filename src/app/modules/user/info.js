@@ -25,6 +25,7 @@ angular.module('swalk.userinfo', [])
                     sign:md5('ymy'+userService.userMess.accountId)
                 }
             }).success(function(data){
+                console.log(data);
                 if(data.result==1){
                     $scope.userMsg=data;
                     userService.userMess=data;
@@ -34,7 +35,7 @@ angular.module('swalk.userinfo', [])
             })
         }
 
-
+        $scope.getUserMsg();
         connectWebViewJavascriptBridge(function (bridge) {
             //回app
             bridge.callHandler('getAppUserData', null, function (response) {

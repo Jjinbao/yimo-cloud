@@ -38,6 +38,15 @@ angular.module('swalk.login', [])
 
                           })
                         });
+                      }else if($stateParams.ragion=='commont'){
+                          connectWebViewJavascriptBridge(function (bridge) {
+                              //回app
+                              bridge.callHandler('userMessage', data, function (response) {
+
+                              })
+                          });
+                          $location.path($rootScope.isDetailLogin.url);
+                          $ionicViewSwitcher.nextDirection('back');
                       }else{
                           $scope._goback(-1);
                       }

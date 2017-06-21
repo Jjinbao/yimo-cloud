@@ -186,7 +186,8 @@ angular.module('swalk.route', [])
                 params:{vsrc:'',title:''},
                 url:'/video/:detail/:rootId/:id',
                 templateUrl:'app/modules/historyDetail/video.detail.html',
-                controller:'historyVideoDetail'
+                controller:'historyVideoDetail',
+                cache:false
             })
             //图文展示页面
             .state('infoDetail',{

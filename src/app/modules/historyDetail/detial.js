@@ -26,6 +26,7 @@ angular.module('ymy.detail', [])
                     categoryItemId:$stateParams.id
                 }
             }).success(function(res){
+                console.log('00000000000000--------111111111');
                 console.log(res);
                 if(res.result==1){
                     if(res.comments.length>0){
@@ -41,6 +42,31 @@ angular.module('ymy.detail', [])
             })
         //})
         $scope.albuminfo;
+        // $scope.$on('$ionicView.beforeEnter',function(){
+        //     console.log('fanhuilaiyinggaiyaozhixng');
+        //     $http({
+        //         url:urlStr+'ym/comment/list.api',
+        //         method:'POST',
+        //         params:{
+        //             categoryRootId:$stateParams.rootId,
+        //             categoryItemId:$stateParams.id
+        //         }
+        //     }).success(function(res){
+        //         console.log('123----------------------123');
+        //         console.log(res);
+        //         if(res.result==1){
+        //             if(res.comments.length>0){
+        //                 res.comments.forEach(function(val){
+        //                     val.pushTime=new Date(val.createTime*1000).format('yyyy-MM-dd');
+        //                 })
+        //             }
+        //             $scope.userComment.list=$scope.userComment.list.concat(res.comments);
+        //             $scope.userComment.total=res.totalPage;
+        //         }
+        //     }).error(function(){
+        //         $scope.alertTab('网络错误，稍后再试');
+        //     })
+        // })
         var myVideo=document.getElementById('detailVideo');
             $timeout(function(){
                 myVideo=document.getElementById('detailVideo');
@@ -84,6 +110,10 @@ angular.module('ymy.detail', [])
                 }
             })
         }
+        // window.onresize=function(){
+        //     detailVideo.style.width=window.innerWidth+'px';
+        //     detailVideo.style.height=window.innerHeight+'px';
+        // }
         $scope.changeActiveVideo=function(val){
             $scope.videoList.nowActiveVideo=val.videoSrc;
             $scope.videoList.nowActiveVideoId=val.id;
@@ -139,6 +169,21 @@ angular.module('ymy.detail', [])
                 //回app
                 bridge.callHandler('getAppUserData', null, function (response) {
                     userService.userMess=response;
+                    if(userService.userMess&&userService.userMess.accountId){
+                        $http({
+                            url:baseUrl+'ym/history/add.api',
+                            method:'POST',
+                            params:{
+                                accountId:userService.userMess.accountId,
+                                type:'news',
+                                typeId:$stateParams.id,
+                                sign:md5('ymy' + userService.userMess.accountId + 'news'+$stateParams.id)
+                            }
+                        }).success(function(data){
+                            console.log(data);
+                        })
+                    }
+
                 })
             });
         }
@@ -216,6 +261,7 @@ angular.module('ymy.detail', [])
                 $scope.userComment.list=$scope.userComment.list.concat(res.comments);
                 $scope.userComment.total=res.totalPage;
             }
+
         }).error(function(){
             $scope.alertTab('网络错误，稍后再试');
         })
