@@ -38,6 +38,14 @@ angular.module('swalk.login', [])
 
                           })
                         });
+                      }else if($stateParams.ragion=='comment'){
+                          connectWebViewJavascriptBridge(function (bridge) {
+                              //回app
+                              bridge.callHandler('userInfoLoginMessage', data, function (response) {
+
+                              })
+                          });
+                          $scope._goback(-1);
                       }else{
                           $scope._goback(-1);
                       }
