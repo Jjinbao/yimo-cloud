@@ -24,9 +24,9 @@ angular.module('ymy.history',[])
             var timestamp=$scope.getTimeStamp();
             if(val=='应用'){
                 $state.go('application',{timestamp:timestamp});
-            }else if(val=='资讯'){
+            }else if(val=='文章'){
                 $state.go('infoMsg',{timestamp:timestamp});
-            }else if(val=='教学'){
+            }else if(val=='视频'){
                 $state.go('teaching',{timestamp:timestamp});
             }
             $ionicViewSwitcher.nextDirection('forward');
@@ -63,27 +63,46 @@ angular.module('ymy.history',[])
         };
         $scope.requesParams={
             accountId:userService.userMess.accountId,
-            type:'teach',
+            type:'album',
             categoryId:1,
-            sign:md5('ymy'+userService.userMess.accountId+'teach'),
+            sign:md5('ymy'+userService.userMess.accountId+'album'),
+            categoryId:1,
             pageNumber:1,
             pageSize:10
         };
         $scope.getTeachHistory=function(){
             $http({
-                url:urlStr+'ym/history/list.api',
-                method:'POST',
-                params:$scope.requesParams
-            }).success(function(data){
+                url: urlStr + 'ym/history/list.api',
+                method: 'POST',
+                params: $scope.requesParams
+            }).success(function (data) {
                 console.log(data);
-                if(data.result==1){
+                if (data.result == 1) {
                     $scope.teachInfo.totalPages=data.totalPage;
                     $scope.teachInfo.listInfo=$scope.teachInfo.listInfo.concat(data.list);
+                    $scope.teachInfo.listInfo.forEach(function (val) {
+                        val.date = new Date(parseInt(val.readTime) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
+                    })
                 }
-                $scope.$broadcast('scroll.infiniteScrollComplete');
-            }).error(function(){
-                $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
+            }).error(function () {
+                //$scope.$emit('my.net.break','');
+                //$scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
             })
+
+            //$http({
+            //    url:urlStr+'ym/history/list.api',
+            //    method:'POST',
+            //    params:$scope.requesParams
+            //}).success(function(data){
+            //    console.log(data);
+            //    if(data.result==1){
+            //        $scope.teachInfo.totalPages=data.totalPage;
+            //        $scope.teachInfo.listInfo=$scope.teachInfo.listInfo.concat(data.list);
+            //    }
+            //    $scope.$broadcast('scroll.infiniteScrollComplete');
+            //}).error(function(){
+            //    $scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
+            //})
         }
 
         $scope.teachChoice=function(val){

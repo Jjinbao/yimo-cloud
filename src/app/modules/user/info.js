@@ -4,6 +4,7 @@ angular.module('swalk.userinfo', [])
     .controller('userInfo', ['$scope', 'userService', '$state','$http','$ionicViewSwitcher', '$ionicActionSheet', function ($scope, userService, $state,$http,$ionicViewSwitcher, $ionicActionSheet) {
         //获取用户信息
         $scope.$on('$ionicView.beforeEnter',function(){
+            console.log('---------------------');
             $scope.hideTabBar('hide');
         })
 

@@ -215,12 +215,39 @@ angular.module('ymy.detail', [])
         console.log($stateParams.id);
         //获取用户信息
         if(userService.userMess&&userService.userMess.accountId){
-
+            console.log('这里执行了吧-------');
+            $http({
+                url:urlStr+'ym/history/add.api',
+                method:'POST',
+                params:{
+                    accountId:userService.userMess.accountId,
+                    type:'news',
+                    typeId:$stateParams.id,
+                    sign:md5('ymy' + userService.userMess.accountId + 'news'+$stateParams.id)
+                }
+            }).success(function(data){
+                console.log(data);
+            })
         }else{
             connectWebViewJavascriptBridge(function (bridge) {
                 //回app
                 bridge.callHandler('getAppUserData', null, function (response) {
                     userService.userMess=response;
+                    if(userService.userMess&&userService.userMess.accountId){
+                        $http({
+                            url:urlStr+'ym/history/add.api',
+                            method:'POST',
+                            params:{
+                                accountId:userService.userMess.accountId,
+                                type:'news',
+                                typeId:$stateParams.id,
+                                sign:md5('ymy' + userService.userMess.accountId + 'news'+$stateParams.id)
+                            }
+                        }).success(function(data){
+                            console.log(data);
+                        })
+                    }
+
                 })
             });
         }
