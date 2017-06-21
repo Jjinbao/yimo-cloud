@@ -169,6 +169,21 @@ angular.module('ymy.detail', [])
                 //回app
                 bridge.callHandler('getAppUserData', null, function (response) {
                     userService.userMess=response;
+                    if(userService.userMess&&userService.userMess.accountId){
+                        $http({
+                            url:baseUrl+'ym/history/add.api',
+                            method:'POST',
+                            params:{
+                                accountId:userService.userMess.accountId,
+                                type:'news',
+                                typeId:$stateParams.id,
+                                sign:md5('ymy' + userService.userMess.accountId + 'news'+$stateParams.id)
+                            }
+                        }).success(function(data){
+                            console.log(data);
+                        })
+                    }
+
                 })
             });
         }
@@ -246,6 +261,7 @@ angular.module('ymy.detail', [])
                 $scope.userComment.list=$scope.userComment.list.concat(res.comments);
                 $scope.userComment.total=res.totalPage;
             }
+
         }).error(function(){
             $scope.alertTab('网络错误，稍后再试');
         })

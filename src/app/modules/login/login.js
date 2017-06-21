@@ -38,14 +38,15 @@ angular.module('swalk.login', [])
 
                           })
                         });
-                      }else if($stateParams.ragion=='comment'){
+                      }else if($stateParams.ragion=='commont'){
                           connectWebViewJavascriptBridge(function (bridge) {
                               //回app
-                              bridge.callHandler('userInfoLoginMessage', data, function (response) {
+                              bridge.callHandler('userMessage', data, function (response) {
 
                               })
                           });
-                          $scope._goback(-1);
+                          $location.path($rootScope.isDetailLogin.url);
+                          $ionicViewSwitcher.nextDirection('back');
                       }else{
                           $scope._goback(-1);
                       }

@@ -241,6 +241,12 @@ angular.module('ymy.register',[])
                     userService.userMess=data;
                     data.realPassword=$scope.userInfo.rePassword;
                     if($rootScope.isDetailLogin&&$rootScope.isDetailLogin.flag=='infoDetail'){
+                        connectWebViewJavascriptBridge(function (bridge) {
+                            //回app
+                            bridge.callHandler('userMessage', data, function (response) {
+
+                            })
+                        });
                         $location.path($rootScope.isDetailLogin.url);
                         $ionicViewSwitcher.nextDirection('back');
                     }else{
@@ -263,7 +269,7 @@ angular.module('ymy.register',[])
         }
 
     }])
-    .controller('resetNewPassword',['$scope','$state','$http','$ionicHistory','$ionicViewSwitcher',function($scope,$state,$http,$ionicHistory,$ionicViewSwitcher){
+    .controller('resetNewPassword',['$rootScope','$scope','$state','$http','$ionicHistory','$ionicViewSwitcher',function($rootScope,$scope,$state,$http,$ionicHistory,$ionicViewSwitcher){
         $scope.userInfo={
             phone:$state.params.phone,
             password:'',
@@ -305,9 +311,16 @@ angular.module('ymy.register',[])
                     sign:md5('ymy'+md5($scope.userInfo.password)+$scope.userInfo.phone)
                 }
             }).success(function(data){
+                console.log(data);
                 if(data.result==1){
-                    $state.go('login',{ragion:'mine'});
-                    $ionicViewSwitcher.nextDirection('back');
+                    if($rootScope.isDetailLogin&&$rootScope.isDetailLogin.flag&&$rootScope.isDetailLogin.flag=='infoDetail'){
+                        $state.go('login',{ragion:'commont'});
+                        $ionicViewSwitcher.nextDirection('back');
+                    }else{
+                        $state.go('login',{ragion:'mine'});
+                        $ionicViewSwitcher.nextDirection('back');
+                    }
+
                 }else{
                     $scope.doubleClick=true;
                     $state.go('tabs.mine',{});
