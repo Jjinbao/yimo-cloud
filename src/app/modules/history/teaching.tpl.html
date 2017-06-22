@@ -17,7 +17,8 @@
         <div class="teaching-itmes" ng-if="panelType=='sp'">
             <div class="one-item" ng-repeat="teach in teachInfo.listInfo" ng-click="toTeachVideo(teach)">
                 <img ng-src="{{teach.album.smallImage}}">
-                <span>{{teach.album.albumTitle}}</span>
+                <div class="hist-title">{{teach.album.albumTitle}}</div>
+                <div class="album-author">{{teach.album.albumAuthor}}</div>
             </div>
         </div>
 

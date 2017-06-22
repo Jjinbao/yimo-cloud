@@ -163,7 +163,19 @@ angular.module('ymy.detail', [])
         }
 
         if(userService.userMess&&userService.userMess.accountId){
-
+            $http({
+                url:urlStr+'ym/history/add.api',
+                method:'POST',
+                params:{
+                    accountId:userService.userMess.accountId,
+                    type:'album',
+                    typeId:$stateParams.id,
+                    sign:md5('ymy' + userService.userMess.accountId + 'album'+$stateParams.id)
+                }
+            }).success(function(data){
+                console.log('-----------历史记录成功--------------');
+                console.log(data);
+            })
         }else{
             connectWebViewJavascriptBridge(function (bridge) {
                 //回app
@@ -171,13 +183,13 @@ angular.module('ymy.detail', [])
                     userService.userMess=response;
                     if(userService.userMess&&userService.userMess.accountId){
                         $http({
-                            url:baseUrl+'ym/history/add.api',
+                            url:urlStr+'ym/history/add.api',
                             method:'POST',
                             params:{
                                 accountId:userService.userMess.accountId,
-                                type:'news',
+                                type:'album',
                                 typeId:$stateParams.id,
-                                sign:md5('ymy' + userService.userMess.accountId + 'news'+$stateParams.id)
+                                sign:md5('ymy' + userService.userMess.accountId + 'album'+$stateParams.id)
                             }
                         }).success(function(data){
                             console.log(data);
@@ -215,7 +227,6 @@ angular.module('ymy.detail', [])
         console.log($stateParams.id);
         //获取用户信息
         if(userService.userMess&&userService.userMess.accountId){
-            console.log('这里执行了吧-------');
             $http({
                 url:urlStr+'ym/history/add.api',
                 method:'POST',
