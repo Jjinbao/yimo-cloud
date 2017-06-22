@@ -128,9 +128,21 @@ angular.module('ymy.history',[])
         $scope.teachChoice('sp');
 
         $scope.toTeachVideo=function(val){
-            console.log(val);
-             $state.go('videoDetail', {detail:'history',rootId:1,id: val.album.id});
-             $ionicViewSwitcher.nextDirection('forward');
+            var _u = navigator.userAgent;
+            var _isAndroid = _u.indexOf('Android') > -1 || _u.indexOf('Adr') > -1;
+            if(_isAndroid){
+                var videoId={rootId:1,id:val.album.id};
+                connectWebViewJavascriptBridge(function (bridge) {
+                    //回app
+                    bridge.callHandler('videoDetail', videoId, function (response) {
+
+                    })
+                });
+            }else{
+                $state.go('videoDetail', {detail:'history',rootId:1,id: val.album.id});
+                $ionicViewSwitcher.nextDirection('forward');
+            }
+
             // $state.go('videoDetail',{rootId:1,id:val.teach.id,vsrc:val.teach.videoSrc,title:val.teach.title});
             // $ionicViewSwitcher.nextDirection('forward');
         }

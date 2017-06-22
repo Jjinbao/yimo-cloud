@@ -36,7 +36,7 @@ angular.module('swalk.userinfo', [])
             })
         }
 
-        $scope.getUserMsg();
+        //$scope.getUserMsg();
         connectWebViewJavascriptBridge(function (bridge) {
             //回app
             bridge.callHandler('getAppUserData', null, function (response) {
