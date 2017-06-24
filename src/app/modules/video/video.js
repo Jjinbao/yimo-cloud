@@ -8,7 +8,7 @@ angular.module('tab.video', [])
                 $ionicSlideBoxDelegate.$getByHandle("delegateHandler").loop(true);
             })
             $scope.styleHeight={
-                height:(document.documentElement.clientHeight-43)+'px'
+                height:(document.documentElement.clientHeight-39)+'px'
             }
             console.log(document.documentElement.clientHeight);
             //获取视频推荐列表
