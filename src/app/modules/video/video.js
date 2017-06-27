@@ -112,6 +112,7 @@ angular.module('tab.video', [])
                 if($scope.doubleHold){
                     return;
                 }
+                $scope.activeCategory.third='a';
                 $scope.doubleHold=true;
                 $http({
                     url: urlStr + 'ym/album/list.api',
