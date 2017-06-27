@@ -196,6 +196,18 @@ angular.module('tab.video', [])
                     $scope.recVideoList=res.albumList;
                 })
             }
+            console.log('是不是安卓手机');
+            console.log(isAndroid);
+            if(!isAndroid){
+                $scope.iosBottomPadding={
+                    'padding-bottom':100+'px'
+                };
+            }else{
+                $scope.iosBottomPadding={
+                };
+            }
+
+            console.log($scope.iosBottomPadding);
 
         }])
     .controller('category', ['$scope','$http', function ($scope,$http) {

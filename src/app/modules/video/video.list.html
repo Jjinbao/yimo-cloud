@@ -33,7 +33,7 @@
                 热门视频
             </div>
             <div class="all-album" ng-click="getAllAlbum()" ng-show="activeCategory.third!=''">全部</div>
-            <div class="video-list-body">
+            <div class="video-list-body" ng-style="iosBottomPadding">
                 <div class="video-album" ng-repeat="album in recVideoList" ng-click="toAlbumDetail(album)">
                     <img ng-src="{{album.smallImage}}">
                     <div class="video-album-title">{{album.albumTitle}}</div>
