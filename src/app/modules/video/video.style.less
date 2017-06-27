@@ -78,6 +78,7 @@
 .video-list{
   margin-top: 10px;
   background-color: white;
+  position: relative;
   .video-category-rec{
     height: 45px;
     line-height: 45px;
@@ -85,6 +86,7 @@
     padding-left:15px;
     font-size: 15px;
     color: #333;
+
   }
   .video-category-rec:after{
     width: 200%;
@@ -96,6 +98,15 @@
     content: "";
     -webkit-transform: scale(0.5);
     transform: scale(0.5);
+  }
+  .all-album{
+    height: 45px;
+    line-height: 45px;
+    color: @main-color;
+    position: absolute;
+    right: 15px;
+    top: 0;
+    font-size: 15px;
   }
 
   .video-list-body{

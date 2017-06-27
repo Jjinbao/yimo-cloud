@@ -13,15 +13,26 @@ angular.module('tab.video', [])
             console.log(document.documentElement.clientHeight);
             //获取视频推荐列表
             $scope.recVideoList = [];
-            $http({
-                url: urlStr + 'ym/album/list.api',
-                method: 'POST'
-            }).success(function (res) {
-                console.log(res);
-                if (res.result == 1) {
-                    $scope.recVideoList = res.albumList;
-                }
-            })
+            $scope.activeCategory={
+                first:'',
+                second:'',
+                third:''
+            }
+            $scope.getAllAlbum=function(){
+                $scope.activeCategory.third='';
+                console.log('---------');
+                $http({
+                    url: urlStr + 'ym/album/list.api',
+                    method: 'POST'
+                }).success(function (res) {
+                    console.log(res);
+                    if (res.result == 1) {
+                        $scope.recVideoList = res.albumList;
+                    }
+                })
+            }
+            $scope.getAllAlbum();
+
             //等待app调用h5来通知h5显示什么东西
             connectWebViewJavascriptBridge(function (bridge) {
                 bridge.registerHandler('displayClassification', function (response) {
@@ -141,11 +152,7 @@ angular.module('tab.video', [])
             $scope.categoryList=[];
             //二级分类和三级分类
             $scope.secondCategoryList='';
-            $scope.activeCategory={
-                first:'',
-                second:'',
-                third:''
-            }
+
             $http({
                 url:urlStr+'ym/category/list.api',
                 method:'POST'
