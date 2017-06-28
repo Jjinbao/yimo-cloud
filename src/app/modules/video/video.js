@@ -7,10 +7,17 @@ angular.module('tab.video', [])
                 $ionicSlideBoxDelegate.start();
                 $ionicSlideBoxDelegate.$getByHandle("delegateHandler").loop(true);
             })
-            $scope.styleHeight={
-                height:(document.documentElement.clientHeight-39)+'px'
+            if(!isAndroid){
+                $scope.styleHeight={
+                    'height':(document.documentElement.clientHeight-39)+'px',
+                    'padding-bottom':80+'px'
+                }
+            }else{
+                $scope.styleHeight={
+                    height:(document.documentElement.clientHeight-39)+'px'
+                }
             }
-            console.log(document.documentElement.clientHeight);
+
             //获取视频推荐列表
             $scope.recVideoList = [];
             $scope.activeCategory={
@@ -200,7 +207,7 @@ angular.module('tab.video', [])
             console.log(isAndroid);
             if(!isAndroid){
                 $scope.iosBottomPadding={
-                    'padding-bottom':100+'px'
+                    'padding-bottom':80+'px'
                 };
             }else{
                 $scope.iosBottomPadding={
