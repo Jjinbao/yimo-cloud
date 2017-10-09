@@ -19,10 +19,19 @@
                 <span class="name-info" style="right:20px;">{{userMsg.userName}}</span>
                 <span class="icon ion-ios-arrow-right name-right-arrow"></span>
             </div>
-            <div class="userinfo-other-itme" style="border-bottom: none">
+            <div class="userinfo-other-itme">
                 账号
                 <span class="name-info">{{userMsg.randCode}}</span>
             </div>
+            <div class="userinfo-other-itme" ng-click="toModifyName()">
+                当前单位
+                <span class="name-info" style="right:20px;">当前单位</span>
+            </div>
+            <div class="userinfo-other-itme" style="border-bottom: none" ng-click="toModifyName()">
+                当前地址
+                <span class="name-info" style="right:20px;">当前地址</span>
+            </div>
+
         </div>
         <div class="user-info-sigle">
             <div class="userinfo-email-itme">
