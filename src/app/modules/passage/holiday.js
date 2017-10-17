@@ -2,16 +2,17 @@
 angular.module('tab.passage', [])
     .controller('passageCtrl', ['$scope', '$http', '$state', 'userService', '$ionicSlideBoxDelegate', '$ionicViewSwitcher',
         function ($scope, $http, $state, userService, $ionicSlideBoxDelegate, $ionicViewSwitcher) {
-            getPassageList();
+
             $scope.reqParams = {
                 pageNumber: 1,
-                pageSize: 5
+                pageSize: 60
             }
             $scope.resData = {
                 list: [],
                 totalPage: 0
             }
             function getPassageList() {
+                console.log($scope.reqParams)
                 $http({
                     url: urlStr+'ym/news/list.api',
                     method: 'POST',
@@ -26,6 +27,7 @@ angular.module('tab.passage', [])
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 })
             }
+            getPassageList();
             $scope.$on('$ionicView.afterEnter', function () {
                 $ionicSlideBoxDelegate.start();
                 $ionicSlideBoxDelegate.$getByHandle("delegateHandler").loop(true);

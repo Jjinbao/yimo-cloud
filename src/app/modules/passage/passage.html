@@ -1,5 +1,11 @@
 <ion-view view-title="文章" hide-tabs="true" hide-nav-bar="true">
     <ion-content style="background-color: white">
+        <div class="passage-serch-content">
+            <div class="video-right-search">
+                <input placeholder="搜索" ng-model="searchInfo" ng-click="searchOn()">
+                <div class="icon ion-ios-search-strong search-fangda" ng-click="searchVideo()"></div>
+            </div>
+        </div>
         <div style="position: relative">
             <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true"
                            slide-interval=5000 show-pager="true" pager-click="homeObj.pageClick(index)" delegate-handle="delegateHandler">
