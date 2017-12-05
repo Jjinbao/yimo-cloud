@@ -5,7 +5,7 @@ angular.module('swalk.services', [])
         var result = {
             //用户信息
             userMess: {
-                //accountId:5
+                accountId:57
             },
             //获取登录验证码接口
             checkCode: function (phone) {

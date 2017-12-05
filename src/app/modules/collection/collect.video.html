@@ -1,0 +1,28 @@
+<ion-header-bar align-title="center" class="bar-main-color">
+    <div class="buttons">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
+        </button>
+    </div>
+    <h1 class="title title-color">视频</h1>
+</ion-header-bar>
+<ion-content>
+    <div class="teaching-itmes" ng-if="panelType=='sp'">
+        <div class="one-item" ng-repeat="teach in videoUseList" ng-click="toTeachVideo(teach)">
+            <img ng-src="{{teach.album.smallImage}}">
+            <div class="hist-title">{{teach.album.albumTitle}}</div>
+            <div class="album-author">{{teach.album.albumAuthor}}</div>
+        </div>
+    </div>
+
+    <div class="info-set-itmes" ng-if="panelType=='tw'">
+        <div class="list">
+            <div class="item item-thumbnail-left tuwen-style" ng-repeat="twInfo in teachInfo.listInfo" ng-click="toTwInfoDetail(twInfo)">
+                <img ng-src="{{twInfo.teach.imgSrc}}">
+                <p>{{twInfo.teach.title}}</p>
+                <p class="item-sub-header">{{twInfo.teach.extstr1}}</p>
+            </div>
+        </div>
+    </div>
+    <ion-infinite-scroll ng-if="requesParams.pageNumber<teachInfo.totalPages" on-infinite="loadMoreDate()" distance="1%" immediate-check="false">
+    </ion-infinite-scroll>
+</ion-content>

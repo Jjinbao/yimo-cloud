@@ -211,6 +211,21 @@ angular.module('swalk.route', [])
                 templateUrl:'app/modules/video/category.tpl.html',
                 controller:'category'
             })
+            .state('collection',{
+                url:'/collect',
+                templateUrl:'app/modules/collection/choice.html',
+                controller:'collect'
+            })
+            .state('collectPassage',{
+                url:'/collectpassage',
+                templateUrl:'app/modules/collection/collect.passage.html',
+                controller:'collectpassage'
+            })
+            .state('collectVideo',{
+                url:'/collectvideo',
+                templateUrl:'app/modules/collection/collect.video.html',
+                controller:'collectvideo'
+            })
 
         $urlRouterProvider.otherwise("/tab/video");
     });
