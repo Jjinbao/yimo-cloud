@@ -9,9 +9,7 @@ angular.module('ymy.collect',[])
             $ionicViewSwitcher.nextDirection('forward');
         }
     }])
-    .controller('collectpassage',['$scope','userService','$http',function($scope,userService,$http){
-        console.log('passage');
-        console.log(userService.userMess.accountId)
+    .controller('collectpassage',['$scope','userService','$http','$state','$ionicViewSwitcher',function($scope,userService,$http,$state,$ionicViewSwitcher){
         $http({
             url: urlStr + 'ym/collection/list.api',
             method: 'POST',
@@ -35,10 +33,12 @@ angular.module('ymy.collect',[])
             scope.$emit('my.net.break','');
             //$scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
         })
+        $scope.toInfoDetail=function(val){
+            $state.go('infoDetail',{from:'collect',rootId:9,id:val.news.id});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
     }])
-    .controller('collectvideo',['$scope','userService','$http',function($scope,userService,$http){
-        console.log('video');
-        console.log(userService.userMess.accountId)
+    .controller('collectvideo',['$scope','userService','$http','$state','$ionicViewSwitcher',function($scope,userService,$http,$state,$ionicViewSwitcher){
         $scope.panelType='sp';
         $http({
             url: urlStr + 'ym/collection/list.api',
@@ -60,4 +60,8 @@ angular.module('ymy.collect',[])
         }).error(function () {
             //$scope.alertTab('网络异常,请检查网络!',$scope.netBreakBack);
         })
+        $scope.toTeachVideo=function(val){
+            $state.go('videoDetail', {detail:'collect',rootId:1,id: val.id});
+            $ionicViewSwitcher.nextDirection('forward');
+        }
     }])
