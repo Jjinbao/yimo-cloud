@@ -1,11 +1,18 @@
 <ion-view view-title="文章" hide-tabs="true" hide-nav-bar="true">
-    <ion-content style="background-color: white">
-        <div class="passage-serch-content">
-            <div class="video-right-search">
-                <input placeholder="搜索" ng-model="searchInfo" ng-click="searchOn()">
-                <div class="icon ion-ios-search-strong search-fangda" ng-click="searchVideo()"></div>
-            </div>
+    <div class="passage-serch-content">
+        <div class="video-right-search" style="padding-left: 0;width: 100%">
+            <input placeholder="搜索" ng-model="searchInfo">
+            <div class="icon ion-ios-search-strong search-fangda" ng-click="searchPassage()"></div>
         </div>
+    </div>
+    <div class="passage-classic">
+        <div class="classic-item" ng-class="{true:'classic-item-active'}[nowClassic=='0']" ng-click="choiceClassic(0)">全部</div>
+        <div class="classic-item" ng-class="{true:'classic-item-active'}[nowClassic=='1101']" ng-click="choiceClassic(1101)">操作规范</div>
+        <div class="classic-item" ng-class="{true:'classic-item-active'}[nowClassic=='1102']" ng-click="choiceClassic(1102)">赛事掠影</div>
+        <div class="classic-item" ng-class="{true:'classic-item-active'}[nowClassic=='1103']" ng-click="choiceClassic(1103)">会议分享</div>
+        <div class="classic-item" ng-class="{true:'classic-item-active'}[nowClassic=='1104']" ng-click="choiceClassic(1104)">公司资讯</div>
+    </div>
+    <ion-content style="background-color: #f5f5f5;top: 91px;padding-top: 10px;">
         <div style="position: relative">
             <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true"
                            slide-interval=5000 show-pager="true" pager-click="homeObj.pageClick(index)" delegate-handle="delegateHandler">

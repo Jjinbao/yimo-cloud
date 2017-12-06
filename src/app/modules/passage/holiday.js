@@ -5,7 +5,11 @@ angular.module('tab.passage', [])
 
             $scope.reqParams = {
                 pageNumber: 1,
-                pageSize: 60
+                pageSize: 60,
+                categoryId:'',
+                title:'',
+                searchInfo:'',
+
             }
             $scope.resData = {
                 list: [],
@@ -81,5 +85,39 @@ angular.module('tab.passage', [])
                         //userService.userMess=response;
                     })
                 });
+            }
+            $scope.nowClassic='0';
+            $scope.choiceClassic=function(val){
+                if(val==$scope.nowClassic){return;}
+                $scope.nowClassic=val;
+                $scope.reqParams = {
+                    pageNumber: 1,
+                    pageSize: 60
+                }
+                $scope.reqParams.categoryId=(val=='0'?'':val);
+                $scope.reqParams.title='';
+                $scope.reqParams.searchInfo='';
+                $scope.resData = {
+                    list: [],
+                    totalPage: 0
+                }
+                getPassageList();
+            }
+
+            $scope.searchInfo='';
+            $scope.searchPassage=function(){
+
+                //如果没有搜索内容，返回
+                // if(!$scope.searchInfo){
+                //     return;
+                // }
+                $scope.reqParams.title=encodeURI($scope.searchInfo);
+                $scope.reqParams.categoryId='';
+                $scope.nowClassic='0';
+                $scope.resData = {
+                    list: [],
+                    totalPage: 0
+                }
+                getPassageList();
             }
         }])
