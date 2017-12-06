@@ -1,5 +1,19 @@
 angular.module('ymy.collect',[])
-    .controller('collect',['$scope','$state','$ionicViewSwitcher',function($scope,$state,$ionicViewSwitcher){
+    .controller('collect',['$scope','$state','$ionicViewSwitcher','userService',function($scope,$state,$ionicViewSwitcher,userService){
+        connectWebViewJavascriptBridge(function (bridge) {
+            //回app
+            bridge.callHandler('getAppUserData', null, function (response) {
+                userService.userMess=response;
+            })
+        });
+        $scope.backApp=function(){
+            connectWebViewJavascriptBridge(function (bridge) {
+                //回app
+                bridge.callHandler('backToApp', null, function (response) {
+
+                })
+            });
+        }
         $scope.toCollectPassage=function(){
             $state.go('collectPassage',{})
             $ionicViewSwitcher.nextDirection('forward');
