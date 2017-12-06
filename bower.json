@@ -11,7 +11,8 @@
     "angular-carousel": "^1.0.1",
     "angularjs-slider": "^5.8.0",
     "Waves": "waves#0.7.5",
-    "angular-touch": "1.5.8"
+    "angular-touch": "1.5.8",
+    "ionic-citypicker": "*"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.9"

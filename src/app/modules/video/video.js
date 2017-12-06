@@ -94,6 +94,7 @@ angular.module('tab.video', [])
 
                     })
                 });
+                // console.log(val);
                 // $state.go('videoDetail', {detail:'list',rootId:1,id: val.id});
                 // $ionicViewSwitcher.nextDirection('forward');
             }

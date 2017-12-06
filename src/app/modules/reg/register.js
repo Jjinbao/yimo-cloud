@@ -117,6 +117,7 @@ angular.module('ymy.register',[])
         $scope.doubleClick=true;
 
         $scope.ensureCode=function(){
+            $scope.regSetName();
             if(!$scope.regInfo.phone||!$scope.regInfo.code){
                 $scope.alertTab('请填写手机号和验证码');
                 return;
@@ -167,11 +168,11 @@ angular.module('ymy.register',[])
             //                 }else if(operation==2){
             //                     $scope.resetPassword();
             //                 }
+
         }
 
         //注册设置用户名和密码
         $scope.regSetName=function(){
-            console.log('-----------执行的是这里--设置用户名密码');
             $state.go('regname',{phone:$scope.regInfo.phone});
             $ionicViewSwitcher.nextDirection('forward');
         }
@@ -193,7 +194,9 @@ angular.module('ymy.register',[])
             name:'',
             phone:$state.params.phone,
             password:'',
-            rePassword:''
+            rePassword:'',
+            company:'',
+
         }
 
         $scope.back=function(){
@@ -226,6 +229,14 @@ angular.module('ymy.register',[])
                 $scope.alertTab('两次输入密码不一致');
                 return;
             }
+            if(!$scope.userInfo.company){
+                $scope.alertTab('请输入单位名称');
+                return;
+            }
+            if(!$scope.choiceCity.prov){
+                $scope.alertTab('请选择省份城市');
+                return;
+            }
 
             $http({
                 url:urlStr+'ym/account/register.api',
@@ -234,7 +245,10 @@ angular.module('ymy.register',[])
                     phone:$scope.userInfo.phone,
                     userName:encodeURI($scope.userInfo.name),
                     password:md5($scope.userInfo.password),
-                    sign:md5('ymy'+md5($scope.userInfo.password)+$scope.userInfo.phone+$scope.userInfo.name)
+                    sign:md5('ymy'+md5($scope.userInfo.password)+$scope.userInfo.phone+$scope.userInfo.name),
+                    province:$scope.choiceCity.prov,
+                    city:$scope.choiceCity.city,
+                    company:$scope.userInfo.company,
                 }
             }).success(function(data){
                 if(data.result==1){
@@ -267,7 +281,27 @@ angular.module('ymy.register',[])
                 $scope.alertTab('网络异常,请检查网络!');
             })
         }
-
+        //选择城市
+        $scope.choiceProvCity=function(){
+            connectWebViewJavascriptBridge(function (bridge) {
+                //回app
+                bridge.callHandler('choiceProvCity', null, function (response) {
+                })
+            });
+        }
+        //接受选择到的城市
+        $scope.choiceCity={
+            prov:'',
+            city:''
+        }
+        $scope.cityResult='地址'
+        connectWebViewJavascriptBridge(function (bridge) {
+            bridge.registerHandler('choiceProvCity', function (response) {
+                $scope.choiceCity.prov=response.prov;
+                $scope.choiceCity.city=response.city;
+                $scope.cityResult=response.prov+' '+response.city;
+            })
+        });
     }])
     .controller('resetNewPassword',['$rootScope','$scope','$state','$http','$ionicHistory','$ionicViewSwitcher',function($rootScope,$scope,$state,$http,$ionicHistory,$ionicViewSwitcher){
         $scope.userInfo={

@@ -220,6 +220,46 @@ angular.module('ymy.detail', [])
             total:0
         }
 
+        $scope.holdDouble=false
+        $scope.subCollect=function(){
+            console.log($stateParams.id);
+            if($scope.holdDouble){
+                return;
+            }
+            $scope.holdDouble=true;
+
+            $http({
+                url:urlStr+'ym/collection/add.api',
+                method:'POST',
+                params:{
+                    accountId:userService.userMess.accountId,
+                    type:'album',
+                    typeId:$stateParams.id,
+                    sign:md5('ymy' + userService.userMess.accountId + 'album'+$stateParams.id)
+                }
+            }).success(function(res){
+                if(res.result==1){
+                    $scope.alertTab('收藏成功');
+                }else{
+                    $scope.alertTab('收藏失败');
+                }
+                $scope.holdDouble=false;
+            })
+        }
+
+        $scope.storePassage=function(){
+            if(!userService.userMess.accountId){
+                $rootScope.isDetailLogin={
+                    url:$location.url(),
+                    flag:'infoDetail'
+                };
+                $state.go('login', {ragion: 'commont'});
+                $ionicViewSwitcher.nextDirection('forward');
+            }else{
+                $scope.subCollect();
+            }
+        }
+
 
     }])
     .controller('historyInfoDetail',['$rootScope','$scope','$stateParams','$http','userService','$state','$location','$ionicViewSwitcher',function($rootScope,$scope,$stateParams,$http,userService,$state,$location,$ionicViewSwitcher){
@@ -330,5 +370,31 @@ angular.module('ymy.detail', [])
             }else{
                 $scope._goback(-1);
             }
+        }
+
+        $scope.holdCollectDoubleClick=false;
+        $scope.storePassage=function(){
+            if($scope.holdCollectDoubleClick){
+                return;
+            }
+            //ym/collection/add.api
+            $scope.holdCollectDoubleClick=true;
+            $http({
+                url:urlStr+'ym/collection/add.api',
+                method:'POST',
+                params:{
+                    accountId:userService.userMess.accountId,
+                    type:'news',
+                    typeId:$stateParams.id,
+                    sign:md5('ymy' + userService.userMess.accountId + 'news'+$stateParams.id)
+                }
+            }).success(function(data){
+                if(data.result==1){
+                    $scope.alertTab('收藏成功');
+                }else{
+                    $scope.alertTab('收藏失败');
+                }
+                $scope.holdCollectDoubleClick=false;
+            })
         }
     }])
