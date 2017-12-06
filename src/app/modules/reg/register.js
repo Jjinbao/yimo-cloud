@@ -117,7 +117,7 @@ angular.module('ymy.register',[])
         $scope.doubleClick=true;
 
         $scope.ensureCode=function(){
-            $scope.regSetName();
+            //$scope.regSetName();
             if(!$scope.regInfo.phone||!$scope.regInfo.code){
                 $scope.alertTab('请填写手机号和验证码');
                 return;
@@ -300,6 +300,7 @@ angular.module('ymy.register',[])
                 $scope.choiceCity.prov=response.prov;
                 $scope.choiceCity.city=response.city;
                 $scope.cityResult=response.prov+' '+response.city;
+                $scope.$digest();
             })
         });
     }])
