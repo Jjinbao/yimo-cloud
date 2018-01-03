@@ -82,7 +82,15 @@ angular.module('tab.video', [])
             }
             $scope.pageClick = function (val) {
                 console.log(val);
-                $scope.toAlbumDetail(val);
+                var videoId={rootId:1,id:val.itemId};
+                connectWebViewJavascriptBridge(function (bridge) {
+                    //回app
+                    bridge.callHandler('videoDetail', videoId, function (response) {
+
+                    })
+                });
+                // $state.go('videoDetail', {detail:'list',rootId:1,id: val.itemId});
+                // $ionicViewSwitcher.nextDirection('forward');
             }
 
 
