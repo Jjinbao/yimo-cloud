@@ -62,7 +62,7 @@ angular.module('tab.video', [])
                     url: urlStr + 'ym/show/list.api',
                     method: 'POST',
                     params: {
-                        rootId: 9
+                        rootId: 1
                     }
                 }).success(function (res) {
                     if (res.result == 1) {
@@ -82,15 +82,8 @@ angular.module('tab.video', [])
             }
             $scope.pageClick = function (val) {
                 console.log(val);
-                var videoId={rootId:1,id:val.itemId};
-                connectWebViewJavascriptBridge(function (bridge) {
-                    //回app
-                    bridge.callHandler('videoDetail', videoId, function (response) {
+                $scope.toAlbumDetail({id:val.itemId});
 
-                    })
-                });
-                // $state.go('videoDetail', {detail:'list',rootId:1,id: val.itemId});
-                // $ionicViewSwitcher.nextDirection('forward');
             }
 
 
@@ -102,8 +95,8 @@ angular.module('tab.video', [])
 
                     })
                 });
-                // $state.go('videoDetail', {detail:'list',rootId:1,id: val.id});
-                // $ionicViewSwitcher.nextDirection('forward');
+                $state.go('videoDetail', {detail:'list',rootId:1,id: val.id});
+                $ionicViewSwitcher.nextDirection('forward');
             }
 
             $scope.toCategory = function () {

@@ -52,7 +52,6 @@ angular.module('ymy.register',[])
             if(!$scope.canGetCode){
                 return;
             }
-            console.log('0000000000000');
             if(!$scope.regInfo.phone){
                 $scope.alertTab('请填写正确的手机号');
                 return;
@@ -103,6 +102,8 @@ angular.module('ymy.register',[])
                         $scope.alertTab('手机号已经注册');
                     }else if(data.result==104){
                         $scope.alertTab('手机号还没有注册');
+                    }else{
+                        $scope.alertTab('获取验证码失败');
                     }
                     $scope.canGetCode=true;
                 }

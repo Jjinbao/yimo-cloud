@@ -173,7 +173,7 @@ angular.module('swalk.userinfo', [])
                 return;
             }
             if(!$scope.password.oldPassword){
-                $scope.alertTab('请输入旧密码');
+                $scope.alertTab('请输入旧密码!');
                 return;
             }
 
@@ -183,14 +183,20 @@ angular.module('swalk.userinfo', [])
           //}
 
             if(!$scope.password.newPassword){
-                $scope.alertTab('请输入新密码');
+                $scope.alertTab('请输入新密码!');
                 return;
             }
 
+
+
           if($scope.password.newPassword.length<8){
-            $scope.alertTab('新密码不能少于8位');
+            $scope.alertTab('新密码不能少于8位!');
             return;
           }
+            if($scope.password.newPassword==$scope.password.oldPassword){
+                $scope.alertTab('新密码和旧密码不能相同!');
+                return;
+            }
 
             $scope.doubleClick=true;
             $http({
@@ -211,6 +217,7 @@ angular.module('swalk.userinfo', [])
                     })
                   });
                     $scope._goback(-1);
+                    $scope.alertTab('修改成功');
                 }else if(data.result==103){
                     $scope.alertTab('当前密码输入错误');
                 }
