@@ -356,7 +356,7 @@ angular.module('ymy.register',[])
                         $state.go('login',{ragion:'mine'});
                         $ionicViewSwitcher.nextDirection('back');
                     }
-
+                    $scope.alertTab('修改成功');
                 }else{
                     $scope.doubleClick=true;
                     $state.go('tabs.mine',{});

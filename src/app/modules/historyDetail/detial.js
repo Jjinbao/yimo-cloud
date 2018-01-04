@@ -240,6 +240,8 @@ angular.module('ymy.detail', [])
             }).success(function(res){
                 if(res.result==1){
                     $scope.alertTab('收藏成功');
+                }else if(res.result==104){
+                    $scope.alertTab('已经收藏，不能重复收藏');
                 }else{
                     $scope.alertTab('收藏失败');
                 }

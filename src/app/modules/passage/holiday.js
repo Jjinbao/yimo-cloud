@@ -16,7 +16,6 @@ angular.module('tab.passage', [])
                 totalPage: 0
             }
             function getPassageList() {
-                console.log($scope.reqParams)
                 $http({
                     url: urlStr+'ym/news/list.api',
                     method: 'POST',
