@@ -5,7 +5,7 @@
     </div>
     <h1 class="title title-color">反馈记录</h1>
 </ion-header-bar>
-    <ion-content>
+    <ion-content class="common-content-top">
         <div ng-show="resData.totalNum>0">
             <div class="feed-back-record" ng-click="toDetail(que)" ng-repeat="que in resData.list">
                 <div class="feed-back-question" ng-class="{'feed-back-record-last':$last}">

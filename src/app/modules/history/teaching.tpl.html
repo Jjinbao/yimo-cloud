@@ -13,7 +13,7 @@
             <!--图文-->
         <!--</div>-->
     <!--</ion-header-bar>-->
-    <ion-content>
+    <ion-content class="common-content-top">
         <div class="teaching-itmes" ng-if="panelType=='sp'">
             <div class="one-item" ng-repeat="teach in teachInfo.listInfo" ng-click="toTeachVideo(teach)">
                 <img ng-src="{{teach.album.smallImage}}">

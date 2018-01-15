@@ -12,7 +12,7 @@
         <div class="classic-item" ng-class="{true:'classic-item-active'}[nowClassic=='1103']" ng-click="choiceClassic(1103)">会议分享</div>
         <div class="classic-item" ng-class="{true:'classic-item-active'}[nowClassic=='1104']" ng-click="choiceClassic(1104)">公司资讯</div>
     </div>
-    <ion-content style="background-color: #f5f5f5;top: 91px;padding-top: 10px;">
+    <ion-content class="content-top" style="background-color: #f5f5f5;padding-top: 10px;">
         <div style="position: relative">
             <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" does-continue="true"
                            slide-interval=5000 show-pager="true" pager-click="homeObj.pageClick(index)" delegate-handle="delegateHandler">

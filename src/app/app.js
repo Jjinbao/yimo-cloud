@@ -149,6 +149,11 @@ Array.prototype.remove = function (obj) {
         }
     }
 }
+if(window.screen.height==812){
+    var body = document.querySelector('body');
+    var bodyClass = body.getAttribute('class');
+    body.setAttribute('class', bodyClass + ' app');
+}
 
 angular.module('app', ['ionic', 'angular-carousel', 'swalk.route', 'swalk.services', 'tab.home', 'tab.video', 'tab.passage', 'tab.mine',
     'swalk.login', 'ymy.register', 'ymy.help.feed', 'ymy.history', 'swalk.userinfo', 'swalk.setting', 'ymy.detail', 'swalk.about',
