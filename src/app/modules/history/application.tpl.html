@@ -8,7 +8,9 @@
     <ion-content class="common-content-top">
         <!--<div class="history-top-magin"></div>-->
         <div class="application-itmes" ng-repeat="app in appList">
-            <div class="app-logo"></div>
+            <div class="app-logo">
+                <img style="width: 100%;height: 100%" ng-src="{{app.app.smallImage}}">
+            </div>
             <div class="app-sys-name">{{app.app.appName}}<div class="app-type">{{app.date}}</div></div>
         </div>
     </ion-content>

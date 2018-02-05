@@ -23,13 +23,15 @@
                 账号
                 <span class="name-info">{{userMsg.randCode}}</span>
             </div>
-            <div class="userinfo-other-itme">
+            <div class="userinfo-other-itme" ng-click="toModifyCompany()">
                 单位
-                <span class="name-info" style="right:0px;">{{userMsg.company}}</span>
+                <span class="name-info" style="right:0px;padding-right: 20px;">{{userMsg.company}}</span>
+                <div class="icon ion-ios-arrow-right portrait-right-arraw" style="float: right;color: #d5d5d5;font-size: 22px;"></div>
             </div>
-            <div class="userinfo-other-itme" style="border-bottom: none">
+            <div class="userinfo-other-itme" ng-click="choiceProvCity()" style="border-bottom: none">
                 地址
-                <span class="name-info" style="right:0px;">{{userMsg.province}} {{userMsg.city}}</span>
+                <span class="name-info" style="right:0px;padding-right: 20px;">{{userMsg.province}} {{userMsg.city}}</span>
+                <div class="icon ion-ios-arrow-right portrait-right-arraw" style="float: right;color: #d5d5d5;font-size: 22px;"></div>
             </div>
 
         </div>

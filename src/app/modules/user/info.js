@@ -95,6 +95,16 @@ angular.module('swalk.userinfo', [])
             $ionicViewSwitcher.nextDirection('forward');
         }
 
+        //去修改单位名称
+        $scope.toModifyCompany=function(e){
+            $state.go('setUserCompany',{})
+        }
+
+        //去修改所在地址
+        $scope.toModifyAddress=function(e){
+            $state.go('setUserAddress',{})
+        }
+
         //去修改密码
         $scope.toModifyPassowrd = function () {
             $state.go('modifyPassowrd', {});
@@ -118,6 +128,58 @@ angular.module('swalk.userinfo', [])
                 $scope.userMsg.smallImg = response.smallImg;
                 $scope.$digest();
                 responseCallback();
+            })
+        });
+
+        //选择城市
+        $scope.choiceProvCity=function(){
+            connectWebViewJavascriptBridge(function (bridge) {
+                //回app
+                bridge.callHandler('choiceProvCity', null, function (response) {
+                })
+            });
+        }
+        //接受选择到的城市
+        $scope.choiceCity={
+            prov:'',
+            city:''
+        }
+        $scope.cityResult='地址'
+        connectWebViewJavascriptBridge(function (bridge) {
+            bridge.registerHandler('choiceProvCity', function (response) {
+                $scope.userMsg.province=response.prov;
+                $scope.userMsg.city=response.city;
+                //$scope.cityResult=response.prov+' '+response.city;
+                $scope.$digest();
+
+                $http({
+                    url:urlStr+'ym/account/updateInfo.api',
+                    method:'POST',
+                    params:{
+                        accountId:userService.userMess.accountId,
+                        userName:encodeURI(userService.userMess.userName),
+                        company:encodeURI(userService.userMess.company),
+                        province:encodeURI($scope.userMsg.province),
+                        city:encodeURI($scope.userMsg.city),
+                        sign:md5('ymy'+userService.userMess.accountId+userService.userMess.userName)
+                    }
+                }).success(function(data){
+                    if(data.result==1){
+                        //userService.userMess.userName=$scope.user.name;
+                        // var userName={userName:$scope.user.name}
+                        // connectWebViewJavascriptBridge(function (bridge) {
+                        //     //回app
+                        //     bridge.callHandler('modifyUserName', userName, function (response) {
+                        //
+                        //     })
+                        // });
+                        $scope._goback(-1);
+                    }else{
+
+                    }
+                }).error(function(){
+                    $scope.alertTab('网络异常,请检查网络!');
+                })
             })
         });
     }])
@@ -160,6 +222,47 @@ angular.module('swalk.userinfo', [])
         $scope.cleanName = function () {
             $scope.user.name = '';
         }
+    }])
+    .controller('setUserAddress',['$scope','userService',function($scope,userService){
+        console.log('address')
+    }])
+    .controller('setUserCompany',['$scope','userService','$http',function($scope,userService,$http){
+        console.log('company')
+        $scope.companyName=userService.userMess.company;
+        $scope.sureSubmit = function () {
+            if (!$scope.companyName) {
+                $scope.alertTab('请输入正确的用户名');
+                return;
+            }
+            $http({
+                url:urlStr+'ym/account/updateInfo.api',
+                method:'POST',
+                params:{
+                    accountId:userService.userMess.accountId,
+                    userName:encodeURI(userService.userMess.userName),
+                    company:encodeURI($scope.companyName),
+                    province:encodeURI(userService.userMess.province),
+                    city:encodeURI(userService.userMess.city),
+                    sign:md5('ymy'+userService.userMess.accountId+userService.userMess.userName)
+                }
+            }).success(function(data){
+                if(data.result==1){
+                    //userService.userMess.userName=$scope.user.name;
+                    // var userName={userName:$scope.user.name}
+                    // connectWebViewJavascriptBridge(function (bridge) {
+                    //     //回app
+                    //     bridge.callHandler('modifyUserName', userName, function (response) {
+                    //
+                    //     })
+                    // });
+                    $scope._goback(-1);
+                }else{
+
+                }
+            }).error(function(){
+                $scope.alertTab('网络异常,请检查网络!');
+            })
+        };
     }])
     .controller('setUserPassword', ['$scope', '$state','$http', '$ionicViewSwitcher','userService', function ($scope, $state,$http, $ionicViewSwitcher,userService) {
 

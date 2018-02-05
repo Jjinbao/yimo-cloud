@@ -102,6 +102,20 @@ angular.module('swalk.route', [])
                 controller:'setUserName',
                 cache:false
             })
+            //修改用户公司名称
+            .state('setUserCompany',{
+                url:'/modify/company',
+                templateUrl:'app/modules/user/set.company.html',
+                controller:'setUserCompany',
+                cache:false
+            })
+            //修改用户地址
+            .state('setUserAddress',{
+                url:'/modify/address',
+                templateUrl:'app/modules/user/set.address.html',
+                controller:'setUserAddress',
+                cache:false
+            })
             //修改登录密码
             .state('modifyPassowrd',{
                 url:'/modify/password',

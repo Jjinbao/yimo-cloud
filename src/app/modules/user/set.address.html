@@ -1,0 +1,16 @@
+<ion-header-bar align-title="center" class="bar-main-color">
+    <div class="buttons">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;" ng-click="_goback(-1)">
+        </button>
+    </div>
+    <h1 class="title title-color">修改用户名</h1>
+    <div class="buttons" ng-click="sureSubmit()" style="right:16px;">
+        <span class="title-right-btn">确定</span>
+    </div>
+</ion-header-bar>
+<ion-content overflow-scroll="false" class="common-content-top">
+    <div class="modify-user-name">
+        <input type="text" ng-model="user.name" placeholder="请输入用户名">
+        <div class="clean-name" ng-click="cleanName()" ng-show="user.name"></div>
+    </div>
+</ion-content>
