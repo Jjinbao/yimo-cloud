@@ -227,20 +227,22 @@ angular.module('swalk.userinfo', [])
         console.log('address')
     }])
     .controller('setUserCompany',['$scope','userService','$http',function($scope,userService,$http){
-        console.log('company')
-        $scope.companyName=userService.userMess.company;
+        $scope.companyName={
+            name:userService.userMess.company
+        }
         $scope.sureSubmit = function () {
-            if (!$scope.companyName) {
-                $scope.alertTab('请输入正确的用户名');
+            if (!$scope.companyName.name) {
+                $scope.alertTab('请输入正确的单位名称');
                 return;
             }
+            console.log($scope.companyName.name);
             $http({
                 url:urlStr+'ym/account/updateInfo.api',
                 method:'POST',
                 params:{
                     accountId:userService.userMess.accountId,
                     userName:encodeURI(userService.userMess.userName),
-                    company:encodeURI($scope.companyName),
+                    company:encodeURI($scope.companyName.name),
                     province:encodeURI(userService.userMess.province),
                     city:encodeURI(userService.userMess.city),
                     sign:md5('ymy'+userService.userMess.accountId+userService.userMess.userName)
