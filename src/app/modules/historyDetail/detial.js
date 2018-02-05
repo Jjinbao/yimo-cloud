@@ -379,6 +379,17 @@ angular.module('ymy.detail', [])
             if($scope.holdCollectDoubleClick){
                 return;
             }
+
+            if(!userService.userMess.accountId){
+                $rootScope.isDetailLogin={
+                    url:$location.url(),
+                    flag:'infoDetail'
+                };
+                $state.go('login', {ragion: 'commont'});
+                $ionicViewSwitcher.nextDirection('forward');
+                return;
+            }
+
             //ym/collection/add.api
             $scope.holdCollectDoubleClick=true;
             $http({
@@ -393,6 +404,8 @@ angular.module('ymy.detail', [])
             }).success(function(data){
                 if(data.result==1){
                     $scope.alertTab('收藏成功');
+                }else if(data.result==104){
+                    $scope.alertTab('已经收藏,不能重复收藏');
                 }else{
                     $scope.alertTab('收藏失败');
                 }

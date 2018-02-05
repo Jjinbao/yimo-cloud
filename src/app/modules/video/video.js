@@ -204,8 +204,6 @@ angular.module('tab.video', [])
                     $scope.recVideoList=res.albumList;
                 })
             }
-            console.log('是不是安卓手机');
-            console.log(isAndroid);
             if(!isAndroid){
                 $scope.iosBottomPadding={
                     'padding-bottom':80+'px'
